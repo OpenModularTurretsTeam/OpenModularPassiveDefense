@@ -1,29 +1,75 @@
 {
-  "multipart": [
-	{   "apply": { "model": "black_stained_glass_pane_post" }},
-	{   "when": { "north": true },
-	  "apply": { "model": "black_stained_glass_pane_side" }
+  "forge_marker": 1,
+  "defaults": {
+	"textures": {
+	  "pane": "ompd:blocks/fence_tier_one",
+	  "edge":"ompd:blocks/fence_top"
 	},
-	{   "when": { "east": true },
-	  "apply": { "model": "black_stained_glass_pane_side", "y": 90 }
+	"model": "glass_pane_post"
+  },
+  "variants": {
+	"north": {
+	  "true": {
+		"submodel": "pane_side"
+	  },
+	  "false": {
+		"submodel": "pane_noside"
+	  }
 	},
-	{   "when": { "south": true },
-	  "apply": { "model": "black_stained_glass_pane_side_alt" }
+	"east": {
+	  "true": {
+		"submodel": "pane_side",
+		"y": 90
+	  },
+	  "false": {
+		"submodel": "pane_noside_alt"
+	  }
 	},
-	{   "when": { "west": true },
-	  "apply": { "model": "black_stained_glass_pane_side_alt", "y": 90 }
+	"south": {
+	  "true": {
+		"submodel": "pane_side_alt"
+	  },
+	  "false": {
+		"submodel": "black_stained_glass_pane_noside_alt",
+		"y": 90
+	  }
 	},
-	{   "when": { "north": false },
-	  "apply": { "model": "black_stained_glass_pane_noside" }
+	"west": {
+	  "true": {
+		"submodel": "pane_side_alt",
+		"y": 90
+	  },
+	  "false": {
+		"submodel": "pane_noside",
+		"y": 270
+	  }
 	},
-	{   "when": { "east": false },
-	  "apply": { "model": "black_stained_glass_pane_noside_alt" }
-	},
-	{   "when": { "south": false },
-	  "apply": { "model": "black_stained_glass_pane_noside_alt", "y": 90 }
-	},
-	{   "when": { "west": false },
-	  "apply": { "model": "black_stained_glass_pane_noside", "y": 270 }
+	"tier": {
+	  "1": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_one"
+		}
+	  },
+	  "2": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_two"
+		}
+	  },
+	  "3": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_three"
+		}
+	  },
+	  "4": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_four"
+		}
+	  },
+	  "5": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_five"
+		}
+	  }
 	}
-  ]
+  }
 }

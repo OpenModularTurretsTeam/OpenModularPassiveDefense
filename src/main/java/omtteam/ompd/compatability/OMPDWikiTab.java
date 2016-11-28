@@ -17,12 +17,12 @@ class OMPDWikiTab extends BaseWikiTab {
 
     @Override
     public String getName() {
-        return "OpenModularTurrets";
+        return "OpenModularPassiveDefense";
     }
 
     @Override
     public ItemStack renderTabIcon(GuiWiki gui) {
-        return new ItemStack(ModBlocks.hardWall);
+        return new ItemStack(ModBlocks.hardened);
     }
 
     @Override

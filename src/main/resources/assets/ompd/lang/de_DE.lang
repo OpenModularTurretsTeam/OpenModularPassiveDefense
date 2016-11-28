@@ -4,10 +4,18 @@ tile.fence_tier_three.name=Zaun (Tier 3)
 tile.fence_tier_four.name=Zaun (Tier 4)
 tile.fence_tier_five.name=Zaun (Tier 5)
 
-tile.hard_wall_tier_one.name=Verteidigungsmauer (Tier 1)
-tile.hard_wall_tier_two.name=Verteidigungsmauer (Tier 2)
-tile.hard_wall_tier_three.name=Verteidigungsmauer (Tier 3)
-tile.hard_wall_tier_four.name=Verteidigungsmauer (Tier 4)
-tile.hard_wall_tier_five.name=Verteidigungsmauer (Tier 5)
+tile.wall_tier_one.name=Verteidigungsmauer (Tier 1)
+tile.wall_tier_two.name=Verteidigungsmauer (Tier 2)
+tile.wall_tier_three.name=Verteidigungsmauer (Tier 3)
+tile.wall_tier_four.name=Verteidigungsmauer (Tier 4)
+tile.wall_tier_five.name=Verteidigungsmauer (Tier 5)
+
+tile.hardened_tier_one.name=Verteidigungsblock (Tier 1)
+tile.hardened_tier_two.name=Verteidigungsblock (Tier 2)
+tile.hardened_tier_three.name=Verteidigungsblock (Tier 3)
+tile.hardened_tier_four.name=Verteidigungsblock (Tier 4)
+tile.hardened_tier_five.name=Verteidigungsblock (Tier 5)
 
 gui.omtteam.openmodularpassivedefence:owner=Besitzer
+
+status.ownership=Du besitzt diesen Block nicht, oder hast dazu keine Berechtigung.

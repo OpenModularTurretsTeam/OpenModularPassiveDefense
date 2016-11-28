@@ -5,14 +5,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import omtteam.ompd.init.ModBlocks;
 
-public class OpenModularPassiveDefenceTab extends CreativeTabs {
-    public OpenModularPassiveDefenceTab(String label) {
+public class OpenModularPassiveDefenseTab extends CreativeTabs {
+    public OpenModularPassiveDefenseTab(String label) {
         super(label);
     }
 
     @Override
     public ItemStack getIconItemStack() {
-        return new ItemStack(ModBlocks.hardWall);
+        return new ItemStack(ModBlocks.hardened);
     }
 
     @Override

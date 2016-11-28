@@ -11,15 +11,15 @@ import omtteam.ompd.reference.Names;
 
 import java.util.List;
 
-public class ItemBlockFence extends ItemBlock {
-    public ItemBlockFence(Block block) {
+public class ItemBlockWall extends ItemBlock {
+    public ItemBlockWall(Block block) {
         super(block);
         setHasSubtypes(true);
     }
 
     public final static String[] subNames = {
-            Names.Blocks.fenceTierOne, Names.Blocks.fenceTierTwo, Names.Blocks.fenceTierThree,
-            Names.Blocks.fenceTierTwo, Names.Blocks.fenceTierFive
+            Names.Blocks.wallTierOne, Names.Blocks.wallTierTwo, Names.Blocks.wallTierThree,
+            Names.Blocks.wallTierTwo, Names.Blocks.wallTierFive
     };
 
     @Override

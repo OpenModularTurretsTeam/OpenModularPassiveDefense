@@ -2,9 +2,11 @@ package omtteam.ompd.proxy;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import omtteam.ompd.blocks.BlockWall;
 import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.Names;
 import omtteam.ompd.reference.Reference;
@@ -34,10 +36,12 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit() {
         super.preInit();
+        ModelLoader.setCustomStateMapper(ModBlocks.wall, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
         for (int i = 0; i < 5; i++) {
-            registerBlockModelAsItem(ModBlocks.hardWall, i, Names.Blocks.hardWall, "tier=" + (i + 1));
+            registerBlockModelAsItem(ModBlocks.hardened, i, Names.Blocks.hardened, "tier=" + (i + 1));
+            registerBlockModelAsItem(ModBlocks.fence , i ,Names.Blocks.fence,"east=true,north=false,south=false,tier="+ (i + 1)+ ",west=true");
+            registerBlockModelAsItem(ModBlocks.wall , i ,Names.Blocks.wall,"east=true,north=false,south=false,tier="+ (i + 1)+ ",up=true,west=true");
         }
-
     }
 
     @Override

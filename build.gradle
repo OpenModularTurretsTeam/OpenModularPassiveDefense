@@ -76,47 +76,21 @@ repositories {
         name "IGW"
         url "http://maven.k-4u.nl/"
     }
-    maven { // The repo from which to get waila
-        name "Mobius Repo"
-        url "http://mobiusstrip.eu/maven"
-    }
-    maven { // the repo from which to get NEI and stuff
-        name 'CB Repo'
-        url "http://chickenbones.net/maven/"
-    }
-    maven { // the repo from which to get EnderIO and tterrags mods
-        name 'tterrag'
-        url "http://maven.tterrag.com/"
-    }
-    maven {
-        name  "OC repo"
-        url  "http://maven.cil.li/"
-    }
-    maven {
-        name  "ic2"
-        url  "http://maven.ic2.player.to/"
-    }
 	maven { // JEI
         url "http://dvs1.progwml6.com/files/maven"
     }
     maven {
-        url 'http://maven.epoxide.xyz'
+        url "https://maven.ironhide.de/"
     }
     maven {
-        url "https://maven.ironhide.de/"
+        url "http://tehnut.info/maven"
     }
 }
 
 dependencies {
     deobfCompile "mezz.jei:jei_${config.minecraft_version}:${config.jei_version}"
     compile "igwmod:IGW-Mod-${config.igwmod_version}:userdev"
-    compile "mcp.mobius.waila:Waila:${config.waila_version}"
-    //compile "codechicken:CodeChickenLib:${config.minecraft_version}-${config.ccl_version}:dev"
-    //compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.ccc_version}:dev"
-    deobfCompile "li.cil.oc:OpenComputers:MC${config.minecraft_version}-${config.oc_version}"
-    //compile "Azanor:Thaumcraft:${config.tc_version}:deobf@jar"
-    compile "net.industrial-craft:industrialcraft-2:${config.ic2_version}:dev"
-    compile "net.darkhax.tesla:Tesla:${config.minecraft_version_short}-${config.tesla_version}"
+    deobfCompile "mcp.mobius.waila:Hwyla:${config.hwyla_version}_${config.minecraft_version}"
     compile "omtteam:omlib:${config.minecraft_version}-${config.omlib_version}:dev"
     //runtime "com.github.azanor:baubles:${config.baubles_version}"
 }

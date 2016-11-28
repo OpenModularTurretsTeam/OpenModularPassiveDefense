@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import omtteam.ompd.client.gui.OpenModularPassiveDefenceTab;
+import omtteam.ompd.client.gui.OpenModularPassiveDefenseTab;
 import omtteam.ompd.compatability.ModCompatibility;
 import omtteam.ompd.handler.ConfigHandler;
 import omtteam.ompd.handler.GuiHandler;
@@ -22,14 +22,14 @@ public class OpenModularPassiveDefence {
     @SidedProxy(clientSide = "omtteam.ompd.proxy.ClientProxy", serverSide = "omtteam.ompd.proxy.CommonProxy")
     private static CommonProxy proxy;
 
-    public static CreativeTabs modularPassiveDefenceTab;
+    public static CreativeTabs modularPassiveDefenseTab;
     private GuiHandler gui;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         gui = new GuiHandler();
-        modularPassiveDefenceTab = new OpenModularPassiveDefenceTab(Reference.MOD_ID);
+        modularPassiveDefenseTab = new OpenModularPassiveDefenseTab(Reference.NAME);
         proxy.preInit();
     }
 

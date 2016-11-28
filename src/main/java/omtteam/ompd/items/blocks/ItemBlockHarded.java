@@ -11,21 +11,21 @@ import omtteam.ompd.reference.Names;
 
 import java.util.List;
 
-public class ItemBlockFence extends ItemBlock {
-    public ItemBlockFence(Block block) {
+public class ItemBlockHarded extends ItemBlock {
+    public ItemBlockHarded(Block block) {
         super(block);
         setHasSubtypes(true);
     }
 
     public final static String[] subNames = {
-            Names.Blocks.fenceTierOne, Names.Blocks.fenceTierTwo, Names.Blocks.fenceTierThree,
-            Names.Blocks.fenceTierTwo, Names.Blocks.fenceTierFive
+            Names.Blocks.hardenedTierOne, Names.Blocks.hardenedTierTwo,Names.Blocks.hardenedTierThree,
+            Names.Blocks.hardenedTierFour,Names.Blocks.hardenedTierFive
     };
 
     @Override
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
         for (int i = 0; i < 5; i++) {
-            subItems.add(new ItemStack(ModBlocks.fence, 1, i));
+            subItems.add(new ItemStack(ModBlocks.hardened, 1, i));
         }
     }
 
@@ -42,6 +42,7 @@ public class ItemBlockFence extends ItemBlock {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
         switch (stack.getMetadata()) {
+
         }
     }
 }

@@ -23,11 +23,11 @@ public class RecipeHandler {
 
 
     public static void initRecipes() {
-        hardWallTierOne = new ItemStack(ModBlocks.hardWall, 16, 0);
-        hardWallTierTwo = new ItemStack(ModBlocks.hardWall, 16, 1);
-        hardWallTierThree = new ItemStack(ModBlocks.hardWall, 16, 2);
-        hardWallTierFour = new ItemStack(ModBlocks.hardWall, 16, 3);
-        hardWallTierFive = new ItemStack(ModBlocks.hardWall, 16, 4);
+        hardWallTierOne = new ItemStack(ModBlocks.hardened, 16, 0);
+        hardWallTierTwo = new ItemStack(ModBlocks.hardened, 16, 1);
+        hardWallTierThree = new ItemStack(ModBlocks.hardened, 16, 2);
+        hardWallTierFour = new ItemStack(ModBlocks.hardened, 16, 3);
+        hardWallTierFive = new ItemStack(ModBlocks.hardened, 16, 4);
         fenceTierOne = new ItemStack(ModBlocks.fence, 16, 5);
         fenceTierTwo = new ItemStack(ModBlocks.fence, 16, 6);
         fenceTierThree = new ItemStack(ModBlocks.fence, 16, 7);

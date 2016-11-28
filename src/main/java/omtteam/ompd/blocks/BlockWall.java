@@ -1,7 +1,6 @@
 package omtteam.ompd.blocks;
 
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +18,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import omtteam.omlib.blocks.BlockAbstractMiscPane;
+import omtteam.omlib.blocks.BlockAbstractMiscWall;
 import omtteam.ompd.OpenModularPassiveDefence;
 import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
@@ -28,11 +27,11 @@ import omtteam.ompd.util.BlockHelper;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlockFence extends BlockAbstractMiscPane {
+public class BlockWall extends BlockAbstractMiscWall {
     public static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
 
-    public BlockFence() {
-        super("","",Material.ROCK, true);
+    public BlockWall() {
+        super();
         this.setCreativeTab(OpenModularPassiveDefence.modularPassiveDefenseTab);
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
@@ -52,7 +51,7 @@ public class BlockFence extends BlockAbstractMiscPane {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, TIER, NORTH, EAST, SOUTH, WEST);
+        return new BlockStateContainer(this, TIER, UP, NORTH, EAST, SOUTH, WEST, VARIANT);
     }
 
     @Override
@@ -88,7 +87,7 @@ public class BlockFence extends BlockAbstractMiscPane {
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(ModBlocks.fence, 1, state.getValue(TIER) - 1);
+        return new ItemStack(ModBlocks.wall, 1, state.getValue(TIER) - 1);
     }
 
     @Override
@@ -96,7 +95,7 @@ public class BlockFence extends BlockAbstractMiscPane {
     @SuppressWarnings("unchecked")
     public void getSubBlocks(Item item, CreativeTabs tab, List subItems) {
         for (int i = 0; i < 5; i++) {
-            subItems.add(new ItemStack(ModBlocks.fence, 1, i));
+            subItems.add(new ItemStack(ModBlocks.wall, 1, i));
         }
     }
 }
