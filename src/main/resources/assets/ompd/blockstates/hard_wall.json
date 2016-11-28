@@ -1,0 +1,35 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+	"model": "minecraft:cube_all"
+  },
+  "variants": {
+	"tier": {
+	  "1": {
+		"textures": {
+		  "all": "ompd:blocks/hard_wall_tier_one"
+		}
+	  },
+	  "2": {
+		"textures": {
+		  "all": "ompd:blocks/hard_wall_tier_two"
+		}
+	  },
+	  "3": {
+		"textures": {
+		  "all": "ompd:blocks/hard_wall_tier_three"
+		}
+	  },
+	  "4": {
+		"textures": {
+		  "all": "ompd:blocks/hard_wall_tier_four"
+		}
+	  },
+	  "5": {
+		"textures": {
+		  "all": "ompd:blocks/hard_wall_tier_five"
+		}
+	  }
+	}
+  }
+}

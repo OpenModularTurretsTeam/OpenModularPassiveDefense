@@ -1,0 +1,36 @@
+tile.fence_tier_one.name=Fence (Tier 1)
+tile.fence_tier_two.name=Fence (Tier 2)
+tile.fence_tier_three.name=Fence (Tier 3)
+tile.fence_tier_four.name=Fence (Tier 4)
+tile.fence_tier_five.name=Fence (Tier 5)
+
+tile.hard_wall_tier_one.name=Hard Wall (Tier 1)
+tile.hard_wall_tier_two.name=Hard Wall (Tier 2)
+tile.hard_wall_tier_three.name=Hard Wall (Tier 3)
+tile.hard_wall_tier_four.name=Hard Wall (Tier 4)
+tile.hard_wall_tier_five.name=Hard Wall (Tier 5)
+
+#for IGWMod
+tile.turretBase.name=Turret Base
+
+itemGroup.omtteam.openmodularpassivedefence=Open Modular Passive Defence
+
+tooltip.tier=Tier
+tooltip.range=Range (in blocks)
+tooltip.accuracy=Accuracy
+tooltip.ammo=Ammo Type
+tooltip.tierRequired=Base Minimum Tier
+tooltip.damage.label=Damage Output
+tooltip.damage.stat=Projectile Damage
+tooltip.aoe=AOE Radius
+tooltip.firerate=Shots/s
+tooltip.energy.stat=Energy usage per shot
+tooltip.info=Info
+tooltip.health=Hearts
+
+gui.omtteam.openmodularpassivedefence:owner=Owner
+gui.omtteam.openmodularpassivedefence:invert=Inverted
+gui.omtteam.openmodularpassivedefence:active=Active
+gui.omtteam.openmodularpassivedefence:mode=Mode
+gui.omtteam.openmodularpassivedefence:true=true
+gui.omtteam.openmodularpassivedefence:false=false

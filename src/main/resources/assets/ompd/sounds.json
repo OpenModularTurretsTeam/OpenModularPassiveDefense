@@ -1,0 +1,164 @@
+{
+    "amped": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "amped",
+                "stream": false
+            }
+        ]
+    },
+    "bulletHit": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "bulletHit",
+                "stream": false
+            }
+        ]
+    },
+    "windup": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "windup",
+                "stream": false
+            }
+        ]
+    },
+    "grenade": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "grenade",
+                "stream": false
+            }
+        ]
+    },
+    "machinegun": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "machinegun",
+                "stream": false
+            }
+        ]
+    },
+    "laser": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "laser",
+                "stream": false
+            }
+        ]
+    },
+    "warning": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "warning",
+                "stream": false
+            }
+        ]
+    },
+    "laserHit": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "laserHit",
+              "stream": false
+            }
+        ]
+    },
+    "rocket": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "rocket",
+              "stream": false
+            }
+        ]
+    },
+    "disposable": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "disposable",
+              "stream": false
+            }
+        ]
+    },
+    "potato": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "potato",
+              "stream": false
+            }
+        ]
+    },
+    "incendiary": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "incendiary",
+              "stream": false
+            }
+        ]
+    },
+    "relativistic": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "relativistic",
+              "stream": false
+            }
+        ]
+    },
+    "teleport": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "teleport",
+              "stream": false
+            }
+        ]
+    },
+     "railGun": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "railGun",
+              "stream": false
+            }
+        ]
+    },
+     "railGunHit": {
+        "category": "neutral",
+        "sounds": [
+            {
+               "name": "railGunHit",
+              "stream": false
+            }
+        ]
+    },
+    "turretDeploy": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "turretDeploy",
+                "stream": false
+            }
+        ]
+    },
+    "turretRetract": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "turretRetract",
+                "stream": false
+            }
+        ]
+    }
+}
