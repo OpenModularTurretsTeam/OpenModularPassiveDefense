@@ -23,7 +23,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import omtteam.omlib.blocks.BlockAbstractTileEntity;
+import omtteam.omlib.blocks.BlockAbstractMiscPane;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
 import omtteam.ompd.OpenModularPassiveDefence;
 import omtteam.ompd.handler.ConfigHandler;
@@ -33,17 +33,18 @@ import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlockFence extends BlockAbstractTileEntity {
+public class BlockFence extends BlockAbstractMiscPane {
     public static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
 
     public BlockFence() {
-        super(Material.ROCK);
+        super("","",Material.ROCK, true);
         this.setCreativeTab(OpenModularPassiveDefence.modularPassiveDefenceTab);
         if (!ConfigHandler.turretBreakable) {
             this.setBlockUnbreakable();
         }
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
     }
 
     @Override
@@ -69,7 +70,7 @@ public class BlockFence extends BlockAbstractTileEntity {
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, TIER);
+        return new BlockStateContainer(this, TIER, NORTH, EAST, SOUTH, WEST);
     }
 
     @Override

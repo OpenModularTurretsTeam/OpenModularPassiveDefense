@@ -19,7 +19,7 @@ public class OpenModularPassiveDefence {
     @Mod.Instance(Reference.MOD_ID)
     public static OpenModularPassiveDefence instance;
 
-    @SidedProxy(clientSide = "ompd.proxy.ClientProxy", serverSide = "ompd.proxy.CommonProxy")
+    @SidedProxy(clientSide = "omtteam.ompd.proxy.ClientProxy", serverSide = "omtteam.ompd.proxy.CommonProxy")
     private static CommonProxy proxy;
 
     public static CreativeTabs modularPassiveDefenceTab;

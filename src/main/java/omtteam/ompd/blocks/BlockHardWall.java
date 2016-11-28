@@ -41,6 +41,7 @@ public class BlockHardWall extends BlockAbstractTileEntity {
         }
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
     }
 
     @Override
