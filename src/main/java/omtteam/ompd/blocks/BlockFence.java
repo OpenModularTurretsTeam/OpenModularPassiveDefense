@@ -8,10 +8,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -27,6 +29,8 @@ import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static omtteam.omlib.util.PlayerUtil.isPlayerOwner;
 
 public class BlockFence extends BlockAbstractMiscPane {
     public static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
@@ -68,7 +72,8 @@ public class BlockFence extends BlockAbstractMiscPane {
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        //if (!(entityIn instanceof EntityItem)) entityIn.attackEntityFrom(DamageSource.cactus, 5);
+        TileEntityPassiveOwnedBlock te = (TileEntityPassiveOwnedBlock)worldIn.getTileEntity(pos);
+        if (!(te != null && entityIn instanceof EntityPlayer && isPlayerOwner((EntityPlayer)entityIn, te)) && !(entityIn instanceof EntityItem)) entityIn.attackEntityFrom(DamageSource.cactus, 5);
     }
 
     @Override
