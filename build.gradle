@@ -93,7 +93,6 @@ dependencies {
     compile "igwmod:IGW-Mod-${config.igwmod_version}:userdev"
     deobfCompile "mcp.mobius.waila:Hwyla:${config.hwyla_version}_${config.minecraft_version}"
     compile "omtteam:omlib:${config.minecraft_version}-${config.omlib_version}:dev"
-    //runtime "com.github.azanor:baubles:${config.baubles_version}"
 }
 
 
