@@ -1,24 +1,24 @@
 [
     {
-        "modid": "omtteam.openmodularpassivedefence",
-        "name": "Open Modular Turrets",
-        "description": "All a man needs are meat ingots, and big ass turrets. Adds a heap of new turrets and upgrades!",
+        "modid": "ompd",
+        "name": "Open Modular Passive Defense",
+        "description": "All a man needs are meat ingots, and big ass walls. Adds new walls and fences!",
         "version": "${version}",
         "mcversion": "${mcversion}",
         "credits": "Poenjabiesous",
-        "logoFile": "/mods/thermalexpansion/textures/logo.png",
+        "logoFile": "",
         "url": "",
         "updateUrl": "",
         "authors": [
-            "Poenjabiesous", "UntouchedWagons", "Keridos"
+            "Poenjabiesous", "Keridos"
         ],
         "parent":"",
         "screenshots": [],
         "requiredMods": [
-            "MinecraftForge,ThermalExpansion"
+            "MinecraftForge,omlib"
         ],
         "dependencies": [
-            "MinecraftForge,ThermalExpansion"
+            "MinecraftForge,omlib"
         ]
     }
 ]
