@@ -77,5 +77,9 @@ public class RecipeHandler {
         GameRegistry.addRecipe(new ShapedOreRecipe(hardWallTierFive, "ABA", "BAB", "ABA", 'A',
                 hardWallTierFour, 'B', Blocks.OBSIDIAN));
 
+        for (int i= 0; i<5 ;i++) {
+            GameRegistry.addRecipe(
+                    new ShapedOreRecipe(new ItemStack(ModBlocks.wall,6,i), "   ", "AAA", "AAA", 'A', new ItemStack( ModBlocks.hardened,1,i)));
+        }
     }
 }
