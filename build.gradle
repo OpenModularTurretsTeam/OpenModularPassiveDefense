@@ -13,6 +13,7 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven-publish'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -101,4 +102,20 @@ task deobfJar(type: Jar) {
     classifier = 'dev'
 }
 
-build.dependsOn sourceJar, deobfJar
+tasks.build.dependsOn deobfJar, sourceJar
+
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            groupId config.group_prefix
+            artifactId config.mod_id
+            artifact jar
+            artifact sourceJar
+            artifact deobfJar
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
