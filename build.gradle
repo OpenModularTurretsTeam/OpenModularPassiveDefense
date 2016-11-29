@@ -81,7 +81,7 @@ repositories {
         url "http://dvs1.progwml6.com/files/maven"
     }
     maven {
-        url "https://maven.ironhide.de/"
+        url "http://maven.ironhide.de/"
     }
     maven {
         url "http://tehnut.info/maven"
