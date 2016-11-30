@@ -1,21 +1,23 @@
 {
+  "parent":"block/block",
   "forge_marker": 1,
   "defaults": {
 	"textures": {
 	  "wall": "ompd:blocks/hardened_tier_one"
-	}
+	},
+	"transform": "forge:default-block"
   },
   "variants": {
 	"north": {
 	  "true": {
-		"submodel": "wall_side"
+		"submodel": "ompd:wall_side"
 	  },
 	  "false": {
 	  }
 	},
 	"east": {
 	  "true": {
-		"submodel": "wall_side",
+		"submodel": "ompd:wall_side",
 		"y": 90
 	  },
 	  "false": {
@@ -23,7 +25,7 @@
 	},
 	"south": {
 	  "true": {
-		"submodel": "wall_side",
+		"submodel": "ompd:wall_side",
 		"y": 180
 	  },
 	  "false": {
@@ -31,7 +33,7 @@
 	},
 	"west": {
 	  "true": {
-		"submodel": "wall_side",
+		"submodel": "ompd:wall_side",
 		"y": 270
 	  },
 	  "false": {
@@ -39,7 +41,7 @@
 	},
 	"up": {
 	  "true": {
-		"submodel": "wall_post"
+		"submodel": "ompd:wall_post"
 	  },
 	  "false": {
 	  }

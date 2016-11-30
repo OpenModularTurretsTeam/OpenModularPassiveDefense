@@ -39,6 +39,7 @@ public class OpenModularPassiveDefence{
         ModCompatibility.performModCompat();
         proxy.initRenderers();
         proxy.initHandlers();
+
         NetworkRegistry.INSTANCE.registerGuiHandler(this, gui);
     }
 }

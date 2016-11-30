@@ -34,10 +34,6 @@ public class RecipeHandler {
         fenceTierFour = new ItemStack(ModBlocks.fence, 16, 8);
         fenceTierFive = new ItemStack(ModBlocks.fence, 16, 9);
 
-        // Recipes
-
-
-
         //Fences
         GameRegistry.addRecipe(new ShapedOreRecipe(fenceTierOne, "ABA", "BAB", "ABA", 'A',
                 Blocks.IRON_BARS, 'B',
