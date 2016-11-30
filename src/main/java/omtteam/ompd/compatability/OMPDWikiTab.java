@@ -22,7 +22,7 @@ class OMPDWikiTab extends BaseWikiTab {
 
     @Override
     public ItemStack renderTabIcon(GuiWiki gui) {
-        return new ItemStack(ModBlocks.hardened);
+        return new ItemStack(ModBlocks.hardened,1,1);
     }
 
     @Override

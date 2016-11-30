@@ -1,107 +1,20 @@
 {
-  "parent": "block/wall_post",
-  "display": {
-	"gui": {
-	  "rotation": [
-		30,
-		225,
-		0
-	  ],
-	  "translation": [
-		0,
-		0,
-		0
-	  ],
-	  "scale": [
-		0.625,
-		0.625,
-		0.625
-	  ]
-	},
-	"ground": {
-	  "rotation": [
-		0,
-		0,
-		0
-	  ],
-	  "translation": [
-		0,
-		3,
-		0
-	  ],
-	  "scale": [
-		0.20,
-		0.20,
-		0.20
-	  ]
-	},
-	"fixed": {
-	  "rotation": [
-		0,
-		0,
-		0
-	  ],
-	  "translation": [
-		0,
-		0,
-		0
-	  ],
-	  "scale": [
-		0.5,
-		0.5,
-		0.5
-	  ]
-	},
-	"thirdperson_righthand": {
-	  "rotation": [
-		75,
-		45,
-		0
-	  ],
-	  "translation": [
-		0,
-		2.5,
-		0
-	  ],
-	  "scale": [
-		0.375,
-		0.375,
-		0.375
-	  ]
-	},
-	"firstperson_righthand": {
-	  "rotation": [
-		0,
-		45,
-		0
-	  ],
-	  "translation": [
-		0,
-		0,
-		0
-	  ],
-	  "scale": [
-		0.40,
-		0.40,
-		0.40
-	  ]
-	},
-	"firstperson_lefthand": {
-	  "rotation": [
-		0,
-		225,
-		0
-	  ],
-	  "translation": [
-		0,
-		0,
-		0
-	  ],
-	  "scale": [
-		0.40,
-		0.40,
-		0.40
-	  ]
+  "parent": "block/block",
+  "textures": {
+	"particle": "#wall"
+  },
+  "elements": [
+	{   "from": [ 4, 0, 4 ],
+	  "to": [ 12, 16, 12 ],
+	  "faces": {
+		"down":  { "texture": "#wall", "cullface": "down" },
+		"up":    { "texture": "#wall", "cullface": "up"   },
+		"north": { "texture": "#wall" },
+		"south": { "texture": "#wall" },
+		"west":  { "texture": "#wall" },
+		"east":  { "texture": "#wall" }
+	  },
+	  "__comment": "Center post"
 	}
-  }
+  ]
 }

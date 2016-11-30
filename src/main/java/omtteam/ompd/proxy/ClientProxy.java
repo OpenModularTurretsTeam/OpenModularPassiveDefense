@@ -40,7 +40,11 @@ public class ClientProxy extends CommonProxy {
         for (int i = 0; i < 5; i++) {
             registerBlockModelAsItem(ModBlocks.hardened, i, Names.Blocks.hardened, "tier=" + (i + 1));
             registerBlockModelAsItem(ModBlocks.fence , i ,Names.Blocks.fence,"east=true,north=false,south=false,tier="+ (i + 1)+ ",west=true");
-            registerBlockModelAsItem(ModBlocks.wall , i ,Names.Blocks.wall,"east=true,north=false,south=false,tier="+ (i + 1)+ ",up=true,west=true");
+            //registerBlockModelAsItem(ModBlocks.wall , i ,Names.Blocks.wall,"east=true,north=false,south=false,tier="+ (i + 1)+ ",up=true,west=true");
+            registerBlockModelAsItem(ModBlocks.wall , i ,Names.Blocks.wall+ "_inventory","tier="+ (i + 1));
+            //registerBlockModelAsItem(ModBlocks.hardened, i, Names.Blocks.hardened, "tier=" + (i + 1));
+            //registerBlockModelAsItem(ModBlocks.fence , i ,Names.Blocks.fence,"east=true,north=false,south=false,tier="+ (i + 1)+ ",west=true");
+            //registerBlockModelAsItem(ModBlocks.wall , i ,Names.Blocks.wall);
         }
     }
 

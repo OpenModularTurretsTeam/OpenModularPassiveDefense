@@ -1,11 +1,10 @@
 {
-  "parent":"block/block",
   "forge_marker": 1,
+  "transform": "forge:default-block",
   "defaults": {
 	"textures": {
 	  "wall": "ompd:blocks/hardened_tier_one"
-	},
-	"transform": "forge:default-block"
+	}
   },
   "variants": {
 	"north": {

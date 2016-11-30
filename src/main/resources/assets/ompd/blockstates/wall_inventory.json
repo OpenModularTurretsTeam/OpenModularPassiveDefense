@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+	"transform": "forge:default-block",
+	"model": "ompd:wall_inventory"
+  },
+  "variants": {
+	"tier": {
+	  "1": {
+		"textures": {
+		  "wall": "ompd:blocks/hardened_tier_one"
+		}
+	  },
+	  "2": {
+		"textures": {
+		  "wall": "ompd:blocks/hardened_tier_two"
+		}
+	  },
+	  "3": {
+		"textures": {
+		  "wall": "ompd:blocks/hardened_tier_three"
+		}
+	  },
+	  "4": {
+		"textures": {
+		  "wall": "ompd:blocks/hardened_tier_four"
+		}
+	  },
+	  "5": {
+		"textures": {
+		  "wall": "ompd:blocks/hardened_tier_five"
+		}
+	  }
+	}
+  }
+}
