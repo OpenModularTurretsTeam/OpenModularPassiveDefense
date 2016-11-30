@@ -1,0 +1,4 @@
+The hardened blocks are full blocks with a pretty high resistance to mining and explosions,
+and they are available in 5 variations: Tier 1 - Tier 5.
+
+They are owned and their owner can mine them instantly (using shift-rightclick with an empty hand currently).

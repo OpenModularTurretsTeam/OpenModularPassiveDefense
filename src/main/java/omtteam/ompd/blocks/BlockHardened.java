@@ -37,6 +37,7 @@ public class BlockHardened extends BlockAbstractTileEntity {
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
         this.setUnlocalizedName(Names.Blocks.hardened);
+        this.setRegistryName(Names.Blocks.hardened);
     }
 
     @Override

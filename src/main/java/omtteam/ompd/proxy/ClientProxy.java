@@ -7,6 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import omtteam.ompd.blocks.BlockWall;
+import omtteam.ompd.compatability.IGWHandler;
+import omtteam.ompd.compatability.ModCompatibility;
 import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.Names;
 import omtteam.ompd.reference.Reference;
@@ -39,12 +41,8 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomStateMapper(ModBlocks.wall, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
         for (int i = 0; i < 5; i++) {
             registerBlockModelAsItem(ModBlocks.hardened, i, Names.Blocks.hardened, "tier=" + (i + 1));
-            registerBlockModelAsItem(ModBlocks.fence , i ,Names.Blocks.fence,"east=true,north=false,south=false,tier="+ (i + 1)+ ",west=true");
-            //registerBlockModelAsItem(ModBlocks.wall , i ,Names.Blocks.wall,"east=true,north=false,south=false,tier="+ (i + 1)+ ",up=true,west=true");
+            registerBlockModelAsItem(ModBlocks.fence , i ,Names.Blocks.fence + "_inventory","tier="+ (i + 1));
             registerBlockModelAsItem(ModBlocks.wall , i ,Names.Blocks.wall+ "_inventory","tier="+ (i + 1));
-            //registerBlockModelAsItem(ModBlocks.hardened, i, Names.Blocks.hardened, "tier=" + (i + 1));
-            //registerBlockModelAsItem(ModBlocks.fence , i ,Names.Blocks.fence,"east=true,north=false,south=false,tier="+ (i + 1)+ ",west=true");
-            //registerBlockModelAsItem(ModBlocks.wall , i ,Names.Blocks.wall);
         }
     }
 
@@ -59,5 +57,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void initHandlers() {
         super.initHandlers();
+        if (ModCompatibility.IGWModLoaded) {
+            ModCompatibility.igwHandler = IGWHandler.getInstance();
+        }
     }
 }

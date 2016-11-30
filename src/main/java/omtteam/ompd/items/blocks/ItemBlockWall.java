@@ -14,7 +14,8 @@ import java.util.List;
 public class ItemBlockWall extends ItemBlock {
     public ItemBlockWall(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(Names.Blocks.wall);
     }
 
     public final static String[] subNames = {
@@ -25,7 +26,7 @@ public class ItemBlockWall extends ItemBlock {
     @Override
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
         for (int i = 0; i < 5; i++) {
-            subItems.add(new ItemStack(ModBlocks.fence, 1, i));
+            subItems.add(new ItemStack(ModBlocks.wall, 1, i));
         }
     }
 

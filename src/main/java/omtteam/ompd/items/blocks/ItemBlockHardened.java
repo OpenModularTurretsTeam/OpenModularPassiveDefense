@@ -11,10 +11,11 @@ import omtteam.ompd.reference.Names;
 
 import java.util.List;
 
-public class ItemBlockHarded extends ItemBlock {
-    public ItemBlockHarded(Block block) {
+public class ItemBlockHardened extends ItemBlock {
+    public ItemBlockHardened(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(Names.Blocks.hardened);
     }
 
     public final static String[] subNames = {

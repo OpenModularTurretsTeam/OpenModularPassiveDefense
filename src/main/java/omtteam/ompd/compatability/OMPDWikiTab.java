@@ -12,7 +12,9 @@ import omtteam.ompd.init.ModBlocks;
  */
 class OMPDWikiTab extends BaseWikiTab {
     public OMPDWikiTab() {
-
+        pageEntries.add("block/wall");
+        pageEntries.add("#block/fence");
+        pageEntries.add("block/hardened");
     }
 
     @Override
@@ -22,7 +24,7 @@ class OMPDWikiTab extends BaseWikiTab {
 
     @Override
     public ItemStack renderTabIcon(GuiWiki gui) {
-        return new ItemStack(ModBlocks.hardened,1,1);
+        return new ItemStack(ModBlocks.wall,1,4);
     }
 
     @Override

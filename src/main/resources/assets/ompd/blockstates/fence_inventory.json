@@ -1,0 +1,40 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+	"transform": "forge:default-block",
+	"textures": {
+	  "pane": "ompd:blocks/fence_tier_one",
+	  "edge":"ompd:blocks/fence_top"
+	},
+	"model": "ompd:fence_inventory"
+  },
+  "variants": {
+	"tier": {
+	  "1": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_one"
+		}
+	  },
+	  "2": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_two"
+		}
+	  },
+	  "3": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_three"
+		}
+	  },
+	  "4": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_four"
+		}
+	  },
+	  "5": {
+		"textures": {
+		  "pane": "ompd:blocks/fence_tier_five"
+		}
+	  }
+	}
+  }
+}

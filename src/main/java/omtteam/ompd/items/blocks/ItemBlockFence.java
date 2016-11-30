@@ -14,7 +14,8 @@ import java.util.List;
 public class ItemBlockFence extends ItemBlock {
     public ItemBlockFence(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(Names.Blocks.fence);
     }
 
     public final static String[] subNames = {

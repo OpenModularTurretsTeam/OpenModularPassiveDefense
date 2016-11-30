@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.blocks.BlockAbstractMiscPane;
 import omtteam.ompd.OpenModularPassiveDefence;
 import omtteam.ompd.init.ModBlocks;
+import omtteam.ompd.reference.Names;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 import omtteam.ompd.util.BlockHelper;
 
@@ -41,6 +42,8 @@ public class BlockFence extends BlockAbstractMiscPane {
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
+        this.setUnlocalizedName(Names.Blocks.fence);
+        this.setRegistryName(Names.Blocks.fence);
     }
 
     @Override

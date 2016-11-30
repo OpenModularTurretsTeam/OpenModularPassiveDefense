@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.blocks.BlockAbstractMiscWall;
 import omtteam.ompd.OpenModularPassiveDefence;
 import omtteam.ompd.init.ModBlocks;
+import omtteam.ompd.reference.Names;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 import omtteam.ompd.util.BlockHelper;
 
@@ -35,6 +36,8 @@ public class BlockWall extends BlockAbstractMiscWall {
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
+        this.setUnlocalizedName(Names.Blocks.wall);
+        this.setRegistryName(Names.Blocks.wall);
     }
 
     @Override

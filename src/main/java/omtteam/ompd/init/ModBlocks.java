@@ -1,35 +1,44 @@
 package omtteam.ompd.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import omtteam.ompd.blocks.BlockFence;
 import omtteam.ompd.blocks.BlockHardened;
 import omtteam.ompd.blocks.BlockWall;
 import omtteam.ompd.items.blocks.ItemBlockFence;
-import omtteam.ompd.items.blocks.ItemBlockHarded;
+import omtteam.ompd.items.blocks.ItemBlockHardened;
 import omtteam.ompd.items.blocks.ItemBlockWall;
 import omtteam.ompd.reference.Names;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
-
-import static omtteam.ompd.reference.Names.Blocks.ownedBlock;
 
 public class ModBlocks {
     public static Block hardened;
     public static Block fence;
     public static Block wall;
 
+    public static Item hardenedItem;
+    public static Item fenceItem;
+    public static Item wallItem;
+
     public static void initBlocks() {
         hardened = new BlockHardened();
-        GameRegistry.registerBlock(hardened, ItemBlockHarded.class, Names.Blocks.hardened);
+        hardenedItem = new ItemBlockHardened(hardened);
+        GameRegistry.register(hardened);
+        GameRegistry.register(hardenedItem);
 
         fence = new BlockFence();
-        GameRegistry.registerBlock(fence, ItemBlockFence.class, Names.Blocks.fence);
+        fenceItem = new ItemBlockFence(fence);
+        GameRegistry.register(fence);
+        GameRegistry.register(fenceItem);
 
         wall = new BlockWall();
-        GameRegistry.registerBlock(wall, ItemBlockWall.class, Names.Blocks.wall);
+        wallItem = new ItemBlockWall(wall);
+        GameRegistry.register(wall);
+        GameRegistry.register(wallItem);
     }
 
     public static void initTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityPassiveOwnedBlock.class, ownedBlock);
+        GameRegistry.registerTileEntity(TileEntityPassiveOwnedBlock.class, Names.Blocks.ownedBlock);
     }
 }

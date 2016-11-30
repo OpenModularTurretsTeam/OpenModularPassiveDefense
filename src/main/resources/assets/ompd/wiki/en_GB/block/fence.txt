@@ -1,0 +1,3 @@
+The fences are pane-like structures that damage colliding entities, except their owner, and are pretty resistant
+against damage. They are available in 5 tiers. Their owner can mine them instantly (using shift-rightclick with
+an empty hand currently).
