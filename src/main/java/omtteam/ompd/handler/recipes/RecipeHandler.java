@@ -28,11 +28,11 @@ public class RecipeHandler {
         hardWallTierThree = new ItemStack(ModBlocks.hardened, 16, 2);
         hardWallTierFour = new ItemStack(ModBlocks.hardened, 16, 3);
         hardWallTierFive = new ItemStack(ModBlocks.hardened, 16, 4);
-        fenceTierOne = new ItemStack(ModBlocks.fence, 16, 5);
-        fenceTierTwo = new ItemStack(ModBlocks.fence, 16, 6);
-        fenceTierThree = new ItemStack(ModBlocks.fence, 16, 7);
-        fenceTierFour = new ItemStack(ModBlocks.fence, 16, 8);
-        fenceTierFive = new ItemStack(ModBlocks.fence, 16, 9);
+        fenceTierOne = new ItemStack(ModBlocks.fence, 16, 0);
+        fenceTierTwo = new ItemStack(ModBlocks.fence, 16, 1);
+        fenceTierThree = new ItemStack(ModBlocks.fence, 16, 2);
+        fenceTierFour = new ItemStack(ModBlocks.fence, 16, 3);
+        fenceTierFive = new ItemStack(ModBlocks.fence, 16, 4);
 
         //Fences
         GameRegistry.addRecipe(new ShapedOreRecipe(fenceTierOne, "ABA", "BAB", "ABA", 'A',
