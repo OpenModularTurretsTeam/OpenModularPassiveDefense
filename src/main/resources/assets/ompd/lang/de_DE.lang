@@ -16,6 +16,6 @@ tile.hardened_tier_three.name=Verteidigungsblock (Tier 3)
 tile.hardened_tier_four.name=Verteidigungsblock (Tier 4)
 tile.hardened_tier_five.name=Verteidigungsblock (Tier 5)
 
-gui.omtteam.openmodularpassivedefence:owner=Besitzer
+gui.ompd:owner=Besitzer
 
 status.ownership=Du besitzt diesen Block nicht, oder hast dazu keine Berechtigung.

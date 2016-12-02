@@ -6,15 +6,17 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import omtteam.ompd.init.ModBlocks;
 
+import static omtteam.ompd.reference.Reference.MOD_ID;
+
 /**
  * Created by Keridos on 23/01/2015.
  * This Class
  */
 class OMPDWikiTab extends BaseWikiTab {
     public OMPDWikiTab() {
-        pageEntries.add("block/wall");
-        pageEntries.add("#block/fence");
-        pageEntries.add("block/hardened");
+        pageEntries.add("ompd:block/wall");
+        pageEntries.add("ompd:block/fence");
+        pageEntries.add("ompd:block/hardened");
     }
 
     @Override
@@ -24,7 +26,7 @@ class OMPDWikiTab extends BaseWikiTab {
 
     @Override
     public ItemStack renderTabIcon(GuiWiki gui) {
-        return new ItemStack(ModBlocks.wall,1,4);
+        return new ItemStack(ModBlocks.wall, 1, 4);
     }
 
     @Override
@@ -39,8 +41,8 @@ class OMPDWikiTab extends BaseWikiTab {
     @Override
     protected String getPageLocation(String pageEntry) {
         if (pageEntry.startsWith("item") || pageEntry.startsWith("block")) {
-            return pageEntry;
+            return MOD_ID + ":" + pageEntry;
         }
-        return "opmd:menu/" + pageEntry;
+        return MOD_ID + ":menu/" + pageEntry;
     }
 }

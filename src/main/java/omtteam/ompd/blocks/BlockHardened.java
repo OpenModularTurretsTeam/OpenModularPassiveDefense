@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.blocks.BlockAbstractTileEntity;
-import omtteam.ompd.OpenModularPassiveDefence;
+import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.Names;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
@@ -32,7 +32,7 @@ public class BlockHardened extends BlockAbstractTileEntity {
     public static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
     public BlockHardened() {
         super(Material.ROCK);
-        this.setCreativeTab(OpenModularPassiveDefence.modularPassiveDefenseTab);
+        this.setCreativeTab(OpenModularPassiveDefense.modularPassiveDefenseTab);
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));

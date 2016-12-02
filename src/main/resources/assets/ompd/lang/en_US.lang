@@ -16,6 +16,6 @@ tile.hardened_tier_three.name=Hardened Block (Tier 3)
 tile.hardened_tier_four.name=Hardened Block (Tier 4)
 tile.hardened_tier_five.name=Hardened Block (Tier 5)
 
-gui.omtteam.openmodularpassivedefence:owner=Owner
+gui.ompd:owner=Owner
 
 status.ownership=You do not own this block, or you don't have permission to do that.

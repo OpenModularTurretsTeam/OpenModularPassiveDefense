@@ -59,16 +59,16 @@ public class ModCompatibility {
 
     private static void addVersionCheckerInfo() {
         NBTTagCompound versionchecker = new NBTTagCompound();
-        versionchecker.setString("curseProjectName", "224663-opmd");
-        versionchecker.setString("curseFilenameParser", "OpenModularTurrets-1.7.10-[].jar");
-        versionchecker.setString("modDisplayName", "OpenModularTurrets");
+        versionchecker.setString("curseProjectName", "254332-opmd");
+        versionchecker.setString("curseFilenameParser", "ompd-1.7.10-[].jar");
+        versionchecker.setString("modDisplayName", "Open Modular Passive Defense");
         versionchecker.setString("oldVersion", Reference.VERSION);
         FMLInterModComms.sendRuntimeMessage("omtteam/ompd", "VersionChecker", "addCurseCheck", versionchecker);
     }
 
     public static void performModCompat() {
         FMLInterModComms.sendMessage("Waila", "register",
-                                     "opmd.compatability.WailaTileHandler.callbackRegister");
+                                     "omtteam.ompd.compatability.WailaTileHandler.callbackRegister");
         if (ConfigHandler.IGWNotification) {
             new IGWSupportNotifier();
         }

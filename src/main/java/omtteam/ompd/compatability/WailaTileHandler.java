@@ -11,8 +11,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
+import omtteam.ompd.reference.Names;
+import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 
 import java.util.List;
+
+import static omtteam.omlib.util.GeneralUtil.safeLocalize;
 
 ;
 
@@ -35,7 +39,8 @@ public class WailaTileHandler implements IWailaDataProvider {
     @Optional.Method(modid = "Waila")
     public static void callbackRegister(IWailaRegistrar register) {
         WailaTileHandler instance = new WailaTileHandler();
-
+        register.registerNBTProvider(instance, TileEntityPassiveOwnedBlock.class);
+        register.registerBodyProvider(instance, TileEntityPassiveOwnedBlock.class);
     }
 
     /**
@@ -71,6 +76,8 @@ public class WailaTileHandler implements IWailaDataProvider {
     @Override
     @Optional.Method(modid = "Waila")
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
+        String ownerName = accessor.getNBTData().getString("ownerName");
+        currenttip.add(safeLocalize(Names.Localizations.OWNER) + ": " + ownerName);
         return currenttip;
     }
 
@@ -82,7 +89,6 @@ public class WailaTileHandler implements IWailaDataProvider {
     @Override
     @Optional.Method(modid = "Waila")
     public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-
         return currenttip;
     }
 

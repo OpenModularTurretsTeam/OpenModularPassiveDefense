@@ -15,9 +15,9 @@ import omtteam.ompd.proxy.CommonProxy;
 import omtteam.ompd.reference.Reference;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = "1.7.10", dependencies = Reference.DEPENDENCIES)
-public class OpenModularPassiveDefence{
+public class OpenModularPassiveDefense {
     @Mod.Instance(Reference.MOD_ID)
-    public static OpenModularPassiveDefence instance;
+    public static OpenModularPassiveDefense instance;
 
     @SidedProxy(clientSide = "omtteam.ompd.proxy.ClientProxy", serverSide = "omtteam.ompd.proxy.CommonProxy")
     private static CommonProxy proxy;

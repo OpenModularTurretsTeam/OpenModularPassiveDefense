@@ -38,6 +38,6 @@ public class Names {
     }
 
     public static class Localizations {
-        public static final String OWNER = "gui.opmd:owner";
+        public static final String OWNER = "gui.ompd:owner";
     }
 }
