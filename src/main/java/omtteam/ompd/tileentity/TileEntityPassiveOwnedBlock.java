@@ -3,6 +3,8 @@ package omtteam.ompd.tileentity;
 import net.minecraft.nbt.NBTTagCompound;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
 
+import javax.annotation.Nonnull;
+
 /**
  * Created by Keridos on 28/11/16.
  * This Class
@@ -18,7 +20,9 @@ public class TileEntityPassiveOwnedBlock extends TileEntityOwnedBlock {
             worldObj.destroyBlock(pos, false);
         }
     }
+
     @Override
+    @Nonnull
     public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound) {
         super.writeToNBT(nbtTagCompound);
         nbtTagCompound.setInteger("tier", this.tier);

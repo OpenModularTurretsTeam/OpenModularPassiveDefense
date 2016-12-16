@@ -24,11 +24,13 @@ import omtteam.ompd.reference.Names;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 import omtteam.ompd.util.BlockHelper;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class BlockWall extends BlockAbstractMiscWall {
-    public static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
+    private static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
 
     public BlockWall() {
         super();
@@ -52,12 +54,14 @@ public class BlockWall extends BlockAbstractMiscWall {
 
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, TIER, UP, NORTH, EAST, SOUTH, WEST, VARIANT);
     }
 
     @Override
     @SuppressWarnings("unchecked")
+    @Nonnull
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(TIER, meta + 1);
     }
@@ -84,6 +88,8 @@ public class BlockWall extends BlockAbstractMiscWall {
     }
 
     @Override
+    @Nonnull
+    @ParametersAreNonnullByDefault
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(ModBlocks.wall, 1, state.getValue(TIER) - 1);
     }
@@ -91,6 +97,7 @@ public class BlockWall extends BlockAbstractMiscWall {
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
+    @ParametersAreNonnullByDefault
     public void getSubBlocks(Item item, CreativeTabs tab, List subItems) {
         for (int i = 0; i < 5; i++) {
             subItems.add(new ItemStack(ModBlocks.wall, 1, i));
