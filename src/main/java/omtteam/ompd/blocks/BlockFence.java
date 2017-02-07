@@ -24,12 +24,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.blocks.BlockAbstractMiscPane;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.init.ModBlocks;
-import omtteam.ompd.reference.Names;
+import omtteam.ompd.reference.OMPDNames;
+import omtteam.ompd.reference.Reference;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
@@ -45,8 +45,8 @@ public class BlockFence extends BlockAbstractMiscPane {
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
-        this.setUnlocalizedName(Names.Blocks.fence);
-        this.setRegistryName(Names.Blocks.fence);
+        this.setUnlocalizedName(OMPDNames.Blocks.fence);
+        this.setRegistryName(Reference.MOD_ID,OMPDNames.Blocks.fence);
     }
 
     @Override
@@ -84,8 +84,8 @@ public class BlockFence extends BlockAbstractMiscPane {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        return BlockHelper.onBlockActivated(world,pos,state,player,hand,heldItem,side, hitX,hitY,hitZ);
+    public boolean clOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        return BlockHelper.onBlockActivated(world,pos,state,player,hand,side, hitX,hitY,hitZ);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class BlockFence extends BlockAbstractMiscPane {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     @ParametersAreNonnullByDefault
-    public void getSubBlocks(Item item, CreativeTabs tab, List subItems) {
+    public void clGetSubBlocks(Item item, CreativeTabs tab, List subItems) {
         for (int i = 0; i < 5; i++) {
             subItems.add(new ItemStack(ModBlocks.fence, 1, i));
         }

@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import omtteam.ompd.init.ModBlocks;
-import omtteam.ompd.reference.Names;
+import omtteam.ompd.reference.OMPDNames;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ public class ItemBlockWall extends ItemBlock {
     public ItemBlockWall(Block block) {
         super(block);
         this.setHasSubtypes(true);
-        this.setRegistryName(Names.Blocks.wall);
+        this.setRegistryName(OMPDNames.Blocks.wall);
     }
 
     public final static String[] subNames = {
-            Names.Blocks.wallTierOne, Names.Blocks.wallTierTwo, Names.Blocks.wallTierThree,
-            Names.Blocks.wallTierTwo, Names.Blocks.wallTierFive
+            OMPDNames.Blocks.wallTierOne, OMPDNames.Blocks.wallTierTwo, OMPDNames.Blocks.wallTierThree,
+            OMPDNames.Blocks.wallTierFour, OMPDNames.Blocks.wallTierFive
     };
 
     @Override

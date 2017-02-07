@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import omtteam.ompd.init.ModBlocks;
-import omtteam.ompd.reference.Names;
+import omtteam.ompd.reference.OMPDNames;
 
 import java.util.List;
 
@@ -15,12 +15,12 @@ public class ItemBlockHardened extends ItemBlock {
     public ItemBlockHardened(Block block) {
         super(block);
         this.setHasSubtypes(true);
-        this.setRegistryName(Names.Blocks.hardened);
+        this.setRegistryName(OMPDNames.Blocks.hardened);
     }
 
     public final static String[] subNames = {
-            Names.Blocks.hardenedTierOne, Names.Blocks.hardenedTierTwo,Names.Blocks.hardenedTierThree,
-            Names.Blocks.hardenedTierFour,Names.Blocks.hardenedTierFive
+            OMPDNames.Blocks.hardenedTierOne, OMPDNames.Blocks.hardenedTierTwo, OMPDNames.Blocks.hardenedTierThree,
+            OMPDNames.Blocks.hardenedTierFour, OMPDNames.Blocks.hardenedTierFive
     };
 
     @Override

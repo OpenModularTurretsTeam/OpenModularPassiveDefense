@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+	"textures": {
+	  "all": "ompd:blocks/camo_trap"
+	},
+	"transform": "forge:default-block"
+  },
+  "variants": {
+	"normal": [{
+	  "model": "ompd:custom/camo_trap"
+	}]
+  }
+}

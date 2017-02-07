@@ -12,9 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import omtteam.omlib.util.compat.ItemStackTools;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
-
-import javax.annotation.Nullable;
 
 /**
  * Created by Keridos on 28/11/16.
@@ -57,8 +56,8 @@ public class BlockHelper {
         }
     }
 
-    public static boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() == null)) {
+    public static boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() ==  ItemStackTools.getEmptyStack())) {
             TileEntityPassiveOwnedBlock base = (TileEntityPassiveOwnedBlock) world.getTileEntity(pos);
             if (base != null &&player.getUniqueID().toString().equals(base.getOwner())) {
                 world.destroyBlock(base.getPos(), true);

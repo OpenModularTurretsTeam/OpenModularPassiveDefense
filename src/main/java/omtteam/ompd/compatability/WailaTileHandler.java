@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
-import omtteam.ompd.reference.Names;
+import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 
 import java.util.List;
@@ -77,7 +77,7 @@ public class WailaTileHandler implements IWailaDataProvider {
     @Optional.Method(modid = "Waila")
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
         String ownerName = accessor.getNBTData().getString("ownerName");
-        currenttip.add(safeLocalize(Names.Localizations.OWNER) + ": " + ownerName);
+        currenttip.add(safeLocalize(OMPDNames.Localizations.OWNER) + ": " + ownerName);
         return currenttip;
     }
 

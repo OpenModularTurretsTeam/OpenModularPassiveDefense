@@ -21,12 +21,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.blocks.BlockAbstractTileEntity;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.init.ModBlocks;
-import omtteam.ompd.reference.Names;
+import omtteam.ompd.reference.OMPDNames;
+import omtteam.ompd.reference.Reference;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
@@ -40,8 +40,8 @@ public class BlockHardened extends BlockAbstractTileEntity {
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
-        this.setUnlocalizedName(Names.Blocks.hardened);
-        this.setRegistryName(Names.Blocks.hardened);
+        this.setUnlocalizedName(OMPDNames.Blocks.hardened);
+        this.setRegistryName(Reference.MOD_ID,OMPDNames.Blocks.hardened);
     }
 
     @Override
@@ -80,8 +80,8 @@ public class BlockHardened extends BlockAbstractTileEntity {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        return BlockHelper.onBlockActivated(world,pos,state,player,hand,heldItem,side, hitX,hitY,hitZ);
+    public boolean clOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        return BlockHelper.onBlockActivated(world,pos,state,player,hand,side, hitX,hitY,hitZ);
     }
 
     @Override
