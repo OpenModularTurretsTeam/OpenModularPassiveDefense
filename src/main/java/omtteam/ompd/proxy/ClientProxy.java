@@ -6,11 +6,9 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.ompd.blocks.BlockWall;
-import omtteam.ompd.client.model.CamoTrapBakedModel;
 import omtteam.ompd.compatability.IGWHandler;
 import omtteam.ompd.compatability.ModCompatibility;
 import omtteam.ompd.init.ModBlocks;
@@ -49,10 +47,10 @@ public class ClientProxy extends CommonProxy {
             registerBlockModelAsItem(ModBlocks.fence , i , OMPDNames.Blocks.fence + "_inventory","tier="+ (i + 1));
             registerBlockModelAsItem(ModBlocks.wall , i , OMPDNames.Blocks.wall+ "_inventory","tier="+ (i + 1));
         }
-        registerBlockModelAsItem(ModBlocks.camoTrap,0 , OMPDNames.Blocks.camoTrap);
+        //registerBlockModelAsItem(ModBlocks.camoTrap,0 , OMPDNames.Blocks.camoTrap);
 
-        ModelLoaderRegistry.registerLoader(new CamoTrapBakedModel.ModelLoader());
-        ModelLoader.setCustomStateMapper(ModBlocks.camoTrap, new CamoTrapBakedModel.Statemapper());
+        //ModelLoaderRegistry.registerLoader(new CamoTrapBakedModel.ModelLoader());
+        //ModelLoader.setCustomStateMapper(ModBlocks.camoTrap, new CamoTrapBakedModel.Statemapper());
     }
 
     @Override
