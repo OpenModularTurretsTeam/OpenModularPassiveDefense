@@ -1,6 +1,5 @@
 package omtteam.ompd.tileentity;
 
-import com.sun.istack.internal.NotNull;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -11,6 +10,7 @@ import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import static omtteam.omlib.util.BlockUtil.getBlockStateFromNBT;
 import static omtteam.omlib.util.BlockUtil.writeBlockFromStateToNBT;
@@ -20,7 +20,6 @@ import static omtteam.omlib.util.BlockUtil.writeBlockFromStateToNBT;
  * This Class
  */
 public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport {
-    @NotNull
     private IBlockState camoBlockState;
 
     public TileEntityCamo(IBlockState camoBlockState) {
@@ -34,10 +33,12 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public void setCamoState(IBlockState state) {
         this.camoBlockState = state;
     }
 
+    @Nonnull
     @Override
     public IBlockState getDefaultCamoState() {
         return ForgeRegistries.BLOCKS.getValue(
