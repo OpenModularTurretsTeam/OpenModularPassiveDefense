@@ -12,9 +12,6 @@ public class ConfigHandler {
         Configuration config = new Configuration(configFile);
         config.load();
 
-
-        IGWNotification = config.get("ModCompatibility", "Enable IGW Mod notification", true).getBoolean();
-
         if (config.hasChanged()) {
             config.save();
         }

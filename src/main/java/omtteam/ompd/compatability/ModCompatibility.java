@@ -4,7 +4,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
-import omtteam.ompd.handler.ConfigHandler;
 import omtteam.ompd.reference.Reference;
 
 import java.util.logging.Logger;
@@ -69,9 +68,6 @@ public class ModCompatibility {
     public static void performModCompat() {
         FMLInterModComms.sendMessage("Waila", "register",
                                      "omtteam.ompd.compatability.WailaTileHandler.callbackRegister");
-        if (ConfigHandler.IGWNotification) {
-            new IGWSupportNotifier();
-        }
         addVersionCheckerInfo();
         if (ComputercraftLoaded) {
             registerCCCompat();
