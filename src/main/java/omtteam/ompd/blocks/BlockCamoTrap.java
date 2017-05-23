@@ -4,8 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -29,6 +31,7 @@ import omtteam.ompd.tileentity.TileEntityCamo;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 
 /**
  * Created by Keridos on 31/01/17.
@@ -77,11 +80,11 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
 
             Block heldItemBlock = null;
 
-            if (heldItem !=  ItemStackTools.getEmptyStack()) {
+            if (heldItem != ItemStackTools.getEmptyStack()) {
                 heldItemBlock = Block.getBlockFromItem(heldItem.getItem());
             }
 
-            if (!player.isSneaking() && heldItem !=  ItemStackTools.getEmptyStack() && heldItem.getItem() instanceof ItemBlock &&
+            if (!player.isSneaking() && heldItem != ItemStackTools.getEmptyStack() && heldItem.getItem() instanceof ItemBlock &&
                     heldItemBlock.isNormalCube(heldItemBlock.getStateFromMeta(heldItem.getMetadata())) && Block.getBlockFromItem(
                     heldItem.getItem()).isOpaqueCube(heldItemBlock.getStateFromMeta(heldItem.getMetadata())) && !(Block.getBlockFromItem(
                     heldItem.getItem()) instanceof BlockCamoTrap)) {
@@ -98,6 +101,13 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
             }
         }
         return true;
+    }
+
+    @Override
+    protected void clAddCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> list, Entity entity) {
+        AxisAlignedBB alignedBB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
+        list.add(alignedBB);
+        super.clAddCollisionBoxToList(state, world, pos, entityBox, list, entity);
     }
 
     @Nullable

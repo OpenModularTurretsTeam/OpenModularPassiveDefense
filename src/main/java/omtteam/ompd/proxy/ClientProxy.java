@@ -1,10 +1,12 @@
 package omtteam.ompd.proxy;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -67,5 +69,10 @@ public class ClientProxy extends CommonProxy {
         if (ModCompatibility.IGWModLoaded) {
             ModCompatibility.igwHandler = IGWHandler.getInstance();
         }
+    }
+
+    @Override
+    public World getWorld(){
+        return Minecraft.getMinecraft().theWorld;
     }
 }

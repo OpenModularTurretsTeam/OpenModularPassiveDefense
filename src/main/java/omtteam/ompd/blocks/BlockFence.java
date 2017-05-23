@@ -18,6 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -104,6 +105,41 @@ public class BlockFence extends BlockAbstractMiscPane {
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(ModBlocks.fence, 1, state.getValue(TIER) - 1);
     }
+
+    @Override
+    public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
+        switch (blockState.getValue(TIER)) {
+            case 1:
+                return 10.0F;
+            case 2:
+                return 20.0F;
+            case 3:
+                return 30.0F;
+            case 4:
+                return 50.0F;
+            case 5:
+                return 80.0F;
+        }
+        return 10.0F;
+    }
+
+    @Override
+    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
+        switch (world.getBlockState(pos).getValue(TIER)) {
+            case 1:
+                return 10.0F;
+            case 2:
+                return 20.0F;
+            case 3:
+                return 30.0F;
+            case 4:
+                return 50.0F;
+            case 5:
+                return 80.0F;
+        }
+        return 10.0F;
+    }
+
 
     @Override
     @SideOnly(Side.CLIENT)

@@ -20,16 +20,14 @@ public class OpenModularPassiveDefense {
     public static OpenModularPassiveDefense instance;
 
     @SidedProxy(clientSide = "omtteam.ompd.proxy.ClientProxy", serverSide = "omtteam.ompd.proxy.CommonProxy")
-    private static CommonProxy proxy;
+    public static CommonProxy proxy;
 
     public static CreativeTabs modularPassiveDefenseTab;
-    private GuiHandler gui;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
-        gui = new GuiHandler();
-        modularPassiveDefenseTab = new OpenModularPassiveDefenseTab(Reference.NAME);
+        modularPassiveDefenseTab = OpenModularPassiveDefenseTab.getInstance();
         proxy.preInit();
     }
 
@@ -39,7 +37,6 @@ public class OpenModularPassiveDefense {
         ModCompatibility.performModCompat();
         proxy.initRenderers();
         proxy.initHandlers();
-
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, gui);
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, GuiHandler.getInstance());
     }
 }

@@ -19,6 +19,7 @@ public class ModBlocks {
     public static Block wall;
     public static Block camoTrap;
 
+
     private static Item hardenedItem;
     private static Item fenceItem;
     public static Item wallItem;
