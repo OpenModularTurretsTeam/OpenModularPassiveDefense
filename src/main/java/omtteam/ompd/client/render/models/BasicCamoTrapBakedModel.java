@@ -3,6 +3,8 @@ package omtteam.ompd.client.render.models;
 import com.google.common.base.Function;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -17,7 +19,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.render.CamoBakedModel;
 import omtteam.ompd.reference.Reference;
-
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -52,6 +53,18 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
     @Override
     public TextureAtlasSprite getParticleTexture() {
         return particle;
+    }
+
+    @Nonnull
+    @Override
+    public ItemCameraTransforms getItemCameraTransforms() {
+        return ItemCameraTransforms.DEFAULT;
+    }
+
+    @Nonnull
+    @Override
+    public ItemOverrideList getOverrides() {
+        return ItemOverrideList.NONE;
     }
 
     public static class Model implements IModel {

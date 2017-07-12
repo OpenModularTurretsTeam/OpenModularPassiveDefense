@@ -25,7 +25,6 @@ import omtteam.omlib.api.IHasItemBlock;
 import omtteam.omlib.blocks.BlockAbstractMiscWall;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.init.ModBlocks;
-import omtteam.ompd.items.blocks.ItemBlockHardened;
 import omtteam.ompd.items.blocks.ItemBlockWall;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
@@ -48,6 +47,7 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
         this.setUnlocalizedName(OMPDNames.Blocks.wall);
         this.setRegistryName(Reference.MOD_ID,OMPDNames.Blocks.wall);
     }
+
     @Override
     public ItemBlock getItemBlock(Block block) {
         return new ItemBlockWall(block);
@@ -62,7 +62,6 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
     public boolean isOpaqueCube(IBlockState blockState) {
         return false;
     }
-
 
     @Override
     @Nonnull

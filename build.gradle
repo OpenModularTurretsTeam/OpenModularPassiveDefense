@@ -48,7 +48,7 @@ minecraft {
     // stable_#            stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not allways work.
     // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20160701"
+    mappings = "snapshot_20160518"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
@@ -99,11 +99,14 @@ def omlib_local = false
 configure(subprojects.findAll {it.name == 'OMLib'}) {
     omlib_local = true
 }
+if (rootProject.name == "OMTControl"){
+    omlib_local = true
+}
 
 dependencies {
-    deobfCompile "mezz.jei:jei_${config.minecraft_version}:${config.jei_version}"
-    compile "igwmod:IGW-Mod-${config.igwmod_version}:userdev"
-    deobfCompile "mcp.mobius.waila:Hwyla:${config.hwyla_version}_${config.minecraft_version}"
+    compileOnly "mezz.jei:jei_${config.minecraft_version}:${config.jei_version}"
+    compileOnly "igwmod:IGW-Mod-${config.igwmod_version}:userdev"
+    compileOnly "mcp.mobius.waila:Hwyla:${config.hwyla_version}_${config.minecraft_version}"
     if (!omlib_local) {
         compile "omtteam:omlib:${config.minecraft_version}-${config.omlib_version}:dev"
     } else {

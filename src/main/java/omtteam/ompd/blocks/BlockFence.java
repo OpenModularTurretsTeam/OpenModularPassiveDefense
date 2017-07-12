@@ -1,5 +1,6 @@
 package omtteam.ompd.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -11,6 +12,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -22,9 +24,11 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import omtteam.omlib.api.IHasItemBlock;
 import omtteam.omlib.blocks.BlockAbstractMiscPane;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.init.ModBlocks;
+import omtteam.ompd.items.blocks.ItemBlockFence;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
@@ -37,7 +41,7 @@ import java.util.List;
 import static omtteam.omlib.util.PlayerUtil.isPlayerOwner;
 
 @SuppressWarnings("deprecation")
-public class BlockFence extends BlockAbstractMiscPane {
+public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
     private static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
 
     public BlockFence() {
@@ -48,6 +52,12 @@ public class BlockFence extends BlockAbstractMiscPane {
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
         this.setUnlocalizedName(OMPDNames.Blocks.fence);
         this.setRegistryName(Reference.MOD_ID,OMPDNames.Blocks.fence);
+    }
+
+
+    @Override
+    public ItemBlock getItemBlock(Block block) {
+        return new ItemBlockFence(block);
     }
 
     @Override

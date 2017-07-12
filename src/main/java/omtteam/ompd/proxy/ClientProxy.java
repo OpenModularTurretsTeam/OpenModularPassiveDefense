@@ -58,7 +58,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void initRenderers() {
         super.initRenderers();
-
         //ToolTips tooltips = new ToolTips();
         //MinecraftForge.EVENT_BUS.register(tooltips);
     }
