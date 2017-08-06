@@ -9,6 +9,9 @@ import net.minecraft.item.ItemStack;
 import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.OMPDNames;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
 
 public class ItemBlockHardened extends ItemBlock {
@@ -18,12 +21,13 @@ public class ItemBlockHardened extends ItemBlock {
         this.setRegistryName(OMPDNames.Blocks.hardened);
     }
 
-    public final static String[] subNames = {
+    private final static String[] subNames = {
             OMPDNames.Blocks.hardenedTierOne, OMPDNames.Blocks.hardenedTierTwo, OMPDNames.Blocks.hardenedTierThree,
             OMPDNames.Blocks.hardenedTierFour, OMPDNames.Blocks.hardenedTierFive
     };
 
     @Override
+    @ParametersAreNonnullByDefault
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
         for (int i = 0; i < 5; i++) {
             subItems.add(new ItemStack(ModBlocks.hardened, 1, i));
@@ -31,6 +35,7 @@ public class ItemBlockHardened extends ItemBlock {
     }
 
     @Override
+    @Nonnull
     public String getUnlocalizedName(ItemStack itemStack) {
         return "tile." + subNames[itemStack.getItemDamage()];
     }
@@ -41,9 +46,11 @@ public class ItemBlockHardened extends ItemBlock {
     }
 
     @Override
+    @ParametersAreNullableByDefault
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-        switch (stack.getMetadata()) {
-
+        if (stack != null) {
+            switch (stack.getMetadata()) {
+            }
         }
     }
 }

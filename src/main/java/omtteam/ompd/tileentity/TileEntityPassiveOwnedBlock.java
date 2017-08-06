@@ -16,9 +16,6 @@ public class TileEntityPassiveOwnedBlock extends TileEntityOwnedBlock {
     public void readFromNBT(NBTTagCompound nbtTagCompound) {
         super.readFromNBT(nbtTagCompound);
         this.tier = nbtTagCompound.getInteger("tier");
-        if (dropBlock) {
-            worldObj.destroyBlock(pos, false);
-        }
     }
 
     @Override
@@ -35,5 +32,12 @@ public class TileEntityPassiveOwnedBlock extends TileEntityOwnedBlock {
 
     public void setTier(int tier) {
         this.tier = tier;
+    }
+
+    @Override
+    public void onLoad() {
+        if (this.dropBlock) {
+            this.worldObj.destroyBlock(pos, false);
+        }
     }
 }
