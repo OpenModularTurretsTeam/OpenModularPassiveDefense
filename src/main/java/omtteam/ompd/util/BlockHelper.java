@@ -12,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import omtteam.omlib.util.compat.ItemStackTools;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 
 /**
@@ -57,12 +56,12 @@ public class BlockHelper {
     }
 
     public static boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() ==  ItemStackTools.getEmptyStack())) {
+        if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() ==  ItemStack.EMPTY)) {
             TileEntityPassiveOwnedBlock base = (TileEntityPassiveOwnedBlock) world.getTileEntity(pos);
             if (base != null &&player.getUniqueID().toString().equals(base.getOwner())) {
                 world.destroyBlock(base.getPos(), true);
             } else if (base != null) {
-                player.addChatMessage(new TextComponentString(I18n.translateToLocal("status.ownership")));
+                player.sendMessage(new TextComponentString(I18n.translateToLocal("status.ownership")));
             }
             return true;
         }else if (world.isRemote){

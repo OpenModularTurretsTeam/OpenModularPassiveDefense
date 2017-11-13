@@ -27,16 +27,15 @@ public class OpenModularPassiveDefense {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ConfigHandler.init(event.getSuggestedConfigurationFile());
+        ModCompatibility.checkForMods();
         modularPassiveDefenseTab = OpenModularPassiveDefenseTab.getInstance();
         proxy.preInit();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        ModCompatibility.checkForMods();
+        proxy.init();
         ModCompatibility.performModCompat();
-        proxy.initRenderers();
-        proxy.initHandlers();
         NetworkRegistry.INSTANCE.registerGuiHandler(this, GuiHandler.getInstance());
     }
 }

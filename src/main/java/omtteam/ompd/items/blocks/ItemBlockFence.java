@@ -1,15 +1,17 @@
 package omtteam.ompd.items.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.OMPDNames;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
@@ -28,7 +30,7 @@ public class ItemBlockFence extends ItemBlock {
 
     @Override
     @ParametersAreNonnullByDefault
-    public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
+    public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> subItems) {
         for (int i = 0; i < 5; i++) {
             subItems.add(new ItemStack(ModBlocks.fence, 1, i));
         }
@@ -47,8 +49,7 @@ public class ItemBlockFence extends ItemBlock {
 
     @Override
     @ParametersAreNullableByDefault
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
-        if (stack != null) {
+    public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced) {        if (stack != null) {
             switch (stack.getMetadata()) {
             }
         }

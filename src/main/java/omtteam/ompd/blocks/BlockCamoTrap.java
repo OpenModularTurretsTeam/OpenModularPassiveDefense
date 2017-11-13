@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -18,11 +17,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import omtteam.omlib.blocks.BlockAbstractCamoTileEntity;
-import omtteam.omlib.util.compat.ItemStackTools;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
@@ -62,17 +61,17 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
     }
 
     @Override
-    public boolean clOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && hand == EnumHand.MAIN_HAND) {
             ItemStack heldItem = player.getHeldItemMainhand();
             TileEntityCamo te = (TileEntityCamo) world.getTileEntity(pos);
-            if (player.isSneaking() && heldItem == ItemStackTools.getEmptyStack()) {
+            if (player.isSneaking() && heldItem == ItemStack.EMPTY) {
                 if (te != null) {
                     if (player.getUniqueID().toString().equals(te.getOwner())) {
                         te.setCamoState(state);
                         world.notifyBlockUpdate(pos, state, state, 3);
                     } else {
-                        player.addChatMessage(
+                        player.sendMessage(
                                 new TextComponentString(I18n.translateToLocal("status.ownership")));
                     }
                 }
@@ -80,11 +79,11 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
 
             Block heldItemBlock = null;
 
-            if (heldItem != ItemStackTools.getEmptyStack()) {
+            if (heldItem != ItemStack.EMPTY) {
                 heldItemBlock = Block.getBlockFromItem(heldItem.getItem());
             }
 
-            if (!player.isSneaking() && heldItem != ItemStackTools.getEmptyStack() && heldItem.getItem() instanceof ItemBlock &&
+            if (!player.isSneaking() && heldItem != ItemStack.EMPTY && heldItem.getItem() instanceof ItemBlock &&
                     heldItemBlock.isNormalCube(heldItemBlock.getStateFromMeta(heldItem.getMetadata())) && Block.getBlockFromItem(
                     heldItem.getItem()).isOpaqueCube(heldItemBlock.getStateFromMeta(heldItem.getMetadata())) && !(Block.getBlockFromItem(
                     heldItem.getItem()) instanceof BlockCamoTrap)) {
@@ -93,7 +92,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
                         te.setCamoState(heldItemBlock.getStateFromMeta(heldItem.getItemDamage()));
                         world.notifyBlockUpdate(pos, state, state, 3);
                     } else {
-                        player.addChatMessage(
+                        player.sendMessage(
                                 new TextComponentString(I18n.translateToLocal("status.ownership")));
                     }
                 }
@@ -104,16 +103,15 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
     }
 
     @Override
-    protected void clAddCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> list, Entity entity) {
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
         AxisAlignedBB alignedBB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
-        list.add(alignedBB);
-        super.clAddCollisionBoxToList(state, world, pos, entityBox, list, entity);
+        collidingBoxes.add(alignedBB);
     }
 
     @Nullable
     @Override
     @ParametersAreNonnullByDefault
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return null;
     }
 }

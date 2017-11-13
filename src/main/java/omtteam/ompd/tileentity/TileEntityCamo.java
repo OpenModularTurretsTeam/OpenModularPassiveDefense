@@ -54,7 +54,7 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
             this.camoBlockState = getDefaultCamoState();
         }
         if (dropBlock) {
-            worldObj.destroyBlock(pos, false);
+            world.destroyBlock(pos, false);
         }
     }
 

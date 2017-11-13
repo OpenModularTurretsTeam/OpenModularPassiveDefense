@@ -4,8 +4,8 @@ package omtteam.ompd.handler.recipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
+import omtteam.omlib.util.JSONRecipeBuilder;
+import omtteam.ompd.handler.ConfigHandler;
 import omtteam.ompd.init.ModBlocks;
 
 public class RecipeHandler {
@@ -34,48 +34,49 @@ public class RecipeHandler {
         fenceTierFour = new ItemStack(ModBlocks.fence, 16, 3);
         fenceTierFive = new ItemStack(ModBlocks.fence, 16, 4);
 
+        JSONRecipeBuilder.setupDir(ConfigHandler.config);
         //Fences
-        GameRegistry.addRecipe(new ShapedOreRecipe(fenceTierOne, "ABA", "BAB", "ABA", 'A',
+        JSONRecipeBuilder.addShapedRecipe(fenceTierOne, "ABA", "BAB", "ABA", 'A',
                 Blocks.IRON_BARS, 'B',
-                Blocks.COBBLESTONE));
+                Blocks.COBBLESTONE);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(fenceTierTwo, "ABA", "BAB", "ABA", 'A',
-                Blocks.IRON_BARS, 'B', Items.IRON_INGOT));
+        JSONRecipeBuilder.addShapedRecipe(fenceTierTwo, "ABA", "BAB", "ABA", 'A',
+                Blocks.IRON_BARS, 'B', Items.IRON_INGOT);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(fenceTierThree ,"ABA", "BAB", "ABA", 'A',
-                Blocks.IRON_BARS, 'B', "ingotGold"));
+        JSONRecipeBuilder.addShapedRecipe(fenceTierThree ,"ABA", "BAB", "ABA", 'A',
+                Blocks.IRON_BARS, 'B', "ingotGold");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(fenceTierFour, "ABA", "BAB", "ABA", 'A',
+        JSONRecipeBuilder.addShapedRecipe(fenceTierFour, "ABA", "BAB", "ABA", 'A',
                 Blocks.IRON_BARS, 'B',
-                Items.DIAMOND));
+                Items.DIAMOND);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(fenceTierFive, "ABA", "BAB", "ABA", 'A',
+        JSONRecipeBuilder.addShapedRecipe(fenceTierFive, "ABA", "BAB", "ABA", 'A',
                 Blocks.IRON_BARS, 'B',
-                Blocks.OBSIDIAN));
+                Blocks.OBSIDIAN);
 
         //Hard Walls
-        GameRegistry.addRecipe(new ShapedOreRecipe(hardWallTierOne, "ABA", "BCB", "ABA", 'A',
+        JSONRecipeBuilder.addShapedRecipe(hardWallTierOne, "ABA", "BCB", "ABA", 'A',
                 Blocks.GRAVEL, 'B',
                 Blocks.COBBLESTONE, 'C',
-                Blocks.SAND));
+                Blocks.SAND);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(hardWallTierTwo, "ABA", "BAB", "ABA", 'A',
-                hardWallTierOne, 'B', Blocks.STONE));
+        JSONRecipeBuilder.addShapedRecipe(hardWallTierTwo, "ABA", "BAB", "ABA", 'A',
+                hardWallTierOne, 'B', Blocks.STONE);
 
-        GameRegistry.addRecipe(
-                new ShapedOreRecipe(hardWallTierThree, "ABA", "BAB", "ABA", 'A',
-                        hardWallTierTwo, 'B', Blocks.BRICK_BLOCK));
+        JSONRecipeBuilder.addShapedRecipe(hardWallTierThree, "ABA", "BAB", "ABA", 'A',
+                        hardWallTierTwo, 'B', Blocks.BRICK_BLOCK);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(hardWallTierFour, "ABA", "BAB", "ABA", 'A',
+        JSONRecipeBuilder.addShapedRecipe(hardWallTierFour, "ABA", "BAB", "ABA", 'A',
                 hardWallTierThree, 'B',
-                Blocks.NETHER_BRICK));
+                Blocks.NETHER_BRICK);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(hardWallTierFive, "ABA", "BAB", "ABA", 'A',
-                hardWallTierFour, 'B', Blocks.OBSIDIAN));
+        JSONRecipeBuilder.addShapedRecipe(hardWallTierFive, "ABA", "BAB", "ABA", 'A',
+                hardWallTierFour, 'B', Blocks.OBSIDIAN);
 
         for (int i= 0; i<5 ;i++) {
-            GameRegistry.addRecipe(
-                    new ShapedOreRecipe(new ItemStack(ModBlocks.wall,6,i), "   ", "AAA", "AAA", 'A', new ItemStack( ModBlocks.hardened,1,i)));
+            JSONRecipeBuilder.addShapedRecipe(new ItemStack(ModBlocks.wall,6,i), "   ", "AAA", "AAA", 'A', new ItemStack( ModBlocks.hardened,1,i));
         }
+
+        JSONRecipeBuilder.generateConstants();
     }
 }

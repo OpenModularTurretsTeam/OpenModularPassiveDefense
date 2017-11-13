@@ -3,6 +3,7 @@ package omtteam.ompd.init;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 import omtteam.omlib.util.InitHelper;
 import omtteam.ompd.blocks.BlockCamoTrap;
 import omtteam.ompd.blocks.BlockFence;
@@ -19,18 +20,18 @@ public class ModBlocks {
 
     public static Item wallItem;
 
-    public static void initBlocks() {
+    public static void initBlocks(IForgeRegistry<Block> registry) {
         hardened = new BlockHardened();
-        InitHelper.registerBlock(hardened);
+        InitHelper.registerBlock(hardened, registry, ModItems.subBlocks);
 
         fence = new BlockFence();
-        InitHelper.registerBlock(fence);
+        InitHelper.registerBlock(fence, registry, ModItems.subBlocks);
 
         wall = new BlockWall();
-        InitHelper.registerBlock(wall);
+        InitHelper.registerBlock(wall, registry, ModItems.subBlocks);
 
         camoTrap = new BlockCamoTrap();
-        GameRegistry.register(camoTrap);
+        InitHelper.registerBlock(camoTrap, registry, ModItems.subBlocks);
     }
 
     public static void initTileEntities() {

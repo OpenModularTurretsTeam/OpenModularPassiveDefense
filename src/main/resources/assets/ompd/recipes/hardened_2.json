@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "ompd:hardened",
+    "data": 2,
+    "count": 16
+  },
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "ompd:hardened",
+      "data": 1,
+      "count": 16
+    },
+    "B": {
+      "item": "minecraft:brick_block"
+    }
+  }
+}

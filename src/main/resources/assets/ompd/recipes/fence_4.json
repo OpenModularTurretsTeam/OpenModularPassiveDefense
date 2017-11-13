@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "ompd:fence",
+    "data": 4,
+    "count": 16
+  },
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_bars"
+    },
+    "B": {
+      "item": "minecraft:obsidian"
+    }
+  }
+}

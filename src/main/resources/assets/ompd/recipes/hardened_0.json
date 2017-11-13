@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "ompd:hardened",
+    "data": 0,
+    "count": 16
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:gravel"
+    },
+    "B": {
+      "item": "minecraft:cobblestone"
+    },
+    "C": {
+      "item": "minecraft:sand",
+      "data": 0
+    }
+  }
+}

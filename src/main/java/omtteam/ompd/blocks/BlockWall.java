@@ -9,12 +9,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
@@ -33,7 +33,6 @@ import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
 
 public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
     private static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
@@ -83,7 +82,7 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
 
 
     @Override
-    public boolean clOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         return BlockHelper.onBlockActivated(world,pos,state,player,hand,side, hitX,hitY,hitZ);
     }
 
@@ -143,9 +142,9 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     @ParametersAreNonnullByDefault
-    public void getSubBlocks(Item item, CreativeTabs tab, List subItems) {
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
         for (int i = 0; i < 5; i++) {
-            subItems.add(new ItemStack(ModBlocks.wall, 1, i));
+            items.add(new ItemStack(ModBlocks.wall, 1, i));
         }
     }
 }

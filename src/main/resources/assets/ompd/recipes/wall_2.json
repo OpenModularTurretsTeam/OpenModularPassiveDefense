@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "ompd:wall",
+    "data": 2,
+    "count": 6
+  },
+  "pattern": [
+    "   ",
+    "AAA",
+    "AAA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "ompd:hardened",
+      "data": 2
+    }
+  }
+}

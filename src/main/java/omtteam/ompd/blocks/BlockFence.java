@@ -11,13 +11,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
@@ -36,7 +36,6 @@ import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
 
 import static omtteam.omlib.util.PlayerUtil.isPlayerOwner;
 
@@ -53,7 +52,6 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
         this.setUnlocalizedName(OMPDNames.Blocks.fence);
         this.setRegistryName(Reference.MOD_ID,OMPDNames.Blocks.fence);
     }
-
 
     @Override
     public ItemBlock getItemBlock(Block block) {
@@ -91,11 +89,11 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         TileEntityPassiveOwnedBlock te = (TileEntityPassiveOwnedBlock)worldIn.getTileEntity(pos);
-        if (!(te != null && entityIn instanceof EntityPlayer && isPlayerOwner((EntityPlayer)entityIn, te)) && !(entityIn instanceof EntityItem)) entityIn.attackEntityFrom(DamageSource.cactus, 5);
+        if (!(te != null && entityIn instanceof EntityPlayer && isPlayerOwner((EntityPlayer)entityIn, te)) && !(entityIn instanceof EntityItem)) entityIn.attackEntityFrom(DamageSource.CACTUS, 5);
     }
 
     @Override
-    public boolean clOnBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         return BlockHelper.onBlockActivated(world,pos,state,player,hand,side, hitX,hitY,hitZ);
     }
 
@@ -150,14 +148,13 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
         return 10.0F;
     }
 
-
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     @ParametersAreNonnullByDefault
-    public void clGetSubBlocks(Item item, CreativeTabs tab, List subItems) {
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
         for (int i = 0; i < 5; i++) {
-            subItems.add(new ItemStack(ModBlocks.fence, 1, i));
+            items.add(new ItemStack(ModBlocks.fence, 1, i));
         }
     }
 }

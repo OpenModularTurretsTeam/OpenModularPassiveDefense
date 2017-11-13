@@ -1,7 +1,6 @@
 package omtteam.ompd.client.gui;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.Reference;
@@ -32,7 +31,7 @@ public class OpenModularPassiveDefenseTab extends CreativeTabs {
 
     @Override
     @Nonnull
-    public Item getTabIconItem() {
-        return wallItem;
+    public ItemStack getTabIconItem() {
+        return new ItemStack(wallItem);
     }
 }

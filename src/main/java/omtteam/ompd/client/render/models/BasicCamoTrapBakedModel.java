@@ -1,6 +1,5 @@
 package omtteam.ompd.client.render.models;
 
-import com.google.common.base.Function;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -87,11 +86,11 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         }
 
         @Override
-        public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
+        public IBakedModel bake(IModelState state, VertexFormat format, java.util.function.Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
             List<IBakedModel> list = new ArrayList<>();
             for (int i = 1; i < 6; i++) {
                 try {
-                    list.add(ModelLoaderRegistry.getModel(new ModelResourceLocation("ompd::camo_trap_normal", "tier=" + i)).bake(state, format, bakedTextureGetter));
+                    list.add(ModelLoaderRegistry.getModel(new ModelResourceLocation("ompd:camo_trap_normal", "tier=" + i)).bake(state, format, bakedTextureGetter));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -126,7 +125,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
     }
 
     public static class Statemapper extends StateMapperBase {
-        public static final ModelResourceLocation LOCATION = new ModelResourceLocation("ompd::camo_trap", "normal");
+        public static final ModelResourceLocation LOCATION = new ModelResourceLocation("ompd:camo_trap", "normal");
 
         @Override
         @Nonnull

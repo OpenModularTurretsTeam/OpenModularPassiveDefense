@@ -8,11 +8,11 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.ompd.blocks.BlockWall;
-import omtteam.ompd.compatability.IGWHandler;
-import omtteam.ompd.compatability.ModCompatibility;
+import omtteam.ompd.client.render.models.BasicCamoTrapBakedModel;
 import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
@@ -43,12 +43,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit() {
         super.preInit();
-        ModelLoader.setCustomStateMapper(ModBlocks.wall, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
-        for (int i = 0; i < 5; i++) {
-            registerBlockModelAsItem(ModBlocks.hardened, i, OMPDNames.Blocks.hardened, "tier=" + (i + 1));
-            registerBlockModelAsItem(ModBlocks.fence , i , OMPDNames.Blocks.fence + "_inventory","tier="+ (i + 1));
-            registerBlockModelAsItem(ModBlocks.wall , i , OMPDNames.Blocks.wall+ "_inventory","tier="+ (i + 1));
-        }
         //registerBlockModelAsItem(ModBlocks.camoTrap,0 , OMPDNames.Blocks.camoTrap);
 
         //ModelLoaderRegistry.registerLoader(new CamoTrapBakedModel.ModelLoader());
@@ -56,22 +50,26 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void initRenderers() {
-        super.initRenderers();
-        //ToolTips tooltips = new ToolTips();
-        //MinecraftForge.EVENT_BUS.register(tooltips);
+    public void initModelLoaders() {
+        super.initModelLoaders();
+        ModelLoader.setCustomStateMapper(ModBlocks.wall, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
+        for (int i = 0; i < 5; i++) {
+            registerBlockModelAsItem(ModBlocks.hardened, i, OMPDNames.Blocks.hardened, "tier=" + (i + 1));
+            registerBlockModelAsItem(ModBlocks.fence , i , OMPDNames.Blocks.fence + "_inventory","tier="+ (i + 1));
+            registerBlockModelAsItem(ModBlocks.wall , i , OMPDNames.Blocks.wall+ "_inventory","tier="+ (i + 1));
+        }
+
+        ModelLoaderRegistry.registerLoader(new BasicCamoTrapBakedModel.ModelLoader());
+        ModelLoader.setCustomStateMapper(ModBlocks.camoTrap, new BasicCamoTrapBakedModel.Statemapper());
     }
 
     @Override
     public void initHandlers() {
         super.initHandlers();
-        if (ModCompatibility.IGWModLoaded) {
-            ModCompatibility.igwHandler = IGWHandler.getInstance();
-        }
     }
 
     @Override
     public World getWorld(){
-        return Minecraft.getMinecraft().theWorld;
+        return Minecraft.getMinecraft().world;
     }
 }
