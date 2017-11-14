@@ -43,10 +43,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit() {
         super.preInit();
-        //registerBlockModelAsItem(ModBlocks.camoTrap,0 , OMPDNames.Blocks.camoTrap);
 
-        //ModelLoaderRegistry.registerLoader(new CamoTrapBakedModel.ModelLoader());
-        //ModelLoader.setCustomStateMapper(ModBlocks.camoTrap, new CamoTrapBakedModel.Statemapper());
     }
 
     @Override
@@ -58,6 +55,8 @@ public class ClientProxy extends CommonProxy {
             registerBlockModelAsItem(ModBlocks.fence , i , OMPDNames.Blocks.fence + "_inventory","tier="+ (i + 1));
             registerBlockModelAsItem(ModBlocks.wall , i , OMPDNames.Blocks.wall+ "_inventory","tier="+ (i + 1));
         }
+
+        registerBlockModelAsItem(ModBlocks.camoTrap,0 , OMPDNames.Blocks.camoTrap);
 
         ModelLoaderRegistry.registerLoader(new BasicCamoTrapBakedModel.ModelLoader());
         ModelLoader.setCustomStateMapper(ModBlocks.camoTrap, new BasicCamoTrapBakedModel.Statemapper());

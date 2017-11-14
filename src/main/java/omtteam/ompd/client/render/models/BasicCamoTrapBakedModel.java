@@ -20,6 +20,7 @@ import omtteam.omlib.render.CamoBakedModel;
 import omtteam.ompd.reference.Reference;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,7 +46,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
     }
 
     @Override
-    protected IBakedModel getModel(List<IBakedModel> list, IBlockState state) {
+    protected IBakedModel getModel(List<IBakedModel> list, @Nullable IBlockState state) {
         return list.get(0);
     }
 
@@ -72,6 +73,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         }
 
         @Override
+        @Nonnull
         public Collection<ResourceLocation> getDependencies() {
             List<ResourceLocation> list = new ArrayList<>();
             for (int i = 1; i < 6; i++) {
@@ -81,11 +83,14 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         }
 
         @Override
+        @Nonnull
         public Collection<ResourceLocation> getTextures() {
             return Collections.emptyList();
         }
 
         @Override
+        @Nonnull
+        @ParametersAreNonnullByDefault
         public IBakedModel bake(IModelState state, VertexFormat format, java.util.function.Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
             List<IBakedModel> list = new ArrayList<>();
             for (int i = 1; i < 6; i++) {
@@ -108,11 +113,14 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
     public static class ModelLoader implements ICustomModelLoader {
 
         @Override
+        @ParametersAreNonnullByDefault
         public boolean accepts(ResourceLocation modelLocation) {
             return (modelLocation.getResourceDomain().equals(Reference.MOD_ID) && modelLocation.equals(FAKE_LOCATION));
         }
 
         @Override
+        @Nonnull
+        @ParametersAreNonnullByDefault
         public IModel loadModel(ResourceLocation modelLocation) throws Exception {
             return new Model();
         }
@@ -125,7 +133,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
     }
 
     public static class Statemapper extends StateMapperBase {
-        public static final ModelResourceLocation LOCATION = new ModelResourceLocation("ompd:camo_trap", "normal");
+        static final ModelResourceLocation LOCATION = new ModelResourceLocation("ompd:camo_trap", "normal");
 
         @Override
         @Nonnull
