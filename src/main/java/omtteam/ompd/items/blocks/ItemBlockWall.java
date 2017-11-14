@@ -31,8 +31,10 @@ public class ItemBlockWall extends ItemBlock {
     @Override
     @ParametersAreNonnullByDefault
     public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> subItems) {
-        for (int i = 0; i < 5; i++) {
-            subItems.add(new ItemStack(ModBlocks.wall, 1, i));
+        if(isInCreativeTab(itemIn)) {
+            for (int i = 0; i < 5; i++) {
+                subItems.add(new ItemStack(ModBlocks.wall, 1, i));
+            }
         }
     }
 
