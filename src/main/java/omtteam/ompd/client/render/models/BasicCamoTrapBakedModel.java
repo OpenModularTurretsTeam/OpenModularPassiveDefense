@@ -35,7 +35,7 @@ import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class BasicCamoTrapBakedModel extends CamoBakedModel {
-    private static final ResourceLocation FAKE_LOCATION = new ResourceLocation("ompd", "models/block/custom/camotrap");
+    private static final ResourceLocation FAKE_LOCATION = new ResourceLocation("ompd", "models/block/custom/camo_trap");
 
     private final TextureAtlasSprite particle;
 
