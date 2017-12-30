@@ -103,11 +103,6 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
             TextureAtlasSprite part = bakedTextureGetter.apply(new ResourceLocation("ompd", "blocks/camo_trap"));
             return new BasicCamoTrapBakedModel(list, part);
         }
-
-        @Override
-        public IModelState getDefaultState() {
-            return null;
-        }
     }
 
     public static class ModelLoader implements ICustomModelLoader {
