@@ -76,9 +76,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         @Nonnull
         public Collection<ResourceLocation> getDependencies() {
             List<ResourceLocation> list = new ArrayList<>();
-            for (int i = 1; i < 6; i++) {
-                list.add(new ModelResourceLocation("ompd:camo_trap_normal", "tier=" + i));
-            }
+            list.add(new ModelResourceLocation("ompd:camo_trap_normal"));
             return list;
         }
 
@@ -93,13 +91,12 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         @ParametersAreNonnullByDefault
         public IBakedModel bake(IModelState state, VertexFormat format, java.util.function.Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
             List<IBakedModel> list = new ArrayList<>();
-            for (int i = 1; i < 6; i++) {
-                try {
-                    list.add(ModelLoaderRegistry.getModel(new ModelResourceLocation("ompd:camo_trap_normal", "tier=" + i)).bake(state, format, bakedTextureGetter));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            try {
+                list.add(ModelLoaderRegistry.getModel(new ModelResourceLocation("ompd:camo_trap_normal")).bake(state, format, bakedTextureGetter));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
             TextureAtlasSprite part = bakedTextureGetter.apply(new ResourceLocation("ompd", "blocks/camo_trap"));
             return new BasicCamoTrapBakedModel(list, part);
         }
