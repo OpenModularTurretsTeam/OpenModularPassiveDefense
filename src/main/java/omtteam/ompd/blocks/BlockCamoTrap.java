@@ -103,7 +103,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
+    public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
         AxisAlignedBB alignedBB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
         collidingBoxes.add(alignedBB);
     }

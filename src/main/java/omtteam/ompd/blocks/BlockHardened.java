@@ -54,8 +54,9 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
         return new ItemBlockHardened(block);
     }
 
+    @Nonnull
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileEntityPassiveOwnedBlock();
     }
 

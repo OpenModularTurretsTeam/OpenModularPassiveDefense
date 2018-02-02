@@ -58,8 +58,9 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
         return new ItemBlockFence(block);
     }
 
+    @Nonnull
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileEntityPassiveOwnedBlock();
     }
 

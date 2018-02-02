@@ -14,11 +14,10 @@ import net.minecraftforge.fml.common.Optional;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 import static omtteam.omlib.util.GeneralUtil.safeLocalize;
-
-;
 
 /**
  * Created by nico on 5/23/15.
@@ -50,6 +49,7 @@ public class WailaTileHandler implements IWailaDataProvider {
      * a bug with this method in that it will only affect the head of the tool tip. The body and tail
      * method will ignore any changes made here.
      */
+    @Nonnull
     @Override
     @Optional.Method(modid = "Waila")
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
@@ -62,6 +62,7 @@ public class WailaTileHandler implements IWailaDataProvider {
      * the name of the block. The accessor is an object wrapper which contains all relevant data while
      * the config parameter allows you to take advantage of the ingame config gui.
      */
+    @Nonnull
     @Override
     @Optional.Method(modid = "Waila")
     public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
@@ -73,6 +74,7 @@ public class WailaTileHandler implements IWailaDataProvider {
      * majority of your data. The accessor is an object wrapper which contains all relevant data while
      * the config parameter allows you to take advantage of the ingame config gui.
      */
+    @Nonnull
     @Override
     @Optional.Method(modid = "Waila")
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
@@ -86,6 +88,7 @@ public class WailaTileHandler implements IWailaDataProvider {
      * of the mod which adds this block to the game. The accessor is an object wrapper which contains all
      * relevant data while the config parameter allows you to take advantage of the ingame config gui.
      */
+    @Nonnull
     @Override
     @Optional.Method(modid = "Waila")
     public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
@@ -99,6 +102,7 @@ public class WailaTileHandler implements IWailaDataProvider {
      * entities.
      */
 
+    @Nonnull
     @Override
     public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos) {
         if (te != null) {

@@ -45,11 +45,13 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         particle = part;
     }
 
+    @Nonnull
     @Override
     protected IBakedModel getModel(List<IBakedModel> list, @Nullable IBlockState state) {
         return list.get(0);
     }
 
+    @Nonnull
     @Override
     public TextureAtlasSprite getParticleTexture() {
         return particle;
@@ -113,7 +115,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         @Override
         @Nonnull
         @ParametersAreNonnullByDefault
-        public IModel loadModel(ResourceLocation modelLocation) throws Exception {
+        public IModel loadModel(ResourceLocation modelLocation) {
             return new Model();
         }
 

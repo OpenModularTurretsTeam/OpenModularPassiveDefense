@@ -64,9 +64,6 @@ public class BlockHelper {
                 player.sendMessage(new TextComponentString(I18n.translateToLocal("status.ownership")));
             }
             return true;
-        }else if (world.isRemote){
-            return true;
-        }
-        return false;
+        } else return world.isRemote;
     }
 }
