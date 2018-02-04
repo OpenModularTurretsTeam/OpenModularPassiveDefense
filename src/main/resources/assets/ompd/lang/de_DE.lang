@@ -18,4 +18,6 @@ tile.hardened_tier_five.name=Verteidigungsblock (Tier 5)
 
 gui.ompd:owner=Besitzer
 
+itemGroup.openmodularpassivedefense=Open Modular Passive Defense
+
 status.ownership=Du besitzt diesen Block nicht, oder hast dazu keine Berechtigung.
