@@ -37,7 +37,7 @@ public class TileEntityPassiveOwnedBlock extends TileEntityOwnedBlock {
     @Override
     public void onLoad() {
         if (this.dropBlock) {
-            this.world.destroyBlock(pos, false);
+            //this.world.destroyBlock(pos, false);
         }
     }
 }
