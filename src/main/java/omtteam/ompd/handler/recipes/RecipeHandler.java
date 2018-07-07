@@ -9,6 +9,14 @@ import omtteam.ompd.handler.ConfigHandler;
 import omtteam.ompd.init.ModBlocks;
 
 public class RecipeHandler {
+    /**
+     * Set this to true in order to generate recipes. This should only be enabled if
+     * recipes need to be added, modified, or removed manually.
+     * <p>
+     * This should <b>never</b> be enabled outside of a development environment.
+     */
+    private static final boolean GENERATE_RECIPES = false;
+    
     public static ItemStack hardWallTierOne;
     public static ItemStack hardWallTierTwo;
     public static ItemStack hardWallTierThree;
@@ -23,6 +31,9 @@ public class RecipeHandler {
 
 
     public static void initRecipes() {
+        if (!GENERATE_RECIPES) {
+            return;
+        }
         hardWallTierOne = new ItemStack(ModBlocks.hardened, 16, 0);
         hardWallTierTwo = new ItemStack(ModBlocks.hardened, 16, 1);
         hardWallTierThree = new ItemStack(ModBlocks.hardened, 16, 2);
