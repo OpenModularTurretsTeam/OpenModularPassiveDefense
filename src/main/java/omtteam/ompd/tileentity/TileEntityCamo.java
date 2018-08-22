@@ -3,39 +3,57 @@ package omtteam.ompd.tileentity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import omtteam.omlib.network.OMLibNetworkingHandler;
+import omtteam.omlib.network.messages.MessageCamoSettings;
 import omtteam.omlib.tileentity.ICamoSupport;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
+import omtteam.omlib.util.CamoSettings;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import static omtteam.omlib.util.BlockUtil.getBlockStateFromNBT;
-import static omtteam.omlib.util.BlockUtil.writeBlockFromStateToNBT;
 
 /**
  * Created by Keridos on 31/01/17.
  * This Class
  */
 public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport {
-    private IBlockState camoBlockState;
+    private CamoSettings camoSettings;
+    private IBlockState camoBlockStateTemp;
 
     public TileEntityCamo(IBlockState camoBlockState) {
-        this.camoBlockState = camoBlockState;
+        this.camoSettings = new CamoSettings();
+        this.camoSettings.setCamoBlockState(camoBlockState);
     }
 
     @Nonnull
     @Override
     public IBlockState getCamoState() {
-        return camoBlockState;
+        return this.getCamoSettings().getCamoBlockState() != null
+                && this.getCamoSettings().getCamoBlockState() instanceof IExtendedBlockState
+                ? (IExtendedBlockState) this.getCamoSettings().getCamoBlockState()
+                : this.getCamoSettings().getCamoBlockState() != null
+                ? this.getCamoSettings().getCamoBlockState().getBlock()
+                .getExtendedState(this.getCamoSettings().getCamoBlockState(), this.getWorld(), this.getPos())
+                : this.getDefaultCamoState();
     }
 
     @Override
-    @ParametersAreNonnullByDefault
     public void setCamoState(IBlockState state) {
-        this.camoBlockState = state;
+        if (!(state instanceof IExtendedBlockState)) {
+            this.getCamoSettings().setCamoBlockState(state.getBlock().getExtendedState(state, this.getWorld(), this.getPos()));
+        } else {
+            this.getCamoSettings().setCamoBlockState(state);
+        }
+        this.camoBlockStateTemp = state;
+        if (!world.isRemote) {
+            OMLibNetworkingHandler.INSTANCE.sendToAllAround(new MessageCamoSettings(this),
+                                                            new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimension(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 160));
+            this.markDirty();
+        }
     }
 
     @Nonnull
@@ -46,23 +64,44 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound) {
-        super.readFromNBT(nbtTagCompound);
-        if (getBlockStateFromNBT(nbtTagCompound) != null) {
-            this.camoBlockState = getBlockStateFromNBT(nbtTagCompound);
-        } else {
-            this.camoBlockState = getDefaultCamoState();
-        }
-        if (dropBlock) {
-            world.destroyBlock(pos, false);
-        }
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        camoSettings.writeNBT(tag);
     }
 
     @Nonnull
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound) {
-        super.writeToNBT(nbtTagCompound);
-        writeBlockFromStateToNBT(nbtTagCompound, this.camoBlockState);
-        return nbtTagCompound;
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        this.camoSettings = CamoSettings.getSettingsFromNBT(tag);
+        if (camoSettings.getCamoBlockState() != null) {
+            this.camoBlockStateTemp = camoSettings.getCamoBlockState();
+        } else {
+            this.camoBlockStateTemp = getDefaultCamoState();
+        }
+        return tag;
+    }
+
+    @Nonnull
+    @Override
+    public CamoSettings getCamoSettings() {
+        return camoSettings;
+    }
+
+    @Nonnull
+    @Override
+    public TileEntityOwnedBlock getOwnedBlock() {
+        return this;
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (camoBlockStateTemp instanceof IExtendedBlockState) {
+            this.camoSettings.setCamoBlockState(camoBlockStateTemp);
+        } else {
+            this.setCamoState(camoBlockStateTemp.getBlock().getExtendedState(camoBlockStateTemp, this.getWorld(), this.getPos()));
+        }
+        this.markDirty();
     }
 }
