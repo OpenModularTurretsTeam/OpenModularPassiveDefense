@@ -12,65 +12,14 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.1.0"
+}
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven-publish'
 apply plugin: 'idea'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-// define the properties file
-ext.configFile = file "project.properties"
-
-configFile.withReader {
-    // read config.  it shall from now on be referenced as simply config or as project.config
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
-}
-
-version = "${config.mod_version}"
-if (hasProperty('appendBuildNumber')) {
-    version = version + "-" + appendBuildNumber.toString()
-} else {
-    version = version + "-0"
-}
-
-group = "${config.group_id}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "${config.mod_id}-${config.minecraft_version}"
-
-minecraft {
-    version = "${config.forge_version}"
-    runDir = "run"
-
-    replace "@VERSION@", project.version
-	    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not allways work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20171003"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
-}
-
-
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        // replace version and mcversion
-        expand 'version': project.version, 'mcversion': project.minecraft.version
-    }
-
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
+apply plugin: 'java'
 
 repositories {
     maven {
@@ -117,6 +66,60 @@ repositories {
     }
 }
 
+// define the properties file
+ext.configFile = file "project.properties"
+
+configFile.withReader {
+    // read config.  it shall from now on be referenced as simply config or as project.config
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = "${config.mod_version}"
+if (hasProperty('appendBuildNumber')) {
+    version = version + "-" + appendBuildNumber.toString()
+} else {
+    version = version + "-0"
+}
+
+group = "${config.group_id}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "${config.mod_id}-${config.minecraft_version}"
+
+minecraft {
+    version = "${config.forge_version}"
+    runDir = "run"
+
+    replace "@VERSION@", project.version
+	    // the mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   snapshot are built nightly.
+    // stable_#            stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not allways work.
+    // simply re-run your setup task after changing the mappings to update your workspace.
+    mappings = "snapshot_20171212"
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+}
+
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
 def omlib_local = false
 if (!rootProject.allprojects.findAll({it.name == 'OMLib'}).isEmpty()) {
     omlib_local = true
@@ -139,7 +142,6 @@ dependencies {
     }
 }
 
-
 task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'dev'
@@ -160,5 +162,76 @@ publishing {
     }
     repositories {
         mavenLocal()
+    }
+}
+
+//// DETECTING COMMIT NAME AND ACTIVATING CURSE RELEASE \\\\
+
+def commit_release_type = getCommmitReleaseType()
+
+def getCommmitReleaseType() {
+    if (project.hasProperty("curseforge_key")) {
+        def stdout = new ByteArrayOutputStream()
+        try {
+            exec {
+                commandLine 'git', 'log', '-1', '--pretty=tformat:%s'
+                standardOutput = stdout
+            }
+        } catch (Exception e) {
+            System.print("SKIPPING CURSE RELEASE - FAILED TO RETRIEVE LAST COMMIT")
+            e.printStackTrace()
+            return 'none'
+        }
+        String commit = stdout.toString().trim()
+
+        if (commit.startsWith("CRelease") || commit.startsWith("crelease")) {
+            System.out.println("FOUND NEW RELEASE - COMMIT: " + commit); return 'release'
+        } else if (commit.startsWith("CBeta") || commit.startsWith("cbeta")) {
+            System.out.println("FOUND NEW BETA - COMMIT: " + commit); return 'beta'
+        } else if (commit.startsWith("CAlpha") || commit.startsWith("calpha")) {
+            System.out.println("FOUND NEW ALPHA - COMMIT: " + commit); return 'alpha'
+        } else {
+            System.out.println("SKIPPING CURSE RELEASE - COMMIT: " + commit); return 'none'
+        }
+    }
+    System.out.println("SKIPPING CURSE RELEASE - NO CURSE API KEY")
+    return 'none'
+}
+
+tasks.curseforge.enabled = project.hasProperty("curseforge_key") && !commit_release_type.equals('none')
+curseforge {
+    if (project.hasProperty("curseforge_key") && !commit_release_type.equals('none')) {
+        System.out.println("ATTEMPTING CURSE RELEASE")
+        apiKey = project.properties["curseforge_key"]
+    } else {
+        return
+    }
+    project {
+        id = config.curse_project_id
+        addGameVersion '1.12.2'
+
+        relations {
+            requiredDependency 'omlib'
+            optionalDependency 'openmodularturrets'
+            optionalDependency 'ender-io'
+            optionalDependency 'redstone-flux'
+            optionalDependency 'thermalexpansion'
+        }
+
+        mainArtifact(jar) {
+            releaseType = commit_release_type
+            changelog = file("${projectDir}/change_log.html").text
+            changelogType = 'html'
+        }
+
+        addArtifact(sourceJar) {
+            changelog = file("${projectDir}/change_log.html").text
+            releaseType = 'alpha'
+        }
+
+        addArtifact(deobfJar) {
+            changelog = file("${projectDir}/change_log.html").text
+            releaseType = 'alpha'
+        }
     }
 }
