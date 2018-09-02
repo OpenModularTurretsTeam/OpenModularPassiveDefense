@@ -2,14 +2,11 @@ language: groovy
 sudo: false
 cache:
   directories:
-    - $HOME/.gradle
+  - $HOME/.gradle
 notifications:
   email: false
 jdk:
-  - oraclejdk7
-  - oraclejdk8
-before_install:
-  - chmod a+x gradlew
+- oraclejdk8
 script: gradle clean check
 after_script:
-  - rm -rf libs/
+- rm -rf libs/
