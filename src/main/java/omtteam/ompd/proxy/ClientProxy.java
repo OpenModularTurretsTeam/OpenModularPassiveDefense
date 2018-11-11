@@ -43,7 +43,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit() {
         super.preInit();
-
     }
 
     @Override
@@ -52,11 +51,11 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomStateMapper(ModBlocks.wall, new StateMap.Builder().ignore(BlockWall.VARIANT).build());
         for (int i = 0; i < 5; i++) {
             registerBlockModelAsItem(ModBlocks.hardened, i, OMPDNames.Blocks.hardened, "tier=" + (i + 1));
-            registerBlockModelAsItem(ModBlocks.fence , i , OMPDNames.Blocks.fence + "_inventory","tier="+ (i + 1));
-            registerBlockModelAsItem(ModBlocks.wall , i , OMPDNames.Blocks.wall+ "_inventory","tier="+ (i + 1));
+            registerBlockModelAsItem(ModBlocks.fence, i, OMPDNames.Blocks.fence + "_inventory", "tier=" + (i + 1));
+            registerBlockModelAsItem(ModBlocks.wall, i, OMPDNames.Blocks.wall + "_inventory", "tier=" + (i + 1));
         }
 
-        registerBlockModelAsItem(ModBlocks.camoTrap,0 , OMPDNames.Blocks.camoTrap);
+        registerBlockModelAsItem(ModBlocks.camoTrap, 0, OMPDNames.Blocks.camoTrap);
 
         ModelLoaderRegistry.registerLoader(new BasicCamoTrapBakedModel.ModelLoader());
         ModelLoader.setCustomStateMapper(ModBlocks.camoTrap, new BasicCamoTrapBakedModel.Statemapper());
@@ -68,7 +67,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public World getWorld(){
+    public World getWorld() {
         return Minecraft.getMinecraft().world;
     }
 }

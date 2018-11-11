@@ -44,13 +44,13 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
     private static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
 
     public BlockFence() {
-        super("","",Material.ROCK, true);
+        super("", "", Material.ROCK, true);
         this.setCreativeTab(OpenModularPassiveDefense.modularPassiveDefenseTab);
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
         this.setUnlocalizedName(OMPDNames.Blocks.fence);
-        this.setRegistryName(Reference.MOD_ID,OMPDNames.Blocks.fence);
+        this.setRegistryName(Reference.MOD_ID, OMPDNames.Blocks.fence);
     }
 
     @Override
@@ -89,18 +89,19 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        TileEntityPassiveOwnedBlock te = (TileEntityPassiveOwnedBlock)worldIn.getTileEntity(pos);
-        if (!(te != null && entityIn instanceof EntityPlayer && isPlayerOwner((EntityPlayer)entityIn, te)) && !(entityIn instanceof EntityItem)) entityIn.attackEntityFrom(DamageSource.CACTUS, 5);
+        TileEntityPassiveOwnedBlock te = (TileEntityPassiveOwnedBlock) worldIn.getTileEntity(pos);
+        if (!(te != null && entityIn instanceof EntityPlayer && isPlayerOwner((EntityPlayer) entityIn, te)) && !(entityIn instanceof EntityItem))
+            entityIn.attackEntityFrom(DamageSource.CACTUS, 5);
     }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        return BlockHelper.onBlockActivated(world,pos,state,player,hand,side, hitX,hitY,hitZ);
+        return BlockHelper.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
     }
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        BlockHelper.onBlockPlacedBy(worldIn,pos,state,placer,stack,this);
+        BlockHelper.onBlockPlacedBy(worldIn, pos, state, placer, stack, this);
     }
 
     @Override

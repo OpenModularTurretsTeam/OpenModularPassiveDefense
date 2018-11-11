@@ -96,7 +96,6 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
                                 new TextComponentString(I18n.translateToLocal("status.ownership")));
                     }
                 }
-
             }
         }
         return true;

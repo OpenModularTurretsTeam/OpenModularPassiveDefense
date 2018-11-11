@@ -11,8 +11,6 @@ public class ConfigHandler {
         config = new Configuration(configFile);
         config.load();
 
-
-
         if (config.hasChanged()) {
             config.save();
         }

@@ -17,21 +17,21 @@ import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
 
 public class ItemBlockHardened extends ItemBlock {
+    private final static String[] subNames = {
+            OMPDNames.Blocks.hardenedTierOne, OMPDNames.Blocks.hardenedTierTwo, OMPDNames.Blocks.hardenedTierThree,
+            OMPDNames.Blocks.hardenedTierFour, OMPDNames.Blocks.hardenedTierFive
+    };
+
     public ItemBlockHardened(Block block) {
         super(block);
         this.setHasSubtypes(true);
         this.setRegistryName(OMPDNames.Blocks.hardened);
     }
 
-    private final static String[] subNames = {
-            OMPDNames.Blocks.hardenedTierOne, OMPDNames.Blocks.hardenedTierTwo, OMPDNames.Blocks.hardenedTierThree,
-            OMPDNames.Blocks.hardenedTierFour, OMPDNames.Blocks.hardenedTierFive
-    };
-
     @Override
     @ParametersAreNonnullByDefault
     public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> subItems) {
-        if(isInCreativeTab(itemIn)) {
+        if (isInCreativeTab(itemIn)) {
             for (int i = 0; i < 5; i++) {
                 subItems.add(new ItemStack(ModBlocks.hardened, 1, i));
             }
@@ -51,7 +51,8 @@ public class ItemBlockHardened extends ItemBlock {
 
     @Override
     @ParametersAreNullableByDefault
-    public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced) {        if (stack != null) {
+    public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced) {
+        if (stack != null) {
             switch (stack.getMetadata()) {
             }
         }

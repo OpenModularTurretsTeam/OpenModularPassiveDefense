@@ -17,21 +17,21 @@ import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
 
 public class ItemBlockFence extends ItemBlock {
+    private final static String[] subNames = {
+            OMPDNames.Blocks.fenceTierOne, OMPDNames.Blocks.fenceTierTwo, OMPDNames.Blocks.fenceTierThree,
+            OMPDNames.Blocks.fenceTierFour, OMPDNames.Blocks.fenceTierFive
+    };
+
     public ItemBlockFence(Block block) {
         super(block);
         this.setHasSubtypes(true);
         this.setRegistryName(OMPDNames.Blocks.fence);
     }
 
-    private final static String[] subNames = {
-            OMPDNames.Blocks.fenceTierOne, OMPDNames.Blocks.fenceTierTwo, OMPDNames.Blocks.fenceTierThree,
-            OMPDNames.Blocks.fenceTierFour, OMPDNames.Blocks.fenceTierFive
-    };
-
     @Override
     @ParametersAreNonnullByDefault
     public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> subItems) {
-        if(isInCreativeTab(itemIn)) {
+        if (isInCreativeTab(itemIn)) {
             for (int i = 0; i < 5; i++) {
                 subItems.add(new ItemStack(ModBlocks.fence, 1, i));
             }
@@ -51,7 +51,8 @@ public class ItemBlockFence extends ItemBlock {
 
     @Override
     @ParametersAreNullableByDefault
-    public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced) {        if (stack != null) {
+    public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced) {
+        if (stack != null) {
             switch (stack.getMetadata()) {
             }
         }

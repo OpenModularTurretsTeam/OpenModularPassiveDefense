@@ -27,7 +27,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * Created by Keridos on 29/01/17.
  * This Class
@@ -38,7 +37,6 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
     private static final ResourceLocation FAKE_LOCATION = new ResourceLocation("ompd", "models/block/custom/camo_trap");
 
     private final TextureAtlasSprite particle;
-
 
     private BasicCamoTrapBakedModel(List<IBakedModel> list, TextureAtlasSprite part) {
         super(list);

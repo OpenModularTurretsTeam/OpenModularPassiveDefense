@@ -7,13 +7,13 @@ import omtteam.ompd.handler.NetworkingHandler;
 import omtteam.ompd.init.ModBlocks;
 
 public class CommonProxy {
-    public void preInit(){
+    public void preInit() {
         MinecraftForge.EVENT_BUS.register(EventHandler.getInstance());
         ModBlocks.initTileEntities();
         initHandlers();
     }
 
-    public void init(){
+    public void init() {
         //RecipeHandler.initRecipes();
     }
 
@@ -25,7 +25,7 @@ public class CommonProxy {
         NetworkingHandler.initNetworking();
     }
 
-    public World getWorld(){
+    public World getWorld() {
         return null;
     }
 }

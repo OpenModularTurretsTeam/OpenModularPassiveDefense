@@ -17,21 +17,21 @@ import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
 
 public class ItemBlockWall extends ItemBlock {
+    private final static String[] subNames = {
+            OMPDNames.Blocks.wallTierOne, OMPDNames.Blocks.wallTierTwo, OMPDNames.Blocks.wallTierThree,
+            OMPDNames.Blocks.wallTierFour, OMPDNames.Blocks.wallTierFive
+    };
+
     public ItemBlockWall(Block block) {
         super(block);
         this.setHasSubtypes(true);
         this.setRegistryName(OMPDNames.Blocks.wall);
     }
 
-    private final static String[] subNames = {
-            OMPDNames.Blocks.wallTierOne, OMPDNames.Blocks.wallTierTwo, OMPDNames.Blocks.wallTierThree,
-            OMPDNames.Blocks.wallTierFour, OMPDNames.Blocks.wallTierFive
-    };
-
     @Override
     @ParametersAreNonnullByDefault
     public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> subItems) {
-        if(isInCreativeTab(itemIn)) {
+        if (isInCreativeTab(itemIn)) {
             for (int i = 0; i < 5; i++) {
                 subItems.add(new ItemStack(ModBlocks.wall, 1, i));
             }
@@ -51,7 +51,8 @@ public class ItemBlockWall extends ItemBlock {
 
     @Override
     @ParametersAreNullableByDefault
-    public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced) {        if (stack != null) {
+    public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced) {
+        if (stack != null) {
             switch (stack.getMetadata()) {
             }
         }

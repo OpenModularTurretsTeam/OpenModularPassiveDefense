@@ -27,8 +27,6 @@ public class EventHandler {
         return instance;
     }
 
-
-
     @SubscribeEvent
     public void blockRegisterEvent(RegistryEvent.Register<Block> event) {
         ModBlocks.initBlocks(event.getRegistry());
@@ -48,5 +46,4 @@ public class EventHandler {
     public void renderRegisterEvent(ModelRegistryEvent event) {
         OpenModularPassiveDefense.proxy.initModelLoaders();
     }
-
 }

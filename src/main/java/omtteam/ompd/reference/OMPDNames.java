@@ -28,15 +28,14 @@ public class OMPDNames {
         public static final String wallTierFour = "wall_tier_four";
         public static final String wallTierFive = "wall_tier_five";
 
-        public static final String camoTrap ="camo_trap";
+        public static final String camoTrap = "camo_trap";
 
-        public static final String ownedBlock ="ompd_owned_block";
+        public static final String ownedBlock = "ompd_owned_block";
     }
 
     public static class Items {
         //Unlocalised
         public static final String intermediateRegularItem = "intermediate_regular";
-
     }
 
     public static class Localizations {

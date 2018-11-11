@@ -21,7 +21,7 @@ import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 @SuppressWarnings("deprecation")
 public class BlockHelper {
 
-    public static void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack, Block block){
+    public static void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack, Block block) {
         if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof TileEntityPassiveOwnedBlock) {
             EntityPlayerMP player = (EntityPlayerMP) placer;
             TileEntityPassiveOwnedBlock ownedBlock = (TileEntityPassiveOwnedBlock) worldIn.getTileEntity(pos);
@@ -49,16 +49,16 @@ public class BlockHelper {
                         block.setResistance(80.0F);
                         block.setHardness(80.0F);
                 }
-            } else   {
+            } else {
                 worldIn.destroyBlock(pos, true);
             }
         }
     }
 
     public static boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() ==  ItemStack.EMPTY)) {
+        if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() == ItemStack.EMPTY)) {
             TileEntityPassiveOwnedBlock base = (TileEntityPassiveOwnedBlock) world.getTileEntity(pos);
-            if (base != null &&player.getUniqueID().toString().equals(base.getOwner())) {
+            if (base != null && player.getUniqueID().toString().equals(base.getOwner())) {
                 world.destroyBlock(base.getPos(), true);
             } else if (base != null) {
                 player.sendMessage(new TextComponentString(I18n.translateToLocal("status.ownership")));
