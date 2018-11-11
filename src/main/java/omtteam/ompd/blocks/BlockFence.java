@@ -37,7 +37,7 @@ import omtteam.ompd.util.BlockHelper;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static omtteam.omlib.util.PlayerUtil.isPlayerOwner;
+import static omtteam.omlib.util.player.PlayerUtil.isPlayerOwner;
 
 @SuppressWarnings("deprecation")
 public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
