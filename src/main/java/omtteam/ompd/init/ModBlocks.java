@@ -10,6 +10,7 @@ import omtteam.ompd.blocks.BlockFence;
 import omtteam.ompd.blocks.BlockHardened;
 import omtteam.ompd.blocks.BlockWall;
 import omtteam.ompd.reference.OMPDNames;
+import omtteam.ompd.reference.Reference;
 import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
 
 public class ModBlocks {
@@ -35,6 +36,6 @@ public class ModBlocks {
     }
 
     public static void initTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityPassiveOwnedBlock.class, OMPDNames.Blocks.ownedBlock);
+        GameRegistry.registerTileEntity(TileEntityPassiveOwnedBlock.class, Reference.MOD_ID + ":" + OMPDNames.Blocks.ownedBlock);
     }
 }
