@@ -2,7 +2,6 @@ package omtteam.ompd.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import omtteam.omlib.util.InitHelper;
 import omtteam.ompd.blocks.BlockCamoTrap;
@@ -11,7 +10,8 @@ import omtteam.ompd.blocks.BlockHardened;
 import omtteam.ompd.blocks.BlockWall;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
-import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
+import omtteam.ompd.tileentity.TileEntityCamo;
+import omtteam.ompd.tileentity.TileEntityTiered;
 
 public class ModBlocks {
     public static Block hardened;
@@ -36,6 +36,7 @@ public class ModBlocks {
     }
 
     public static void initTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityPassiveOwnedBlock.class, Reference.MOD_ID + ":" + OMPDNames.Blocks.ownedBlock);
+        InitHelper.registerTileEntity(TileEntityTiered.class, Reference.MOD_ID, OMPDNames.Blocks.ownedBlock);
+        InitHelper.registerTileEntity(TileEntityCamo.class, Reference.MOD_ID, OMPDNames.Blocks.camoTrap);
     }
 }

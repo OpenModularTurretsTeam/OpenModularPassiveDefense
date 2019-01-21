@@ -15,6 +15,7 @@ import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * Created by Keridos on 31/01/17.
@@ -23,6 +24,11 @@ import javax.annotation.Nonnull;
 public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport {
     private CamoSettings camoSettings;
     private IBlockState camoBlockStateTemp;
+
+    public TileEntityCamo() {
+        this.camoSettings = new CamoSettings();
+        this.camoSettings.setCamoBlockState(this.getDefaultCamoState());
+    }
 
     public TileEntityCamo(IBlockState camoBlockState) {
         this.camoSettings = new CamoSettings();
@@ -44,15 +50,21 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     @Override
     public void setCamoState(IBlockState state) {
         if (!(state instanceof IExtendedBlockState)) {
+            if (this.getCamoState() == state.getBlock().getExtendedState(state, this.getWorld(), this.getPos())) {
+                return;
+            }
             this.getCamoSettings().setCamoBlockState(state.getBlock().getExtendedState(state, this.getWorld(), this.getPos()));
         } else {
+            if (this.getCamoState() == state) {
+                return;
+            }
             this.getCamoSettings().setCamoBlockState(state);
         }
         this.camoBlockStateTemp = state;
         if (!world.isRemote) {
             OMLibNetworkingHandler.INSTANCE.sendToAllAround(new MessageCamoSettings(this),
                                                             new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimension(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 160));
-            this.markDirty();
+            this.markBlockForUpdate();
         }
     }
 
@@ -64,21 +76,23 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
-        camoSettings.writeNBT(tag);
-    }
-
-    @Nonnull
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        super.writeToNBT(tag);
         this.camoSettings = CamoSettings.getSettingsFromNBT(tag);
         if (camoSettings.getCamoBlockState() != null) {
             this.camoBlockStateTemp = camoSettings.getCamoBlockState();
         } else {
             this.camoBlockStateTemp = getDefaultCamoState();
         }
+    }
+
+    @Nonnull
+    @Override
+    @ParametersAreNonnullByDefault
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        camoSettings.writeNBT(tag);
         return tag;
     }
 
@@ -99,9 +113,11 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
         super.onLoad();
         if (camoBlockStateTemp instanceof IExtendedBlockState) {
             this.camoSettings.setCamoBlockState(camoBlockStateTemp);
-        } else {
+        } else if (camoBlockStateTemp != null) {
             this.setCamoState(camoBlockStateTemp.getBlock().getExtendedState(camoBlockStateTemp, this.getWorld(), this.getPos()));
+        } else {
+            this.setCamoState(this.getDefaultCamoState());
         }
-        this.markDirty();
+        this.updateNBT = true;
     }
 }

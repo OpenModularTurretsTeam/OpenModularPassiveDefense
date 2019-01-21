@@ -28,7 +28,7 @@ import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.items.blocks.ItemBlockWall;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
-import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
+import omtteam.ompd.tileentity.TileEntityTiered;
 import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
@@ -55,7 +55,7 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
     @Nonnull
     @Override
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
-        return new TileEntityPassiveOwnedBlock();
+        return new TileEntityTiered();
     }
 
     @Override

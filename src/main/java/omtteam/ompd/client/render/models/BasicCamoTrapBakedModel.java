@@ -1,5 +1,6 @@
 package omtteam.ompd.client.render.models;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -33,6 +34,7 @@ import java.util.List;
  */
 
 @SideOnly(Side.CLIENT)
+@MethodsReturnNonnullByDefault
 public class BasicCamoTrapBakedModel extends CamoBakedModel {
     private static final ResourceLocation FAKE_LOCATION = new ResourceLocation("ompd", "models/block/custom/camo_trap");
 
@@ -43,25 +45,21 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         particle = part;
     }
 
-    @Nonnull
     @Override
     protected IBakedModel getModel(List<IBakedModel> list, @Nullable IBlockState state) {
         return list.get(0);
     }
 
-    @Nonnull
     @Override
     public TextureAtlasSprite getParticleTexture() {
         return particle;
     }
 
-    @Nonnull
     @Override
     public ItemCameraTransforms getItemCameraTransforms() {
         return ItemCameraTransforms.DEFAULT;
     }
 
-    @Nonnull
     @Override
     public ItemOverrideList getOverrides() {
         return ItemOverrideList.NONE;
@@ -97,7 +95,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
                 e.printStackTrace();
             }
 
-            TextureAtlasSprite part = bakedTextureGetter.apply(new ResourceLocation("ompd", "blocks/camo_trap"));
+            TextureAtlasSprite part = bakedTextureGetter.apply(new ResourceLocation("ompd", "blocks/camo_trap_normal"));
             return new BasicCamoTrapBakedModel(list, part);
         }
     }

@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
  * Created by Keridos on 28/11/16.
  * This Class
  */
-public class TileEntityPassiveOwnedBlock extends TileEntityOwnedBlock {
+public class TileEntityTiered extends TileEntityOwnedBlock {
     protected int tier = 1;
 
     @Override

@@ -31,7 +31,7 @@ import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.items.blocks.ItemBlockFence;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
-import omtteam.ompd.tileentity.TileEntityPassiveOwnedBlock;
+import omtteam.ompd.tileentity.TileEntityTiered;
 import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
@@ -61,7 +61,7 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
     @Nonnull
     @Override
     public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
-        return new TileEntityPassiveOwnedBlock();
+        return new TileEntityTiered();
     }
 
     @Override
@@ -89,7 +89,7 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        TileEntityPassiveOwnedBlock te = (TileEntityPassiveOwnedBlock) worldIn.getTileEntity(pos);
+        TileEntityTiered te = (TileEntityTiered) worldIn.getTileEntity(pos);
         if (!(te != null && entityIn instanceof EntityPlayer && isPlayerOwner((EntityPlayer) entityIn, te)) && !(entityIn instanceof EntityItem))
             entityIn.attackEntityFrom(DamageSource.CACTUS, 5);
     }

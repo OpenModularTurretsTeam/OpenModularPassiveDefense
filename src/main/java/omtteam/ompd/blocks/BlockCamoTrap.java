@@ -7,7 +7,9 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -22,10 +24,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import omtteam.omlib.blocks.BlockAbstractCamoTileEntity;
+import omtteam.omlib.tileentity.TileEntityOwnedBlock;
+import omtteam.omlib.util.player.PlayerUtil;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 import omtteam.ompd.tileentity.TileEntityCamo;
+import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,6 +43,8 @@ import java.util.List;
  */
 @SuppressWarnings("deprecation")
 public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
+    AxisAlignedBB collisionBox = new AxisAlignedBB(0.0001D, 0.0001D, 0.0001D, 0.9999D, 0.9999D, 0.9999D);
+
     public BlockCamoTrap() {
         super(Material.ROCK);
         this.setCreativeTab(OpenModularPassiveDefense.modularPassiveDefenseTab);
@@ -61,6 +68,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && hand == EnumHand.MAIN_HAND) {
             ItemStack heldItem = player.getHeldItemMainhand();
@@ -102,15 +110,28 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
-        AxisAlignedBB alignedBB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
-        collidingBoxes.add(alignedBB);
+    @ParametersAreNonnullByDefault
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if (tileEntity instanceof TileEntityOwnedBlock
+                && entityIn instanceof EntityPlayerMP
+                && PlayerUtil.isPlayerOwner((EntityPlayerMP) entityIn, (TileEntityOwnedBlock) tileEntity)) {
+            collidingBoxes.add(collisionBox);
+        }
     }
+
+
 
     @Nullable
     @Override
     @ParametersAreNonnullByDefault
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return null;
+    }
+
+    @Override
+    @ParametersAreNonnullByDefault
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        BlockHelper.onBlockPlacedBy(worldIn, pos, state, placer, stack, this);
     }
 }
