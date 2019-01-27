@@ -43,10 +43,10 @@ import java.util.List;
  */
 @SuppressWarnings("deprecation")
 public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
-    AxisAlignedBB collisionBox = new AxisAlignedBB(0.0001D, 0.0001D, 0.0001D, 0.9999D, 0.9999D, 0.9999D);
+    AxisAlignedBB collisionBox = new AxisAlignedBB(0D, 0D, 0D, 1D, 1D, 1D);
 
     public BlockCamoTrap() {
-        super(Material.ROCK);
+        super(Material.GLASS);
         this.setCreativeTab(OpenModularPassiveDefense.modularPassiveDefenseTab);
         this.setSoundType(SoundType.GROUND);
         this.setHarvestLevel("pickaxe", 2);
@@ -110,17 +110,46 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity {
     }
 
     @Override
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
+        return collisionBox.offset(pos).shrink(0.001D);
+    }
+
+    @Override
+    public boolean isTopSolid(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean causesSuffocation(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullBlock(IBlockState state) {
+        return false;
+    }
+
+    @Override
     @ParametersAreNonnullByDefault
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
         if (tileEntity instanceof TileEntityOwnedBlock
                 && entityIn instanceof EntityPlayerMP
-                && PlayerUtil.isPlayerOwner((EntityPlayerMP) entityIn, (TileEntityOwnedBlock) tileEntity)) {
-            collidingBoxes.add(collisionBox);
+                && PlayerUtil.isPlayerOwner((EntityPlayerMP) entityIn, (TileEntityOwnedBlock) tileEntity)
+                && entityBox.intersects(collisionBox.offset(pos))) {
+            collidingBoxes.add(collisionBox.offset(pos));
         }
     }
 
-
+    @Override
+    public boolean isCollidable() {
+        return true;
+    }
 
     @Nullable
     @Override
