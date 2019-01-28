@@ -101,7 +101,7 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        BlockHelper.onBlockPlacedBy(worldIn, pos, state, placer, stack, this);
+        BlockHelper.onBlockPlacedByTiered(worldIn, pos, state, placer, stack, this);
     }
 
     @Override

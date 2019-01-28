@@ -97,7 +97,7 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        BlockHelper.onBlockPlacedBy(worldIn, pos, state, placer, stack, this);
+        BlockHelper.onBlockPlacedByTiered(worldIn, pos, state, placer, stack, this);
     }
 
     @Override

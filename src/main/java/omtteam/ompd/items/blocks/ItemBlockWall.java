@@ -17,16 +17,16 @@ import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
 
 public class ItemBlockWall extends ItemBlock {
-    private final static String[] subNames = {
-            OMPDNames.Blocks.wallTierOne, OMPDNames.Blocks.wallTierTwo, OMPDNames.Blocks.wallTierThree,
-            OMPDNames.Blocks.wallTierFour, OMPDNames.Blocks.wallTierFive
-    };
-
     public ItemBlockWall(Block block) {
         super(block);
         this.setHasSubtypes(true);
         this.setRegistryName(OMPDNames.Blocks.wall);
     }
+
+    private final static String[] subNames = {
+            OMPDNames.Blocks.wallTierOne, OMPDNames.Blocks.wallTierTwo, OMPDNames.Blocks.wallTierThree,
+            OMPDNames.Blocks.wallTierFour, OMPDNames.Blocks.wallTierFive
+    };
 
     @Override
     @ParametersAreNonnullByDefault

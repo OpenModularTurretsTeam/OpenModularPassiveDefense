@@ -81,6 +81,7 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
         return state.getValue(TIER) - 1;
     }
 
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         return BlockHelper.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
@@ -88,7 +89,7 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        BlockHelper.onBlockPlacedBy(worldIn, pos, state, placer, stack, this);
+        BlockHelper.onBlockPlacedByTiered(worldIn, pos, state, placer, stack, this);
     }
 
     @Override
