@@ -10,7 +10,7 @@ import omtteam.omlib.network.OMLibNetworkingHandler;
 import omtteam.omlib.network.messages.MessageCamoSettings;
 import omtteam.omlib.tileentity.ICamoSupport;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
-import omtteam.omlib.util.CamoSettings;
+import omtteam.omlib.util.camo.CamoSettings;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 

@@ -95,7 +95,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
                 e.printStackTrace();
             }
 
-            TextureAtlasSprite part = bakedTextureGetter.apply(new ResourceLocation("ompd", "blocks/camo_trap_normal"));
+            TextureAtlasSprite part = bakedTextureGetter.apply(new ResourceLocation("ompd", "blocks/camo_trap"));
             return new BasicCamoTrapBakedModel(list, part);
         }
     }

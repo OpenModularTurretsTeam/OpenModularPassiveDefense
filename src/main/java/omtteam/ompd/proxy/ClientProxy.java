@@ -11,6 +11,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import omtteam.omlib.render.CamoBlockColor;
 import omtteam.ompd.blocks.BlockWall;
 import omtteam.ompd.client.render.models.BasicCamoTrapBakedModel;
 import omtteam.ompd.init.ModBlocks;
@@ -41,9 +42,14 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
+    public void init() {
+        super.init();
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new CamoBlockColor(), ModBlocks.camoTrap);
+    }
+
+    @Override
     public void preInit() {
         super.preInit();
-
     }
 
     @Override
@@ -55,11 +61,9 @@ public class ClientProxy extends CommonProxy {
             registerBlockModelAsItem(ModBlocks.fence, i, OMPDNames.Blocks.fence + "_inventory", "tier=" + (i + 1));
             registerBlockModelAsItem(ModBlocks.wall, i, OMPDNames.Blocks.wall + "_inventory", "tier=" + (i + 1));
         }
-
-        registerBlockModelAsItem(ModBlocks.camoTrap, 0, OMPDNames.Blocks.camoTrap + "_normal");
-
-        ModelLoaderRegistry.registerLoader(new BasicCamoTrapBakedModel.ModelLoader());
         ModelLoader.setCustomStateMapper(ModBlocks.camoTrap, new BasicCamoTrapBakedModel.Statemapper());
+        registerBlockModelAsItem(ModBlocks.camoTrap, 0, OMPDNames.Blocks.camoTrap + "_normal");
+        ModelLoaderRegistry.registerLoader(new BasicCamoTrapBakedModel.ModelLoader());
     }
 
     @Override
