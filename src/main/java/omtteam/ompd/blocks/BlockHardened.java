@@ -22,7 +22,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import omtteam.omlib.api.IHasItemBlock;
+import omtteam.omlib.api.block.IHasItemBlock;
 import omtteam.omlib.blocks.BlockAbstractTileEntity;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.init.ModBlocks;

@@ -11,7 +11,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import omtteam.omlib.render.CamoBlockColor;
+import omtteam.omlib.api.render.camo.CamoBlockColor;
 import omtteam.ompd.blocks.BlockWall;
 import omtteam.ompd.client.render.models.BasicCamoTrapBakedModel;
 import omtteam.ompd.init.ModBlocks;
