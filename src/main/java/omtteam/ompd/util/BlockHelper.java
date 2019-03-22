@@ -12,6 +12,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
+import omtteam.omlib.util.player.Player;
 import omtteam.ompd.tileentity.TileEntityTiered;
 
 /**
@@ -58,7 +59,7 @@ public class BlockHelper {
         EntityPlayer player = (EntityPlayer) placer;
         TileEntityOwnedBlock ownedBlock = (TileEntityOwnedBlock) worldIn.getTileEntity(pos);
         if (ownedBlock != null) {
-            ownedBlock.setOwner(player.getUniqueID().toString());
+            ownedBlock.setOwner(new Player(player));
         }
     }
 
