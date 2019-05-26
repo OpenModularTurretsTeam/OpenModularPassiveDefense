@@ -202,7 +202,7 @@ curseforge {
             optionalDependency 'openmodularturrets'
             optionalDependency 'ender-io'
             optionalDependency 'redstone-flux'
-            optionalDependency 'thermalexpansion'
+            optionalDependency 'thermal-expansion'
         }
 
         mainArtifact(jar) {
