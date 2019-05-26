@@ -8,12 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
 import omtteam.omlib.util.player.Player;
 import omtteam.ompd.tileentity.TileEntityTiered;
+
+import static omtteam.omlib.util.player.PlayerUtil.isPlayerOwner;
 
 /**
  * Created by Keridos on 28/11/16.
@@ -66,10 +67,10 @@ public class BlockHelper {
     public static boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() == ItemStack.EMPTY)) {
             TileEntityTiered base = (TileEntityTiered) world.getTileEntity(pos);
-            if (base != null && player.getUniqueID().toString().equals(base.getOwner())) {
-                world.destroyBlock(base.getPos(), true);
-            } else if (base != null) {
-                player.sendMessage(new TextComponentString(I18n.translateToLocal("status.ownership")));
+            if (base == null || isPlayerOwner(player, base)) {
+                world.destroyBlock(pos, true);
+            } else {
+                player.sendMessage(new TextComponentTranslation("status.ownership"));
             }
             return true;
         } else return world.isRemote;

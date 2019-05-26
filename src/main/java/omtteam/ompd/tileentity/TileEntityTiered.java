@@ -33,11 +33,4 @@ public class TileEntityTiered extends TileEntityOwnedBlock {
     public void setTier(int tier) {
         this.tier = tier;
     }
-
-    @Override
-    public void onLoad() {
-        if (this.dropBlock) {
-            //this.world.destroyBlock(pos, false);
-        }
-    }
 }
