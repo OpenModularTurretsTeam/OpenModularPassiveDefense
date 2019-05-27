@@ -16,7 +16,7 @@ public class TENameFix implements IFixableData {
 
     static {
         ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
-        builder.put("minecraft:" + OMPDNames.Blocks.hardened, Reference.MOD_ID + ":" + OMPDNames.Blocks.hardened);
+        builder.put("minecraft:" + OMPDNames.Blocks.ownedBlock, Reference.MOD_ID + ":" + OMPDNames.Blocks.ownedBlock);
         builder.put("minecraft:" + OMPDNames.Blocks.camoTrap, Reference.MOD_ID + ":" + OMPDNames.Blocks.camoTrap);
         NAME_MAP = builder.build();
     }
