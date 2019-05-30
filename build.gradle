@@ -127,7 +127,7 @@ if (rootProject.name == "OMTControl") {
 dependencies {
     deobfProvided "mezz.jei:jei_${minecraft_version}:${jei_version}"
     deobfProvided "cofh:RedstoneFlux:${minecraft_version_short}-${redstoneflux_version}:deobf"
-    deobfProvided "net.darkhax.tesla:Tesla-${${minecraft_version}}:${tesla_version}"
+    deobfProvided "net.darkhax.tesla:Tesla-${minecraft_version}:${tesla_version}"
     deobfProvided "mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version_short}"
     deobfProvided "mcjty.theoneprobe:TheOneProbe-${minecraft_version_short}:${minecraft_version_short}-${top_version}"
     deobfProvided "li.cil.oc:OpenComputers:MC${minecraft_version_short}.1-${oc_version}"
