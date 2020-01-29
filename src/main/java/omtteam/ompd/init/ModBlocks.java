@@ -11,7 +11,7 @@ import omtteam.ompd.blocks.BlockWall;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 import omtteam.ompd.tileentity.TileEntityCamo;
-import omtteam.ompd.tileentity.TileEntityTiered;
+import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 
 public class ModBlocks {
     public static Block hardened;
@@ -36,7 +36,7 @@ public class ModBlocks {
     }
 
     public static void initTileEntities() {
-        InitHelper.registerTileEntity(TileEntityTiered.class, Reference.MOD_ID, OMPDNames.Blocks.ownedBlock);
+        InitHelper.registerTileEntity(TileEntityPassiveTiered.class, Reference.MOD_ID, OMPDNames.Blocks.ownedBlock);
         InitHelper.registerTileEntity(TileEntityCamo.class, Reference.MOD_ID, OMPDNames.Blocks.camoTrap);
     }
 }

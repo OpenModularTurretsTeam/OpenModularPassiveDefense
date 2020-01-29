@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
 import omtteam.omlib.util.player.Player;
-import omtteam.ompd.tileentity.TileEntityTiered;
+import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 
 import static omtteam.omlib.util.player.PlayerUtil.isPlayerOwner;
 
@@ -24,9 +24,9 @@ import static omtteam.omlib.util.player.PlayerUtil.isPlayerOwner;
 public class BlockHelper {
 
     public static void onBlockPlacedByTiered(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack, Block block) {
-        if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof TileEntityTiered) {
+        if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof TileEntityPassiveTiered) {
             onBlockPlacedBy(worldIn, pos, state, placer, stack, block);
-            TileEntityTiered ownedBlock = (TileEntityTiered) worldIn.getTileEntity(pos);
+            TileEntityPassiveTiered ownedBlock = (TileEntityPassiveTiered) worldIn.getTileEntity(pos);
             if (ownedBlock != null) {
                 ownedBlock.setTier(stack.getItemDamage());
                 switch (stack.getItemDamage()) {
@@ -66,7 +66,7 @@ public class BlockHelper {
 
     public static boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() == ItemStack.EMPTY)) {
-            TileEntityTiered base = (TileEntityTiered) world.getTileEntity(pos);
+            TileEntityPassiveTiered base = (TileEntityPassiveTiered) world.getTileEntity(pos);
             if (base == null || isPlayerOwner(player, base)) {
                 world.destroyBlock(pos, true);
             } else {

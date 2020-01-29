@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 import omtteam.ompd.reference.OMPDNames;
-import omtteam.ompd.tileentity.TileEntityTiered;
+import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -38,8 +38,8 @@ public class WailaTileHandler implements IWailaDataProvider {
     @Optional.Method(modid = "Waila")
     public static void callbackRegister(IWailaRegistrar register) {
         WailaTileHandler instance = new WailaTileHandler();
-        register.registerNBTProvider(instance, TileEntityTiered.class);
-        register.registerBodyProvider(instance, TileEntityTiered.class);
+        register.registerNBTProvider(instance, TileEntityPassiveTiered.class);
+        register.registerBodyProvider(instance, TileEntityPassiveTiered.class);
     }
 
     /**
