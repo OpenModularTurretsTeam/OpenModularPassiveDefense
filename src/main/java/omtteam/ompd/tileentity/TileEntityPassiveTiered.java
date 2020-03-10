@@ -1,8 +1,8 @@
 package omtteam.ompd.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
+import omtteam.omlib.api.permission.TrustedPlayersManager;
 import omtteam.omlib.api.tile.IHasTrustManager;
-import omtteam.omlib.api.tile.TrustedPlayersManagerTile;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
 
 import javax.annotation.Nonnull;
@@ -14,19 +14,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHasTrustManager {
     protected int tier;
-    protected TrustedPlayersManagerTile tpm;
+    protected TrustedPlayersManager tpm;
 
     public TileEntityPassiveTiered() {
-        this.tpm = new TrustedPlayersManagerTile(this);
+        this.tpm = new TrustedPlayersManager(this.getOwner(), this);
     }
 
     public TileEntityPassiveTiered(int tier) {
         this.tier = tier;
-        this.tpm = new TrustedPlayersManagerTile(this);
+        this.tpm = new TrustedPlayersManager(this.getOwner(), this);
     }
 
     @Override
-    public TrustedPlayersManagerTile getTrustManager() {
+    public TrustedPlayersManager getTrustManager() {
         return tpm;
     }
 
@@ -54,5 +54,10 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
 
     public void setTier(int tier) {
         this.tier = tier;
+    }
+
+    @Override
+    public void informUpdate() {
+        // TODO: implement Message for Sync of trusted players in omlib
     }
 }
