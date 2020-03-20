@@ -1,24 +1,24 @@
 [
     {
-        "modid": "ompd",
-        "name": "Open Modular Passive Defense",
-        "description": "All a man needs are meat ingots, and big ass walls. Adds new walls and fences!",
-        "version": "${version}",
-        "mcversion": "${mcversion}",
-        "credits": "Poenjabiesous",
-        "logoFile": "",
-        "url": "",
-        "updateUrl": "",
-        "authors": [
-            "Poenjabiesous", "Keridos"
-        ],
-        "parent":"",
-        "screenshots": [],
-        "requiredMods": [
-            "MinecraftForge,omlib"
-        ],
-        "dependencies": [
-            "MinecraftForge,omlib"
+      "modid": "ompd",
+      "name": "Open Modular Passive Defense",
+      "description": "All a man needs are meat ingots, and big ass walls. Adds new walls and fences!",
+      "version": "${version}",
+      "mcversion": "${mcversion}",
+      "credits": "Poenjabiesous",
+      "logoFile": "",
+      "url": "https://www.curseforge.com/minecraft/mc-mods/ompd",
+      "authors": [
+        "Poenjabiesous",
+        "Keridos"
+      ],
+      "parent": "",
+      "screenshots": [],
+      "requiredMods": [
+        "MinecraftForge,omlib"
+      ],
+      "dependencies": [
+        "MinecraftForge,omlib"
         ]
     }
 ]
