@@ -68,7 +68,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
 
     @Override
     @Nonnull
-    protected BlockStateContainer createBlockState_OM() {
+    public BlockStateContainer createBlockState_OM() {
         return new ExtendedBlockState(this, new IProperty[]{TOOL}, new IUnlistedProperty[]{RENDERBLOCKSTATE});
     }
 

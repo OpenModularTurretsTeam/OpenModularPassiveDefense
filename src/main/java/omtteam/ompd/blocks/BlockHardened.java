@@ -79,7 +79,7 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
 
     @Override
     @Nonnull
-    protected BlockStateContainer createBlockState_OM() {
+    public BlockStateContainer createBlockState_OM() {
         return new BlockStateContainer(this, TIER);
     }
 
