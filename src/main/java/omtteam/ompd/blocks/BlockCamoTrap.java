@@ -68,14 +68,14 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
 
     @Override
     @Nonnull
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState_OM() {
         return new ExtendedBlockState(this, new IProperty[]{TOOL}, new IUnlistedProperty[]{RENDERBLOCKSTATE});
     }
 
     @Nonnull
     @Override
     @ParametersAreNonnullByDefault
-    public TileEntity createTileEntity(World world, IBlockState state) {
+    public TileEntity createTileEntity_OM(World world, IBlockState state) {
         return new TileEntityCamo(state);
     }
 
@@ -102,7 +102,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
 
     @Override
     @ParametersAreNonnullByDefault
-    public boolean causesSuffocation(IBlockState state) {
+    public boolean causesSuffocation_OM(IBlockState state) {
         return true;
     }
 
@@ -114,13 +114,13 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
 
     @Override
     @ParametersAreNonnullByDefault
-    public boolean isFullBlock(IBlockState state) {
+    public boolean isFullBlock_OM(IBlockState state) {
         return false;
     }
 
     @Override
     @ParametersAreNonnullByDefault
-    public boolean isFullCube(IBlockState state) {
+    public boolean isFullCube_OM(IBlockState state) {
         return false;
     }
 
@@ -137,7 +137,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
 
     @Override
     @ParametersAreNonnullByDefault
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+    public void onBlockPlacedBy_OM(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         BlockHelper.onBlockPlacedBy(worldIn, pos, state, placer, stack, this);
     }
 

@@ -56,12 +56,12 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
 
     @Nonnull
     @Override
-    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+    public TileEntity createTileEntity_OM(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileEntityPassiveTiered();
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState blockState) {
+    public boolean isOpaqueCube_OM(IBlockState blockState) {
         return true;
     }
 
@@ -79,7 +79,7 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
 
     @Override
     @Nonnull
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState_OM() {
         return new BlockStateContainer(this, TIER);
     }
 
@@ -91,12 +91,12 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated_OM(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         return BlockHelper.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+    public void onBlockPlacedBy_OM(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         BlockHelper.onBlockPlacedByTiered(worldIn, pos, state, placer, stack, this);
     }
 
