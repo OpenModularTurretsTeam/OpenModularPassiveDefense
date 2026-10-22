@@ -1,13 +1,13 @@
-package omtteam.ompd.init;
+package omtteam.ompd.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.IForgeRegistry;
 import omtteam.omlib.util.InitHelper;
-import omtteam.ompd.blocks.BlockCamoTrap;
-import omtteam.ompd.blocks.BlockFence;
-import omtteam.ompd.blocks.BlockHardened;
-import omtteam.ompd.blocks.BlockWall;
+import omtteam.ompd.block.BlockCamoTrap;
+import omtteam.ompd.block.BlockFence;
+import omtteam.ompd.block.BlockHardened;
+import omtteam.ompd.block.BlockWall;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 import omtteam.ompd.tileentity.TileEntityCamo;

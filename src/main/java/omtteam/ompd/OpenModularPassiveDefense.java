@@ -10,13 +10,12 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import omtteam.ompd.client.gui.OpenModularPassiveDefenseTab;
-import omtteam.ompd.compatability.ModCompatibility;
+import omtteam.ompd.compat.ModCompatibility;
+import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.fixes.TENameFix;
-import omtteam.ompd.handler.ConfigHandler;
 import omtteam.ompd.handler.GuiHandler;
-import omtteam.ompd.proxy.CommonProxy;
 import omtteam.ompd.reference.Reference;
+import omtteam.ompd.registry.OpenModularPassiveDefenseTab;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = "1.7.10", dependencies = Reference.DEPENDENCIES)
@@ -26,7 +25,7 @@ public class OpenModularPassiveDefense {
 
     public final static int DATA_VERSION = 1;
 
-    @SidedProxy(clientSide = "omtteam.ompd.proxy.ClientProxy", serverSide = "omtteam.ompd.proxy.CommonProxy")
+    @SidedProxy(clientSide = "omtteam.ompd.client.ClientProxy", serverSide = "omtteam.ompd.CommonProxy")
     public static CommonProxy proxy;
 
     private static Logger logger;

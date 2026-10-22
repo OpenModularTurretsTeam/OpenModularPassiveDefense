@@ -1,4 +1,4 @@
-package omtteam.ompd.handler;
+package omtteam.ompd.network;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;

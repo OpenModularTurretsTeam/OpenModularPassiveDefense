@@ -1,4 +1,4 @@
-package omtteam.ompd.proxy;
+package omtteam.ompd.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -9,14 +9,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import omtteam.omlib.api.render.camo.CamoBlockColor;
-import omtteam.ompd.blocks.BlockWall;
-import omtteam.ompd.client.render.models.BasicCamoTrapBakedModel;
-import omtteam.ompd.init.ModBlocks;
+import omtteam.omlib.client.render.camo.CamoBlockColor;
+import omtteam.ompd.CommonProxy;
+import omtteam.ompd.block.BlockWall;
+import omtteam.ompd.client.model.BasicCamoTrapBakedModel;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
+import omtteam.ompd.registry.ModBlocks;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
@@ -69,6 +71,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void initHandlers() {
         super.initHandlers();
+        MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     }
 
     @Override

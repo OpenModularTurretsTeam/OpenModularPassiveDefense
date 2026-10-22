@@ -1,4 +1,4 @@
-package omtteam.ompd.items.blocks;
+package omtteam.ompd.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -7,8 +7,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.OMPDNames;
+import omtteam.ompd.registry.ModBlocks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -16,16 +16,16 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
 
-public class ItemBlockFence extends ItemBlock {
-    public ItemBlockFence(Block block) {
+public class ItemBlockWall extends ItemBlock {
+    public ItemBlockWall(Block block) {
         super(block);
         this.setHasSubtypes(true);
-        this.setRegistryName(OMPDNames.Blocks.fence);
+        this.setRegistryName(OMPDNames.Blocks.wall);
     }
 
     private final static String[] subNames = {
-            OMPDNames.Blocks.fenceTierOne, OMPDNames.Blocks.fenceTierTwo, OMPDNames.Blocks.fenceTierThree,
-            OMPDNames.Blocks.fenceTierFour, OMPDNames.Blocks.fenceTierFive
+            OMPDNames.Blocks.wallTierOne, OMPDNames.Blocks.wallTierTwo, OMPDNames.Blocks.wallTierThree,
+            OMPDNames.Blocks.wallTierFour, OMPDNames.Blocks.wallTierFive
     };
 
     @Override
@@ -33,7 +33,7 @@ public class ItemBlockFence extends ItemBlock {
     public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> subItems) {
         if (isInCreativeTab(itemIn)) {
             for (int i = 0; i < 5; i++) {
-                subItems.add(new ItemStack(ModBlocks.fence, 1, i));
+                subItems.add(new ItemStack(ModBlocks.wall, 1, i));
             }
         }
     }

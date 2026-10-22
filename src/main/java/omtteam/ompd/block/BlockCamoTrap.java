@@ -1,4 +1,4 @@
-package omtteam.ompd.blocks;
+package omtteam.ompd.block;
 
 import mcjty.theoneprobe.api.IProbeConfig;
 import mcjty.theoneprobe.api.IProbeHitData;
@@ -28,8 +28,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import omtteam.omlib.api.render.camo.ICamoSupport;
-import omtteam.omlib.blocks.BlockAbstractCamoTileEntity;
-import omtteam.omlib.compatibility.theoneprobe.TOPInfoModifier;
+import omtteam.omlib.block.BlockAbstractCamoTileEntity;
+import omtteam.omlib.compat.theoneprobe.TOPInfoModifier;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
 import omtteam.omlib.util.camo.CamoResult;
 import omtteam.omlib.util.camo.EnumTool;

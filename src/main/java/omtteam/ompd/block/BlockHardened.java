@@ -1,7 +1,8 @@
-package omtteam.ompd.blocks;
+package omtteam.ompd.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -22,51 +23,46 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.api.block.IHasItemBlock;
-import omtteam.omlib.blocks.BlockAbstractMiscWall;
+import omtteam.omlib.block.BlockAbstractTileEntity;
 import omtteam.ompd.OpenModularPassiveDefense;
-import omtteam.ompd.init.ModBlocks;
-import omtteam.ompd.items.blocks.ItemBlockWall;
+import omtteam.ompd.item.ItemBlockHardened;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
+import omtteam.ompd.registry.ModBlocks;
 import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
+@SuppressWarnings("deprecation")
+public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBlock {
     private static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
 
-    public BlockWall() {
-        super();
+    public BlockHardened() {
+        super(Material.ROCK);
         this.setCreativeTab(OpenModularPassiveDefense.modularPassiveDefenseTab);
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
-        this.setUnlocalizedName(OMPDNames.Blocks.wall);
-        this.setRegistryName(Reference.MOD_ID, OMPDNames.Blocks.wall);
+        this.setUnlocalizedName(OMPDNames.Blocks.hardened);
+        this.setRegistryName(Reference.MOD_ID, OMPDNames.Blocks.hardened);
     }
 
     @Override
     public ItemBlock getItemBlock(Block block) {
-        return new ItemBlockWall(block);
+        return new ItemBlockHardened(block);
     }
 
     @Nonnull
     @Override
-    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state) {
+    public TileEntity createTileEntity_OM(@Nonnull World world, @Nonnull IBlockState state) {
         return new TileEntityPassiveTiered();
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
-    @Nonnull
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, TIER, UP, NORTH, EAST, SOUTH, WEST, VARIANT);
+    public boolean isOpaqueCube_OM(IBlockState blockState) {
+        return true;
     }
 
     @Override
@@ -81,27 +77,27 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
         return state.getValue(TIER) - 1;
     }
 
-
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        return BlockHelper.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        BlockHelper.onBlockPlacedByTiered(worldIn, pos, state, placer, stack, this);
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        return state.getValue(TIER) - 1;
+    @Nonnull
+    public BlockStateContainer createBlockState_OM() {
+        return new BlockStateContainer(this, TIER);
     }
 
     @Override
     @Nonnull
     @ParametersAreNonnullByDefault
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(ModBlocks.wall, 1, state.getValue(TIER) - 1);
+        return new ItemStack(ModBlocks.hardened, 1, state.getValue(TIER) - 1);
+    }
+
+    @Override
+    public boolean onBlockActivated_OM(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        return BlockHelper.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
+    }
+
+    @Override
+    public void onBlockPlacedBy_OM(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        BlockHelper.onBlockPlacedByTiered(worldIn, pos, state, placer, stack, this);
     }
 
     @Override
@@ -139,12 +135,17 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
     }
 
     @Override
+    public int damageDropped(IBlockState state) {
+        return state.getValue(TIER) - 1;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("unchecked")
     @ParametersAreNonnullByDefault
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
         for (int i = 0; i < 5; i++) {
-            items.add(new ItemStack(ModBlocks.wall, 1, i));
+            items.add(new ItemStack(ModBlocks.hardened, 1, i));
         }
     }
 }

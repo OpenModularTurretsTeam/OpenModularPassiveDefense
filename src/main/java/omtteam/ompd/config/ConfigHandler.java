@@ -1,4 +1,4 @@
-package omtteam.ompd.handler;
+package omtteam.ompd.config;
 
 import net.minecraftforge.common.config.Configuration;
 

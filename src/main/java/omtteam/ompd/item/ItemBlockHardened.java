@@ -1,4 +1,4 @@
-package omtteam.ompd.items.blocks;
+package omtteam.ompd.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -7,8 +7,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.OMPDNames;
+import omtteam.ompd.registry.ModBlocks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -16,16 +16,16 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
 
-public class ItemBlockWall extends ItemBlock {
-    public ItemBlockWall(Block block) {
+public class ItemBlockHardened extends ItemBlock {
+    public ItemBlockHardened(Block block) {
         super(block);
         this.setHasSubtypes(true);
-        this.setRegistryName(OMPDNames.Blocks.wall);
+        this.setRegistryName(OMPDNames.Blocks.hardened);
     }
 
     private final static String[] subNames = {
-            OMPDNames.Blocks.wallTierOne, OMPDNames.Blocks.wallTierTwo, OMPDNames.Blocks.wallTierThree,
-            OMPDNames.Blocks.wallTierFour, OMPDNames.Blocks.wallTierFive
+            OMPDNames.Blocks.hardenedTierOne, OMPDNames.Blocks.hardenedTierTwo, OMPDNames.Blocks.hardenedTierThree,
+            OMPDNames.Blocks.hardenedTierFour, OMPDNames.Blocks.hardenedTierFive
     };
 
     @Override
@@ -33,7 +33,7 @@ public class ItemBlockWall extends ItemBlock {
     public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> subItems) {
         if (isInCreativeTab(itemIn)) {
             for (int i = 0; i < 5; i++) {
-                subItems.add(new ItemStack(ModBlocks.wall, 1, i));
+                subItems.add(new ItemStack(ModBlocks.hardened, 1, i));
             }
         }
     }

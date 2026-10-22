@@ -42,7 +42,7 @@ class ArchitectureTest {
      * so does a cycle that shrank or disappeared until it is updated here, so the list always shows the real state.
      */
     private static final List<Set<String>> KNOWN_CYCLES = Arrays.asList(
-            set("(root)", "blocks", "client.gui", "fixes", "handler", "init", "items.blocks", "proxy"));
+            set("(root)", "block", "fixes", "handler", "item", "registry"));
 
     private static JavaClasses classes;
 

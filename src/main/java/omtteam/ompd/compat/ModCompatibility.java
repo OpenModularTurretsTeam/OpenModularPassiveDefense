@@ -1,4 +1,4 @@
-package omtteam.ompd.compatability;
+package omtteam.ompd.compat;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
@@ -27,6 +27,6 @@ public class ModCompatibility {
 
     public static void performModCompat() {
         FMLInterModComms.sendMessage("Waila", "register",
-                                     "omtteam.ompd.compatability.WailaTileHandler.callbackRegister");
+                                     "omtteam.ompd.compat.WailaTileHandler.callbackRegister");
     }
 }

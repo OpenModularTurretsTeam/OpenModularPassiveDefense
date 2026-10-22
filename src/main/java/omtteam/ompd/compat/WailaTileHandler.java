@@ -1,4 +1,4 @@
-package omtteam.ompd.compatability;
+package omtteam.ompd.compat;
 
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;

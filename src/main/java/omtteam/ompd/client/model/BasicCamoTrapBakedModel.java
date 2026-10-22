@@ -1,4 +1,4 @@
-package omtteam.ompd.client.render.models;
+package omtteam.ompd.client.model;
 
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +17,7 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import omtteam.omlib.api.render.camo.CamoBakedModel;
+import omtteam.omlib.client.render.camo.CamoBakedModel;
 import omtteam.ompd.reference.Reference;
 
 import javax.annotation.Nonnull;

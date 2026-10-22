@@ -1,13 +1,12 @@
-package omtteam.ompd.client.gui;
+package omtteam.ompd.registry;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import omtteam.ompd.init.ModBlocks;
 import omtteam.ompd.reference.Reference;
 
 import javax.annotation.Nonnull;
 
-import static omtteam.ompd.init.ModBlocks.wallItem;
+import static omtteam.ompd.registry.ModBlocks.wallItem;
 
 public class OpenModularPassiveDefenseTab extends CreativeTabs {
     private static OpenModularPassiveDefenseTab instance;

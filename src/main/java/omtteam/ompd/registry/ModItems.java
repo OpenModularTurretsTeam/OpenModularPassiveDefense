@@ -1,4 +1,4 @@
-package omtteam.ompd.init;
+package omtteam.ompd.registry;
 
 
 import net.minecraft.item.Item;

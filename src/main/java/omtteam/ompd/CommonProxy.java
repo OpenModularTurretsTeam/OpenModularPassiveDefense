@@ -1,10 +1,10 @@
-package omtteam.ompd.proxy;
+package omtteam.ompd;
 
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import omtteam.ompd.handler.EventHandler;
-import omtteam.ompd.handler.NetworkingHandler;
-import omtteam.ompd.init.ModBlocks;
+import omtteam.ompd.network.NetworkingHandler;
+import omtteam.ompd.registry.ModBlocks;
 
 public class CommonProxy {
     public void preInit() {
