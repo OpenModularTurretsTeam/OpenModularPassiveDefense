@@ -8,6 +8,8 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+## [4.0.0-alpha.1] - 2026-10-23
+
 ### Added
 
 - Camouflage traps have a trust list (Trusted Players button in their camouflage menu): trusted players can stand on the trap, admins also change its camouflage and manage the list
@@ -15,4 +17,3 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 ### Changed
 
 - The camouflage trap's admins open the camouflage menu by right-clicking it (sneaking skips it); the trap now has light value and opacity settings and blocks light like a solid block by default
-
