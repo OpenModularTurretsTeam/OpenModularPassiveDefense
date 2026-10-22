@@ -7,3 +7,12 @@ Add every user-visible change as a one-line entry under **Unreleased** (sections
 Before a release, `./gradlew releaseChangelog -Pchangelog_version=<tag without v>` turns *Unreleased* into the release section; the CurseForge upload of that tag uses exactly that section.
 
 ## [Unreleased]
+
+### Added
+
+- Camouflage traps have a trust list (Trusted Players button in their camouflage menu): trusted players can stand on the trap, admins also change its camouflage and manage the list
+
+### Changed
+
+- The camouflage trap's admins open the camouflage menu by right-clicking it (sneaking skips it); the trap now has light value and opacity settings and blocks light like a solid block by default
+

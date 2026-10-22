@@ -16,6 +16,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -30,10 +31,8 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import omtteam.omlib.api.render.camo.ICamoSupport;
 import omtteam.omlib.block.BlockAbstractCamoTileEntity;
 import omtteam.omlib.compat.theoneprobe.TOPInfoModifier;
-import omtteam.omlib.tileentity.TileEntityOwnedBlock;
-import omtteam.omlib.util.camo.CamoResult;
+import omtteam.omlib.network.MessageOpenCamoMenu;
 import omtteam.omlib.util.camo.EnumTool;
-import omtteam.omlib.util.player.PlayerUtil;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
@@ -79,14 +78,58 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
         return new TileEntityCamo(state);
     }
 
+    /**
+     * The camouflage is changed in OMLib's camouflage menu: whoever may change it (see {@link TileEntityCamo}) opens it
+     * with the main hand; everyone else gets nothing, so the trap does not reveal itself. Sneaking skips the menu, so
+     * blocks can still be placed against the trap.
+     */
     @Override
     @ParametersAreNonnullByDefault
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        CamoResult camoResult = handleCamoActivation(world, pos, state, player, hand, side, hitX, hitY, hitZ);
-        if (camoResult.isSuccess() && camoResult.getTool() != null) {
-            world.setBlockState(pos, state.withProperty(TOOL, camoResult.getTool()), 3);
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+                                    EnumFacing side, float hitX, float hitY, float hitZ) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if (hand != EnumHand.MAIN_HAND || player.isSneaking() || !(tileEntity instanceof TileEntityCamo)) {
+            return false;
+        }
+        TileEntityCamo trap = (TileEntityCamo) tileEntity;
+        if (!trap.canSetCamo(player) && !trap.canChangeLight(player)) {
+            return false;
+        }
+        if (player instanceof EntityPlayerMP) {
+            MessageOpenCamoMenu.open((EntityPlayerMP) player, pos);
         }
         return true;
+    }
+
+    /** Mines with the tool of the camouflage (the stored tool is kept for camouflage without a tool). */
+    @Nonnull
+    @Override
+    @ParametersAreNonnullByDefault
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if (tileEntity instanceof TileEntityCamo) {
+            IBlockState camo = ((TileEntityCamo) tileEntity).getCamoState();
+            EnumTool tool = EnumTool.byName(camo.getBlock().getHarvestTool(camo));
+            if (tool != null) {
+                return state.withProperty(TOOL, tool);
+            }
+        }
+        return state;
+    }
+
+    /** Light of the camouflage settings (OMLib camouflage menu). */
+    @Override
+    @ParametersAreNonnullByDefault
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        return tileEntity instanceof TileEntityCamo ? ((TileEntityCamo) tileEntity).getCamoSettings().getLightValue() : 0;
+    }
+
+    @Override
+    @ParametersAreNonnullByDefault
+    public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        return tileEntity instanceof TileEntityCamo ? ((TileEntityCamo) tileEntity).getCamoSettings().getLightOpacity() : 0;
     }
 
     @Override
@@ -127,10 +170,10 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
     @Override
     @ParametersAreNonnullByDefault
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
+        // solid only for the owner and trusted players (and the owner's team)
         TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if (tileEntity instanceof TileEntityOwnedBlock
-                && entityIn instanceof EntityPlayer
-                && PlayerUtil.isPlayerOwner((EntityPlayer) entityIn, (TileEntityOwnedBlock) tileEntity)) {
+        if (tileEntity instanceof TileEntityCamo && entityIn instanceof EntityPlayer
+                && ((TileEntityCamo) tileEntity).isTrusted((EntityPlayer) entityIn)) {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, Block.FULL_BLOCK_AABB);
         }
     }
@@ -169,7 +212,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
         if (te != null) {
             BlockPos pos = data.getPos();
             IProbeConfig config = Config.getRealConfig();
-            if (!PlayerUtil.isPlayerOwner(player, te.getOwnedBlock())) {
+            if (!te.canSetCamo(player)) {
                 showStandardBlockInfo(config, mode, probeInfo, te.getCamoState(), te.getCamoState().getBlock(), world, pos, player, data);
             } else {
                 showStandardBlockInfo(config, mode, probeInfo, blockState, blockState.getBlock(), world, pos, player, data);
