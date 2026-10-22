@@ -1,0 +1,1 @@
+Method <omtteam.ompd.OpenModularPassiveDefense.preInit(net.minecraftforge.fml.common.event.FMLPreInitializationEvent)> calls method <omtteam.ompd.client.gui.OpenModularPassiveDefenseTab.getInstance()> in (OpenModularPassiveDefense.java:45)
