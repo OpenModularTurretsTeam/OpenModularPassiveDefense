@@ -10,6 +10,7 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ### Changed
 
+- License: the source code is now MIT (was GPLv3) and the art CC-BY-NC-SA 4.0 (see `LICENSE`, `LICENSE-ART`, `LICENSE-DUAL`)
 - Fences no longer hurt the owner's team and their pets
 
 ### Fixed
