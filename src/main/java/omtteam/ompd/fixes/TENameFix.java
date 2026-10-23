@@ -31,7 +31,9 @@ public class TENameFix implements IFixableData {
     public NBTTagCompound fixTagCompound(@Nonnull NBTTagCompound compound) {
         String oldId = compound.getString("id");
         if (NAME_MAP.containsKey(oldId)) {
-            OpenModularPassiveDefense.getLogger().info("Fixed TE from {} to {}", oldId, NAME_MAP.get(oldId));
+            if (OpenModularPassiveDefense.getLogger() != null) { // null outside the game (unit tests)
+                OpenModularPassiveDefense.getLogger().info("Fixed TE from {} to {}", oldId, NAME_MAP.get(oldId));
+            }
             compound.setString("id", NAME_MAP.get(oldId));
         }
         return compound;

@@ -26,3 +26,6 @@ out/
 Thumbs.db
 *.hprof
 settings.gradle
+
+# Log4j output of the unit tests
+logs/

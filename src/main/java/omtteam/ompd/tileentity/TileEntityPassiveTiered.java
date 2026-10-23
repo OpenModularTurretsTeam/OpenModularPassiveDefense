@@ -4,6 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import omtteam.omlib.api.permission.TrustedPlayersManager;
 import omtteam.omlib.api.tile.IHasTrustManager;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
+import omtteam.omlib.util.player.Player;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -36,6 +37,7 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
         super.readFromNBT(nbtTagCompound);
         this.tier = nbtTagCompound.getInteger("tier");
         this.tpm.readFromNBT(nbtTagCompound);
+        this.tpm.setOwner(getOwner());
     }
 
     @Override
@@ -54,6 +56,13 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
 
     public void setTier(int tier) {
         this.tier = tier;
+    }
+
+    /** The trust list needs the owner for its rules (fence contact, see {@code FenceRules}). */
+    @Override
+    public void setOwner(Player owner) {
+        tpm.setOwner(owner);
+        super.setOwner(owner);
     }
 
     @Override

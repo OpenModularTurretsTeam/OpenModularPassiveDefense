@@ -28,28 +28,8 @@ public class BlockHelper {
             onBlockPlacedBy(worldIn, pos, state, placer, stack, block);
             TileEntityPassiveTiered ownedBlock = (TileEntityPassiveTiered) worldIn.getTileEntity(pos);
             if (ownedBlock != null) {
+                // hardness and resistance come from the block state (DefenseTier)
                 ownedBlock.setTier(stack.getItemDamage());
-                switch (stack.getItemDamage()) {
-                    case 0:
-                        block.setResistance(10.0F);
-                        block.setHardness(10.0F);
-                        break;
-                    case 1:
-                        block.setResistance(20.0F);
-                        block.setHardness(20.0F);
-                        break;
-                    case 2:
-                        block.setResistance(30.0F);
-                        block.setHardness(30.0F);
-                        break;
-                    case 3:
-                        block.setResistance(50.0F);
-                        block.setHardness(50.0F);
-                        break;
-                    case 4:
-                        block.setResistance(80.0F);
-                        block.setHardness(80.0F);
-                }
             } else {
                 worldIn.destroyBlock(pos, true);
             }
@@ -65,7 +45,7 @@ public class BlockHelper {
     }
 
     public static boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand() == ItemStack.EMPTY)) {
+        if (!world.isRemote && player.isSneaking() && (hand == EnumHand.MAIN_HAND && player.getHeldItemMainhand().isEmpty())) {
             TileEntityPassiveTiered base = (TileEntityPassiveTiered) world.getTileEntity(pos);
             if (base == null || isPlayerOwner(player, base)) {
                 world.destroyBlock(pos, true);

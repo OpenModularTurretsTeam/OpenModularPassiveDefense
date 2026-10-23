@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.api.block.IHasItemBlock;
 import omtteam.omlib.block.BlockAbstractMiscWall;
 import omtteam.ompd.OpenModularPassiveDefense;
+import omtteam.ompd.core.DefenseTier;
 import omtteam.ompd.item.ItemBlockWall;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
@@ -35,7 +36,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
-    private static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
+    private static final PropertyInteger TIER = PropertyInteger.create("tier", DefenseTier.MIN, DefenseTier.MAX);
 
     public BlockWall() {
         super();
@@ -73,12 +74,12 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
     @SuppressWarnings("unchecked")
     @Nonnull
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(TIER, meta + 1);
+        return this.getDefaultState().withProperty(TIER, DefenseTier.fromMeta(meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(TIER) - 1;
+        return DefenseTier.toMeta(state.getValue(TIER));
     }
 
 
@@ -94,48 +95,24 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
 
     @Override
     public int damageDropped(IBlockState state) {
-        return state.getValue(TIER) - 1;
+        return DefenseTier.toMeta(state.getValue(TIER));
     }
 
     @Override
     @Nonnull
     @ParametersAreNonnullByDefault
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(ModBlocks.wall, 1, state.getValue(TIER) - 1);
+        return new ItemStack(ModBlocks.wall, 1, DefenseTier.toMeta(state.getValue(TIER)));
     }
 
     @Override
     public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
-        switch (blockState.getValue(TIER)) {
-            case 1:
-                return 10.0F;
-            case 2:
-                return 20.0F;
-            case 3:
-                return 30.0F;
-            case 4:
-                return 50.0F;
-            case 5:
-                return 80.0F;
-        }
-        return 10.0F;
+        return DefenseTier.hardness(blockState.getValue(TIER));
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        switch (world.getBlockState(pos).getValue(TIER)) {
-            case 1:
-                return 10.0F;
-            case 2:
-                return 20.0F;
-            case 3:
-                return 30.0F;
-            case 4:
-                return 50.0F;
-            case 5:
-                return 80.0F;
-        }
-        return 10.0F;
+        return DefenseTier.explosionResistance(world.getBlockState(pos).getValue(TIER));
     }
 
     @Override

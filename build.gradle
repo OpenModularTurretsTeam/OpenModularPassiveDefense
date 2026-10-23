@@ -94,8 +94,10 @@ dependencies {
     // `release` publishes it) instead of the CurseForge release
     if (project.hasProperty("omlib_local") || releasing) {
         compileOnly "omtteam:omlib:${minecraft_version}-${omlib_version}:dev"
+        testCompile "omtteam:omlib:${minecraft_version}-${omlib_version}:dev"
     } else {
         deobfProvided "curse.maven:omlib-254334:${omlib_curse_file_id}"
+        testCompile "curse.maven:omlib-254334:${omlib_curse_file_id}"
     }
 }
 

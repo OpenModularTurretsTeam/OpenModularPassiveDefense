@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -22,11 +23,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.common.UsernameCache;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.api.block.IHasItemBlock;
 import omtteam.omlib.block.BlockAbstractMiscPane;
+import omtteam.omlib.core.security.PlayerIdentity;
+import omtteam.omlib.util.player.PlayerUtil;
 import omtteam.ompd.OpenModularPassiveDefense;
+import omtteam.ompd.core.DefenseTier;
+import omtteam.ompd.core.FenceRules;
 import omtteam.ompd.item.ItemBlockFence;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
@@ -36,12 +42,12 @@ import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-
-import static omtteam.omlib.util.player.PlayerUtil.isPlayerOwner;
+import java.util.Optional;
+import java.util.UUID;
 
 @SuppressWarnings("deprecation")
 public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
-    private static final PropertyInteger TIER = PropertyInteger.create("tier", 1, 5);
+    private static final PropertyInteger TIER = PropertyInteger.create("tier", DefenseTier.MIN, DefenseTier.MAX);
 
     public BlockFence() {
         super("", "", Material.ROCK, true);
@@ -79,19 +85,41 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
     @SuppressWarnings("unchecked")
     @Nonnull
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(TIER, meta + 1);
+        return this.getDefaultState().withProperty(TIER, DefenseTier.fromMeta(meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(TIER) - 1;
+        return DefenseTier.toMeta(state.getValue(TIER));
     }
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        TileEntityPassiveTiered te = (TileEntityPassiveTiered) worldIn.getTileEntity(pos);
-        if (!(te != null && entityIn instanceof EntityPlayer && isPlayerOwner((EntityPlayer) entityIn, te)) && !(entityIn instanceof EntityItem))
+        if (worldIn.isRemote || entityIn instanceof EntityItem) {
+            return;
+        }
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if (!(tileEntity instanceof TileEntityPassiveTiered) || FenceRules.hurts(
+                ((TileEntityPassiveTiered) tileEntity).getTrustManager().core(), player(entityIn), petOwner(entityIn))) {
             entityIn.attackEntityFrom(DamageSource.CACTUS, 5);
+        }
+    }
+
+    private static Optional<PlayerIdentity> player(Entity entity) {
+        return entity instanceof EntityPlayer
+                ? Optional.of(PlayerUtil.getPlayerInfo((EntityPlayer) entity).identity()) : Optional.empty();
+    }
+
+    private static Optional<PlayerIdentity> petOwner(Entity entity) {
+        if (!(entity instanceof IEntityOwnable)) {
+            return Optional.empty();
+        }
+        UUID owner = ((IEntityOwnable) entity).getOwnerId();
+        if (owner == null) {
+            return Optional.empty();
+        }
+        String name = UsernameCache.getLastKnownUsername(owner);
+        return Optional.of(new PlayerIdentity(owner, name == null ? "" : name));
     }
 
     @Override
@@ -106,48 +134,24 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
 
     @Override
     public int damageDropped(IBlockState state) {
-        return state.getValue(TIER) - 1;
+        return DefenseTier.toMeta(state.getValue(TIER));
     }
 
     @Override
     @Nonnull
     @ParametersAreNonnullByDefault
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return new ItemStack(ModBlocks.fence, 1, state.getValue(TIER) - 1);
+        return new ItemStack(ModBlocks.fence, 1, DefenseTier.toMeta(state.getValue(TIER)));
     }
 
     @Override
     public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
-        switch (blockState.getValue(TIER)) {
-            case 1:
-                return 10.0F;
-            case 2:
-                return 20.0F;
-            case 3:
-                return 30.0F;
-            case 4:
-                return 50.0F;
-            case 5:
-                return 80.0F;
-        }
-        return 10.0F;
+        return DefenseTier.hardness(blockState.getValue(TIER));
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        switch (world.getBlockState(pos).getValue(TIER)) {
-            case 1:
-                return 10.0F;
-            case 2:
-                return 20.0F;
-            case 3:
-                return 30.0F;
-            case 4:
-                return 50.0F;
-            case 5:
-                return 80.0F;
-        }
-        return 10.0F;
+        return DefenseTier.explosionResistance(world.getBlockState(pos).getValue(TIER));
     }
 
     @Override

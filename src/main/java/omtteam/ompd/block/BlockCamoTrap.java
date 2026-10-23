@@ -134,7 +134,8 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(TOOL, EnumTool.values()[meta]);
+        EnumTool[] tools = EnumTool.values();
+        return meta >= 0 && meta < tools.length ? this.getDefaultState().withProperty(TOOL, tools[meta]) : this.getDefaultState();
     }
 
     @Override

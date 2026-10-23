@@ -7,6 +7,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import omtteam.ompd.core.DefenseTier;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.registry.ModBlocks;
 
@@ -41,7 +42,7 @@ public class ItemBlockWall extends ItemBlock {
     @Override
     @Nonnull
     public String getUnlocalizedName(ItemStack itemStack) {
-        return "tile." + subNames[itemStack.getItemDamage()];
+        return "tile." + subNames[DefenseTier.clampMeta(itemStack.getItemDamage())];
     }
 
     @Override

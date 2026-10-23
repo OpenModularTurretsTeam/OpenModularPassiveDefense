@@ -8,6 +8,15 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Changed
+
+- Fences no longer hurt the owner's team and their pets
+
+### Fixed
+
+- Crash on hardened blocks, walls, fences and camo traps with invalid metadata (damaged chunks, /give)
+- Sneak-right-clicking your own block with an empty hand did not always pick it up
+
 ## [4.0.0-alpha.1] - 2026-10-23
 
 ### Added
