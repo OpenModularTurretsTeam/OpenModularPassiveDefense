@@ -182,7 +182,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
     @Override
     @ParametersAreNonnullByDefault
     public void onBlockPlacedBy_OM(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        BlockHelper.onBlockPlacedBy(worldIn, pos, state, placer, stack, this);
+        BlockHelper.onBlockPlacedBy(worldIn, pos, placer);
     }
 
     @Nullable

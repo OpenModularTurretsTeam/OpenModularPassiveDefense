@@ -93,12 +93,12 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
 
     @Override
     public boolean onBlockActivated_OM(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        return BlockHelper.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
+        return BlockHelper.onBlockActivated(world, pos, player, hand);
     }
 
     @Override
     public void onBlockPlacedBy_OM(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        BlockHelper.onBlockPlacedByTiered(worldIn, pos, state, placer, stack, this);
+        BlockHelper.onBlockPlacedByTiered(worldIn, pos, placer, stack);
     }
 
     @Override

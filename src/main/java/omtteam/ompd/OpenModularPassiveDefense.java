@@ -40,7 +40,6 @@ public class OpenModularPassiveDefense {
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         ConfigHandler.init(event.getSuggestedConfigurationFile());
-        ModCompatibility.checkForMods();
         modularPassiveDefenseTab = OpenModularPassiveDefenseTab.getInstance();
         proxy.preInit();
     }

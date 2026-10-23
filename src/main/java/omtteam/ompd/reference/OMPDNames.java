@@ -33,11 +33,6 @@ public class OMPDNames {
         public static final String ownedBlock = "ompd_owned_block";
     }
 
-    public static class Items {
-        //Unlocalised
-        public static final String intermediateRegularItem = "intermediate_regular";
-    }
-
     public static class Localizations {
         public static final String OWNER = "gui.ompd:owner";
     }

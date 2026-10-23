@@ -3,8 +3,6 @@ package omtteam.ompd.client.model;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -18,6 +16,7 @@ import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.client.render.camo.CamoBakedModel;
+import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.reference.Reference;
 
 import javax.annotation.Nonnull;
@@ -55,16 +54,6 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         return particle;
     }
 
-    @Override
-    public ItemCameraTransforms getItemCameraTransforms() {
-        return ItemCameraTransforms.DEFAULT;
-    }
-
-    @Override
-    public ItemOverrideList getOverrides() {
-        return ItemOverrideList.NONE;
-    }
-
     public static class Model implements IModel {
         public Model() {
 
@@ -92,7 +81,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
             try {
                 list.add(ModelLoaderRegistry.getModel(new ModelResourceLocation("ompd:camo_trap_normal")).bake(state, format, bakedTextureGetter));
             } catch (Exception e) {
-                e.printStackTrace();
+                OpenModularPassiveDefense.getLogger().error("Failed to bake the camo trap model", e);
             }
 
             TextureAtlasSprite part = bakedTextureGetter.apply(new ResourceLocation("ompd", "blocks/camo_trap"));

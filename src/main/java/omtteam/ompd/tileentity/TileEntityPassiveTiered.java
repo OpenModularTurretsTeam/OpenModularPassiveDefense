@@ -21,11 +21,6 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
         this.tpm = new TrustedPlayersManager(this.getOwner(), this);
     }
 
-    public TileEntityPassiveTiered(int tier) {
-        this.tier = tier;
-        this.tpm = new TrustedPlayersManager(this.getOwner(), this);
-    }
-
     @Override
     public TrustedPlayersManager getTrustManager() {
         return tpm;

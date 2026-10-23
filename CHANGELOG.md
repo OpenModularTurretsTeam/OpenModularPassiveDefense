@@ -16,6 +16,7 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 - Crash on hardened blocks, walls, fences and camo traps with invalid metadata (damaged chunks, /give)
 - Sneak-right-clicking your own block with an empty hand did not always pick it up
+- Hardened blocks, walls, fences and camo traps placed by something other than a player (e.g. a deployer) crashed the game
 
 ## [4.0.0-alpha.1] - 2026-10-23
 

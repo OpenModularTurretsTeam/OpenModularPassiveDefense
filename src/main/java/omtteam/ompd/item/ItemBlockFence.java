@@ -1,21 +1,16 @@
 package omtteam.ompd.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.world.World;
 import omtteam.ompd.core.DefenseTier;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.registry.ModBlocks;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.annotation.ParametersAreNullableByDefault;
-import java.util.List;
 
 public class ItemBlockFence extends ItemBlock {
     public ItemBlockFence(Block block) {
@@ -48,14 +43,5 @@ public class ItemBlockFence extends ItemBlock {
     @Override
     public int getMetadata(int damage) {
         return damage;
-    }
-
-    @Override
-    @ParametersAreNullableByDefault
-    public void addInformation(ItemStack stack, @Nullable World playerIn, List<String> tooltip, ITooltipFlag advanced) {
-        if (stack != null) {
-            switch (stack.getMetadata()) {
-            }
-        }
     }
 }
