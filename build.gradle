@@ -53,18 +53,13 @@ repositories {
     maven { url = "https://maven.cil.li/" }          // OpenComputers
     maven { url = "https://modmaven.dev/" }          // The One Probe
     maven {
-        url = "https://cursemaven.com/"              // OMLib releases from CurseForge
+        url = "https://cursemaven.com/"              // OMLib releases and Hwyla from CurseForge
         content { includeGroup "curse.maven" }
     }
     if (omlibProject == null && (project.hasProperty("omlib_local") || releasing)) {
         mavenLocal {                                 // OMLib from publishToMavenLocal
             content { includeGroup group_prefix }
         }
-    }
-    maven {
-        url = "https://maven.tehnut.info/"            // Hwyla
-        // only Hwyla: the site answers unknown paths (e.g. Forge's Scala libraries) with an HTML page
-        content { includeGroup "mcp.mobius.waila" }
     }
 }
 
@@ -75,7 +70,8 @@ dependencies {
     compileOnly rfg.deobf("mezz.jei:jei_${minecraft_version}:${jei_version}:api")
     compileOnly rfg.deobf("cofh:RedstoneFlux:${minecraft_version_short}-${redstoneflux_version}:deobf")
     compileOnly rfg.deobf("net.darkhax.tesla:Tesla-${minecraft_version}:${tesla_version}")
-    compileOnly rfg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version}:api")
+    // Hwyla (the full mod, deobfuscated); optional at runtime, the plugin is only loaded by Hwyla
+    compileOnly rfg.deobf("curse.maven:hwyla-253449:${hwyla_curse_file_id}")
     compileOnly rfg.deobf("mcjty.theoneprobe:TheOneProbe-${minecraft_version_short}:${minecraft_version_short}-${top_version}")
     compileOnly rfg.deobf("li.cil.oc:OpenComputers:MC${minecraft_version_short}.1-${oc_version}")
 
