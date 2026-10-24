@@ -2,7 +2,6 @@ package omtteam.ompd.registry;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import omtteam.ompd.reference.Reference;
 
 import javax.annotation.Nonnull;
 
@@ -17,7 +16,8 @@ public class OpenModularPassiveDefenseTab extends CreativeTabs {
 
     public static OpenModularPassiveDefenseTab getInstance() {
         if (instance == null) {
-            instance = new OpenModularPassiveDefenseTab(Reference.NAME);
+            // the lang files name the tab itemGroup.openmodularpassivedefense
+            instance = new OpenModularPassiveDefenseTab("openmodularpassivedefense");
         }
         return instance;
     }

@@ -8,6 +8,10 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Fixed
+
+- The creative tab showed its translation key instead of its name
+
 ## [4.0.0-alpha.2] - 2026-10-23
 
 ### Changed
