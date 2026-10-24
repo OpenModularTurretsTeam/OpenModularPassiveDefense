@@ -3,6 +3,7 @@ package omtteam.ompd.tileentity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -121,7 +122,7 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
 
     @Nonnull
     @Override
-    public TileEntityOwnedBlock getOwnedBlock() {
+    public TileEntity getCamoTileEntity() {
         return this;
     }
 
