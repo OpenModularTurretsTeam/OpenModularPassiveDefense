@@ -8,6 +8,10 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Changed
+
+- The jar files are named `ompd-<version>-mc1.12.2-forge.jar` (Minecraft version with `mc`, as on 1.20.1+)
+
 ## [4.0.0-beta.1] - 2026-10-24
 
 ### Changed
