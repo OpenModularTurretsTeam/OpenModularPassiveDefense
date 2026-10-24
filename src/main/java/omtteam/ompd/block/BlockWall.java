@@ -44,7 +44,7 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
-        this.setUnlocalizedName(OMPDNames.Blocks.wall);
+        this.setTranslationKey(OMPDNames.Blocks.wall);
         this.setRegistryName(Reference.MOD_ID, OMPDNames.Blocks.wall);
     }
 

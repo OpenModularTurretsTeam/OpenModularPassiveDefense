@@ -24,13 +24,13 @@ public class OpenModularPassiveDefenseTab extends CreativeTabs {
 
     @Override
     @Nonnull
-    public ItemStack getIconItemStack() {
+    public ItemStack getIcon() {
         return new ItemStack(ModBlocks.hardened);
     }
 
     @Override
     @Nonnull
-    public ItemStack getTabIconItem() {
+    public ItemStack createIcon() {
         return new ItemStack(wallItem);
     }
 }

@@ -94,7 +94,7 @@ public class BasicCamoTrapBakedModel extends CamoBakedModel {
         @Override
         @ParametersAreNonnullByDefault
         public boolean accepts(ResourceLocation modelLocation) {
-            return (modelLocation.getResourceDomain().equals(Reference.MOD_ID) && modelLocation.equals(FAKE_LOCATION));
+            return (modelLocation.getNamespace().equals(Reference.MOD_ID) && modelLocation.equals(FAKE_LOCATION));
         }
 
         @Override

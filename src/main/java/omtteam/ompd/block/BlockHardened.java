@@ -46,7 +46,7 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
-        this.setUnlocalizedName(OMPDNames.Blocks.hardened);
+        this.setTranslationKey(OMPDNames.Blocks.hardened);
         this.setRegistryName(Reference.MOD_ID, OMPDNames.Blocks.hardened);
     }
 

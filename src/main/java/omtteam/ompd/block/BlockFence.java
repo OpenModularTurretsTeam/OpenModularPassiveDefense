@@ -55,7 +55,7 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TIER, 1));
-        this.setUnlocalizedName(OMPDNames.Blocks.fence);
+        this.setTranslationKey(OMPDNames.Blocks.fence);
         this.setRegistryName(Reference.MOD_ID, OMPDNames.Blocks.fence);
     }
 
@@ -89,7 +89,7 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         if (worldIn.isRemote || entityIn instanceof EntityItem) {
             return;
         }

@@ -60,7 +60,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
         this.setCreativeTab(OpenModularPassiveDefense.modularPassiveDefenseTab);
         this.setSoundType(SoundType.GROUND);
         this.setHarvestLevel("axe", 2);
-        this.setUnlocalizedName(OMPDNames.Blocks.camoTrap);
+        this.setTranslationKey(OMPDNames.Blocks.camoTrap);
         this.setRegistryName(Reference.MOD_ID, OMPDNames.Blocks.camoTrap);
         this.setDefaultState(this.blockState.getBaseState().withProperty(TOOL, EnumTool.SHOVEL));
     }

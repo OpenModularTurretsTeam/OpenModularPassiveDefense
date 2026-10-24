@@ -36,7 +36,7 @@ public class ItemBlockFence extends ItemBlock {
 
     @Override
     @Nonnull
-    public String getUnlocalizedName(ItemStack itemStack) {
+    public String getTranslationKey(ItemStack itemStack) {
         return "tile." + subNames[DefenseTier.clampMeta(itemStack.getItemDamage())];
     }
 
