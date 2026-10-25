@@ -12,6 +12,10 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 - The jar files are named `ompd-<version>-mc1.12.2-forge.jar` (Minecraft version with `mc`, as on 1.20.1+)
 
+### Fixed
+
+- Camo traps could create their tile entity on the chunk render thread (camouflage light settings, harvest tool), which can crash or corrupt the world
+
 ## [4.0.0-beta.1] - 2026-10-24
 
 ### Changed

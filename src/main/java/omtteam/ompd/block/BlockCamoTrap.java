@@ -33,6 +33,7 @@ import omtteam.omlib.block.BlockAbstractCamoTileEntity;
 import omtteam.omlib.compat.theoneprobe.TOPInfoModifier;
 import omtteam.omlib.network.MessageOpenCamoMenu;
 import omtteam.omlib.util.camo.EnumTool;
+import omtteam.omlib.util.world.WorldUtil;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
@@ -106,7 +107,7 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
     @Override
     @ParametersAreNonnullByDefault
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntity tileEntity = world.getTileEntity(pos);
+        TileEntity tileEntity = WorldUtil.getTileEntity(world, pos);
         if (tileEntity instanceof TileEntityCamo) {
             IBlockState camo = ((TileEntityCamo) tileEntity).getCamoState();
             EnumTool tool = EnumTool.byName(camo.getBlock().getHarvestTool(camo));
@@ -121,14 +122,14 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
     @Override
     @ParametersAreNonnullByDefault
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntity tileEntity = world.getTileEntity(pos);
+        TileEntity tileEntity = WorldUtil.getTileEntity(world, pos);
         return tileEntity instanceof TileEntityCamo ? ((TileEntityCamo) tileEntity).getCamoSettings().getLightValue() : 0;
     }
 
     @Override
     @ParametersAreNonnullByDefault
     public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileEntity tileEntity = world.getTileEntity(pos);
+        TileEntity tileEntity = WorldUtil.getTileEntity(world, pos);
         return tileEntity instanceof TileEntityCamo ? ((TileEntityCamo) tileEntity).getCamoSettings().getLightOpacity() : 0;
     }
 
