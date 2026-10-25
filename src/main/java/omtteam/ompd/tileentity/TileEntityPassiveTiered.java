@@ -18,7 +18,7 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
     protected TrustedPlayersManager tpm;
 
     public TileEntityPassiveTiered() {
-        this.tpm = new TrustedPlayersManager(this.getOwner(), this);
+        this.tpm = new TrustedPlayersManager(this.getOwnerOrNull(), this);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
         super.readFromNBT(nbtTagCompound);
         this.tier = nbtTagCompound.getInteger("tier");
         this.tpm.readFromNBT(nbtTagCompound);
-        this.tpm.setOwner(getOwner());
+        this.tpm.setOwner(getOwnerOrNull());
     }
 
     @Override
@@ -58,6 +58,13 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
     public void setOwner(Player owner) {
         tpm.setOwner(owner);
         super.setOwner(owner);
+    }
+
+    /** Disowning (the ownership wand): the trust list goes too. */
+    @Override
+    public void clearOwner() {
+        tpm.clearOwner();
+        super.clearOwner();
     }
 
     @Override

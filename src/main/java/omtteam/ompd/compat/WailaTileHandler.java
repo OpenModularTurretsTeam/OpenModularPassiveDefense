@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
+import omtteam.omlib.api.permission.IOwnedHost;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 
@@ -78,7 +79,9 @@ public class WailaTileHandler implements IWailaDataProvider {
     @Override
     @Optional.Method(modid = "Waila")
     public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-        String ownerName = accessor.getNBTData().getString("ownerName");
+        // no owner name: the block has no owner
+        String ownerName = accessor.getNBTData().hasKey("ownerName") ? accessor.getNBTData().getString("ownerName")
+                : safeLocalize("text.omlib.unowned");
         currenttip.add(safeLocalize(OMPDNames.Localizations.OWNER) + ": " + ownerName);
         return currenttip;
     }
@@ -107,6 +110,10 @@ public class WailaTileHandler implements IWailaDataProvider {
     public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos) {
         if (te != null) {
             te.writeToNBT(tag);
+        }
+        // the tile entity saves the owner as a compound; the body shows its name
+        if (te instanceof IOwnedHost && ((IOwnedHost) te).getOwnerOrNull() != null) {
+            tag.setString("ownerName", ((IOwnedHost) te).getOwner().getName());
         }
 
         return tag;
