@@ -8,13 +8,19 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Added
+
+- Hardened blocks, walls, fences and camouflage traps without an owner can be claimed by right-clicking them (OMLib); hardened blocks, walls and fences without an owner sparkle green
+
 ### Changed
 
 - The jar files are named `ompd-<version>-mc1.12.2-forge.jar` (Minecraft version with `mc`, as on 1.20.1+)
+- Hardened blocks can be used as camouflage now (other blocks with a tile entity still cannot), as on 1.20.1+
 
 ### Fixed
 
 - Camo traps could create their tile entity on the chunk render thread (camouflage light settings, harvest tool), which can crash or corrupt the world
+- WAILA/HWYLA showed no owner name for hardened blocks, walls and fences
 
 ## [4.0.0-beta.1] - 2026-10-24
 

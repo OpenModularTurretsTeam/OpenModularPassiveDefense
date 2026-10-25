@@ -23,6 +23,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.api.block.IHasItemBlock;
 import omtteam.omlib.block.BlockAbstractMiscWall;
+import omtteam.omlib.block.UnownedMarker;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.core.DefenseTier;
 import omtteam.ompd.item.ItemBlockWall;
@@ -34,6 +35,7 @@ import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Random;
 
 public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
     private static final PropertyInteger TIER = PropertyInteger.create("tier", DefenseTier.MIN, DefenseTier.MAX);
@@ -118,5 +120,13 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
         for (int i = 0; i < 5; i++) {
             items.add(new ItemStack(ModBlocks.wall, 1, i));
         }
+    }
+
+    /** Blocks without an owner sparkle green, so players see they can claim them. */
+    @Override
+    @SideOnly(Side.CLIENT)
+    @ParametersAreNonnullByDefault
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
+        UnownedMarker.randomDisplayTick(world, pos, random);
     }
 }

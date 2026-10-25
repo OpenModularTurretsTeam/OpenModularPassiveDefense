@@ -95,7 +95,7 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
         trustManager.readFromNBT(tag);
-        trustManager.setOwner(getOwner());
+        trustManager.setOwner(getOwnerOrNull());
         this.camoSettings = CamoSettings.getSettingsFromNBT(tag);
         if (camoSettings.getCamoBlockState() != null) {
             this.camoBlockStateTemp = camoSettings.getCamoBlockState();
@@ -173,6 +173,13 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     public void setOwner(Player owner) {
         trustManager.setOwner(owner);
         super.setOwner(owner);
+    }
+
+    /** Disowning: the trust list goes too, and anyone may claim the trap. */
+    @Override
+    public void clearOwner() {
+        trustManager.clearOwner();
+        super.clearOwner();
     }
 
     /** The trust list changed: save it and send it to the clients (they need it for the collision of the trap). */

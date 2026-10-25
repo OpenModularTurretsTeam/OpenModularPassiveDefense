@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.api.block.IHasItemBlock;
 import omtteam.omlib.block.BlockAbstractMiscPane;
+import omtteam.omlib.block.UnownedMarker;
 import omtteam.omlib.core.security.PlayerIdentity;
 import omtteam.omlib.util.player.PlayerUtil;
 import omtteam.ompd.OpenModularPassiveDefense;
@@ -43,6 +44,7 @@ import omtteam.ompd.util.BlockHelper;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 @SuppressWarnings("deprecation")
@@ -157,5 +159,13 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
         for (int i = 0; i < 5; i++) {
             items.add(new ItemStack(ModBlocks.fence, 1, i));
         }
+    }
+
+    /** Blocks without an owner sparkle green, so players see they can claim them. */
+    @Override
+    @SideOnly(Side.CLIENT)
+    @ParametersAreNonnullByDefault
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
+        UnownedMarker.randomDisplayTick(world, pos, random);
     }
 }

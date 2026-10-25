@@ -23,7 +23,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.api.block.IHasItemBlock;
+import omtteam.omlib.api.block.IPlainLookingBlock;
 import omtteam.omlib.block.BlockAbstractTileEntity;
+import omtteam.omlib.block.UnownedMarker;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.core.DefenseTier;
 import omtteam.ompd.item.ItemBlockHardened;
@@ -35,9 +37,10 @@ import omtteam.ompd.util.BlockHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Random;
 
 @SuppressWarnings("deprecation")
-public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBlock {
+public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBlock, IPlainLookingBlock {
     private static final PropertyInteger TIER = PropertyInteger.create("tier", DefenseTier.MIN, DefenseTier.MAX);
 
     public BlockHardened() {
@@ -124,5 +127,13 @@ public class BlockHardened extends BlockAbstractTileEntity implements IHasItemBl
         for (int i = 0; i < 5; i++) {
             items.add(new ItemStack(ModBlocks.hardened, 1, i));
         }
+    }
+
+    /** Blocks without an owner sparkle green, so players see they can claim them. */
+    @Override
+    @SideOnly(Side.CLIENT)
+    @ParametersAreNonnullByDefault
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
+        UnownedMarker.randomDisplayTick(world, pos, random);
     }
 }
