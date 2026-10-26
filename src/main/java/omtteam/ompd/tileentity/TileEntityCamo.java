@@ -20,6 +20,7 @@ import omtteam.omlib.util.camo.CamoSettings;
 import omtteam.omlib.util.player.OMLibSecurityEnvironment;
 import omtteam.omlib.util.player.Player;
 import omtteam.omlib.util.player.PlayerUtil;
+import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 
@@ -76,7 +77,9 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
             this.getCamoSettings().setCamoBlockState(state);
         }
         this.camoBlockStateTemp = state;
-        if (!world.isRemote) {
+        if (world.isRemote) {
+            remesh();
+        } else {
             OMLibNetworkingHandler.INSTANCE.sendToAllAround(new MessageCamoSettings(this),
                                                             new NetworkRegistry.TargetPoint(this.getWorld().provider.getDimension(), this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 160));
             this.markBlockForUpdate();
@@ -92,8 +95,8 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
 
     @Override
     @ParametersAreNonnullByDefault
-    public void readFromNBT(NBTTagCompound tag) {
-        super.readFromNBT(tag);
+    public void loadFromNBT(NBTTagCompound tag) {
+        super.loadFromNBT(tag);
         trustManager.readFromNBT(tag);
         trustManager.setOwner(getOwnerOrNull());
         this.camoSettings = CamoSettings.getSettingsFromNBT(tag);
@@ -107,8 +110,8 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     @Nonnull
     @Override
     @ParametersAreNonnullByDefault
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        super.writeToNBT(tag);
+    public NBTTagCompound saveToNBT(NBTTagCompound tag) {
+        super.saveToNBT(tag);
         trustManager.writeToNBT(tag);
         camoSettings.writeNBT(tag);
         return tag;
@@ -142,6 +145,11 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     @Override
     public boolean isCamoEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean acceptsTransparentDisguises() {
+        return ConfigHandler.allowTransparentDisguises;
     }
 
     @Override

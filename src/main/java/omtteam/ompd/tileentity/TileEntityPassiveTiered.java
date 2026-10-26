@@ -28,8 +28,8 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
 
     @Override
     @ParametersAreNonnullByDefault
-    public void readFromNBT(NBTTagCompound nbtTagCompound) {
-        super.readFromNBT(nbtTagCompound);
+    public void loadFromNBT(NBTTagCompound nbtTagCompound) {
+        super.loadFromNBT(nbtTagCompound);
         this.tier = nbtTagCompound.getInteger("tier");
         this.tpm.readFromNBT(nbtTagCompound);
         this.tpm.setOwner(getOwnerOrNull());
@@ -38,8 +38,8 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
     @Override
     @Nonnull
     @ParametersAreNonnullByDefault
-    public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound) {
-        super.writeToNBT(nbtTagCompound);
+    public NBTTagCompound saveToNBT(NBTTagCompound nbtTagCompound) {
+        super.saveToNBT(nbtTagCompound);
         nbtTagCompound.setInteger("tier", this.tier);
         tpm.writeToNBT(nbtTagCompound);
         return nbtTagCompound;

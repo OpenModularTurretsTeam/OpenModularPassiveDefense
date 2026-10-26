@@ -8,6 +8,10 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Added
+
+- The camouflage trap accepts transparent blocks (glass, ice, leaves) as a disguise; the config option `allowTransparentDisguises` in the `camo trap` section turns it off
+
 ## [4.0.0-beta.3] - 2026-10-26
 
 ### Changed
