@@ -8,9 +8,15 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+## [4.0.0-beta.4] - 2026-10-27
+
 ### Added
 
 - The camouflage trap accepts transparent blocks (glass, ice, leaves) as a disguise; the config option `allowTransparentDisguises` in the `camo trap` section turns it off
+
+### Changed
+
+- Requires OMLib 4.0.0-beta.4 or newer
 
 ## [4.0.0-beta.3] - 2026-10-26
 
