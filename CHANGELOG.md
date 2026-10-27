@@ -12,6 +12,10 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 - Hardness and explosion resistance of the hardened blocks, walls and fences and the fence damage are configurable per tier (`hardness`, `explosionResistance`, `fenceDamage` in the `tiers` section)
 
+### Changed
+
+- Trusted admins can change the camouflage disguise of turret bases too, as they already could on camouflage traps, so both follow the same rule (with the next OMLib release)
+
 ### Fixed
 
 - Fences dealt the same damage on every tier; it now grows from 5 (tier 1) to 9 (tier 5)
