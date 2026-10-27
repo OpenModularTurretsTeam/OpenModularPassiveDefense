@@ -32,6 +32,7 @@ import omtteam.omlib.block.UnownedMarker;
 import omtteam.omlib.core.security.PlayerIdentity;
 import omtteam.omlib.util.player.PlayerUtil;
 import omtteam.ompd.OpenModularPassiveDefense;
+import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.core.DefenseTier;
 import omtteam.ompd.core.FenceRules;
 import omtteam.ompd.item.ItemBlockFence;
@@ -98,7 +99,8 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
         if (!(tileEntity instanceof TileEntityPassiveTiered) || FenceRules.hurts(
                 ((TileEntityPassiveTiered) tileEntity).getTrustManager().core(), player(entityIn), petOwner(entityIn))) {
-            entityIn.attackEntityFrom(DamageSource.CACTUS, 5);
+            float damage = ConfigHandler.getDefenseStats().fenceDamage(state.getValue(TIER));
+            entityIn.attackEntityFrom(DamageSource.CACTUS, damage);
         }
     }
 
@@ -143,12 +145,12 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock {
 
     @Override
     public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
-        return DefenseTier.hardness(blockState.getValue(TIER));
+        return ConfigHandler.getDefenseStats().hardness(blockState.getValue(TIER));
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        return DefenseTier.explosionResistance(world.getBlockState(pos).getValue(TIER));
+        return ConfigHandler.getDefenseStats().explosionResistance(world.getBlockState(pos).getValue(TIER));
     }
 
     @Override

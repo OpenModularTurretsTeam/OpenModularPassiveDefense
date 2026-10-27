@@ -24,7 +24,7 @@ flowchart TB
     client["client<br/>camo trap model, client proxy<br/><i>client only</i>"]
     game["game layer<br/>blocks, tile entities, items, registry, handlers, fixes"]
     compat["compat<br/>Hwyla"]
-    core["core<br/>DefenseTier, FenceRules"]
+    core["core<br/>DefenseTier, DefenseStats, FenceRules"]
     omlib["OMLib<br/>ownership, trust, abstract blocks, camouflage"]
     client --> game
     compat --> game
@@ -46,7 +46,8 @@ OMPD's core needs nothing from the world, so it has no world interfaces; it take
 
 | Core class | Used by | What it decides |
 | --- | --- | --- |
-| `core.DefenseTier` | `BlockHardened`, `BlockWall`, `BlockFence`, their items | tiers 1–5 as the metadata 0–4 of the 3.x blocks, clamping of invalid metadata, hardness and explosion resistance per tier |
+| `core.DefenseTier` | `BlockHardened`, `BlockWall`, `BlockFence`, their items | tiers 1–5 as the metadata 0–4 of the 3.x blocks, clamping of invalid metadata |
+| `core.DefenseStats` | `config.ConfigHandler`, the three blocks | hardness, explosion resistance and fence damage per tier: the config values, checked (an invalid list gets the defaults) |
 | `core.FenceRules` | `BlockFence.onEntityCollision` | whom a fence hurts on contact: not the owner, shared owners, trusted players, the owner's team and their pets; everything else living |
 
 `FenceRules.hurts` gets the fence's OMLib `TrustManager` (`core.security`) and the identities of the touching player or the pet's owner; the block turns the colliding `Entity` into those arguments.
@@ -93,7 +94,7 @@ Blocks, items and sounds are registered in `RegistryEvent.Register` (`EventHandl
 ### Tiers
 
 A hardened block, wall or fence is one block with the tier in its **metadata** (0–4 = tier 1–5, as in 3.x), so the registry names and the placed blocks of 3.x stay valid.
-`DefenseTier.fromMeta` clamps invalid metadata; hardness and explosion resistance come from `DefenseTier`.
+`DefenseTier.fromMeta` clamps invalid metadata; hardness, explosion resistance and the fence damage come from the config (`ConfigHandler.getDefenseStats()`, section `tiers`), synced to clients through OMLib's `ConfigSync` (registered in `CommonProxy.preInit`), since the client predicts mining progress from the hardness.
 The item carries the tier as its damage value (`ItemBlock*.getMetadata`), the creative tab lists all five, and `damageDropped` / `getPickBlock` keep the tier.
 `TileEntityPassiveTiered` stores the tier too, together with the owner and the trust list.
 
@@ -130,7 +131,7 @@ Every change to ids, metadata, NBT or config keys is checked against the 3.x tes
 
 ### A tiered block
 
-Give the block five metadata variants like `BlockHardened`: tier from `DefenseTier.fromMeta`, hardness and resistance from `DefenseTier`, an `ItemBlock` that uses the damage value, and `TileEntityPassiveTiered` for the owner and trust list.
+Give the block five metadata variants like `BlockHardened`: tier from `DefenseTier.fromMeta`, hardness and resistance from `ConfigHandler.getDefenseStats()`, an `ItemBlock` that uses the damage value, and `TileEntityPassiveTiered` for the owner and trust list.
 Register block and tile entity in `ModBlocks` and the item in `ModItems`.
 New ids are lowercase `snake_case`; the existing 3.x ids and metadata stay untouched.
 Blockstate, models, textures (human-made; use a placeholder and say which are missing), lang and a handwritten recipe in `assets/ompd/recipes`.
@@ -156,7 +157,7 @@ Owner, trust, camouflage, wrench and GUI code belong in OMLib, not here.
 | core uses only Java, core and OMLib core | `ArchitectureTest.coreDependsOnlyOnCoreAndJava` and the `verifyCoreIsolation` task |
 | common code reaches `client` only through the proxy | `ArchitectureTest.commonCodeReachesClientCodeOnlyThroughTheProxy` (frozen in `src/test/resources/archunit_store`, empty now) |
 | no new package cycles, and the known ones only shrink | `ArchitectureTest.noNewPackageCycles` (list `KNOWN_CYCLES`) |
-| core rules behave as specified | `DefenseTierTest`, `FenceRulesTest` |
+| core rules behave as specified | `DefenseTierTest`, `DefenseStatsTest`, `FenceRulesTest` |
 | the 3.x tile entity names are renamed | `TENameFixTest` |
 
 There are no GameTests on 1.12: in-game behaviour is checked with the dev client and server in the workspace (`./gradlew :runenv:runServer -Pomcompat_action=boot`) and with the 3.x compatibility worlds.

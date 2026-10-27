@@ -25,6 +25,7 @@ import omtteam.omlib.api.block.IHasItemBlock;
 import omtteam.omlib.block.BlockAbstractMiscWall;
 import omtteam.omlib.block.UnownedMarker;
 import omtteam.ompd.OpenModularPassiveDefense;
+import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.core.DefenseTier;
 import omtteam.ompd.item.ItemBlockWall;
 import omtteam.ompd.reference.OMPDNames;
@@ -104,12 +105,12 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
 
     @Override
     public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
-        return DefenseTier.hardness(blockState.getValue(TIER));
+        return ConfigHandler.getDefenseStats().hardness(blockState.getValue(TIER));
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        return DefenseTier.explosionResistance(world.getBlockState(pos).getValue(TIER));
+        return ConfigHandler.getDefenseStats().explosionResistance(world.getBlockState(pos).getValue(TIER));
     }
 
     @Override

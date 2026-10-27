@@ -8,6 +8,14 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Added
+
+- Hardness and explosion resistance of the hardened blocks, walls and fences and the fence damage are configurable per tier (`hardness`, `explosionResistance`, `fenceDamage` in the `tiers` section)
+
+### Fixed
+
+- Fences dealt the same damage on every tier; it now grows from 5 (tier 1) to 9 (tier 5)
+
 ## [4.0.0-beta.4] - 2026-10-27
 
 ### Added
