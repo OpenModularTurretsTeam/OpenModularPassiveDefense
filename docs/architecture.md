@@ -24,7 +24,7 @@ flowchart TB
     client["client<br/>camo trap model, client proxy<br/><i>client only</i>"]
     game["game layer<br/>blocks, tile entities, items, registry, handlers, fixes"]
     compat["compat<br/>Hwyla"]
-    core["core<br/>DefenseTier, DefenseStats, FenceRules"]
+    core["core<br/>DefenseTier, DefenseStats, FenceRules,<br/>PassageRules, SpikeRules, HeavyDoorMotion"]
     omlib["OMLib<br/>ownership, trust, abstract blocks, camouflage"]
     client --> game
     compat --> game
@@ -48,7 +48,10 @@ OMPD's core needs nothing from the world, so it has no world interfaces; it take
 | --- | --- | --- |
 | `core.DefenseTier` | `BlockHardened`, `BlockWall`, `BlockFence`, their items | tiers 1–5 as the metadata 0–4 of the 3.x blocks, clamping of invalid metadata |
 | `core.DefenseStats` | `config.ConfigHandler`, the three blocks | hardness, explosion resistance and fence damage per tier: the config values, checked (an invalid list gets the defaults) |
-| `core.FenceRules` | `BlockFence.onEntityCollision` | whom a fence hurts on contact: not the owner, shared owners, trusted players, the owner's team and their pets; everything else living |
+| `core.FenceRules` | `BlockFence`, `BlockSpikes` (through `BlockHelper.hurts`) | whom a fence or spikes hurt on contact: not the owner, shared owners, trusted players, the owner's team and their pets; everything else living |
+| `core.PassageRules` | doors, gates and the heavy door (through `BlockHelper`) | who opens them by hand (owner, shared owners, trusted players, the owner's team); redstone opens them for everyone, unowned ones by redstone only |
+| `core.SpikeRules` | `BlockSpikes` | spike damage: by the tier once per second while standing, times 1 to 10 by the fall distance when landing |
+| `core.HeavyDoorMotion` | `BlockHeavyDoor`, `TileEntityHeavyDoor`, `ItemBlockHeavyDoor`, `client.render.HeavyDoorRenderer` | the 2x2 heavy door: its cells, the sideways slide of the two wings and the open progress |
 
 `FenceRules.hurts` gets the fence's OMLib `TrustManager` (`core.security`) and the identities of the touching player or the pet's owner; the block turns the colliding `Entity` into those arguments.
 
@@ -157,7 +160,7 @@ Owner, trust, camouflage, wrench and GUI code belong in OMLib, not here.
 | core uses only Java, core and OMLib core | `ArchitectureTest.coreDependsOnlyOnCoreAndJava` and the `verifyCoreIsolation` task |
 | common code reaches `client` only through the proxy | `ArchitectureTest.commonCodeReachesClientCodeOnlyThroughTheProxy` (frozen in `src/test/resources/archunit_store`, empty now) |
 | no new package cycles, and the known ones only shrink | `ArchitectureTest.noNewPackageCycles` (list `KNOWN_CYCLES`) |
-| core rules behave as specified | `DefenseTierTest`, `DefenseStatsTest`, `FenceRulesTest` |
+| core rules behave as specified | `DefenseTierTest`, `DefenseStatsTest`, `FenceRulesTest`, `PassageRulesTest`, `SpikeRulesTest`, `HeavyDoorMotionTest` |
 | the 3.x tile entity names are renamed | `TENameFixTest` |
 
 There are no GameTests on 1.12: in-game behaviour is checked with the dev client and server in the workspace (`./gradlew :runenv:runServer -Pomcompat_action=boot`) and with the 3.x compatibility worlds.

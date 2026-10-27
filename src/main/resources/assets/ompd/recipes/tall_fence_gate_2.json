@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G",
+    "G"
+  ],
+  "key": {
+    "G": {
+      "item": "ompd:fence_gate",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "ompd:tall_fence_gate",
+    "data": 2,
+    "count": 1
+  }
+}

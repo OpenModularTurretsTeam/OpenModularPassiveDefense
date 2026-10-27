@@ -1,0 +1,61 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "ompd:hardened_lamp"
+  },
+  "variants": {
+    "facing": {
+      "up": {},
+      "down": {
+        "x": 180
+      },
+      "north": {
+        "x": 90
+      },
+      "south": {
+        "x": 90,
+        "y": 180
+      },
+      "east": {
+        "x": 90,
+        "y": 90
+      },
+      "west": {
+        "x": 90,
+        "y": 270
+      }
+    },
+    "tier": {
+      "1": {
+        "textures": {
+          "side": "ompd:blocks/hardened_tier_one",
+          "front": "ompd:blocks/hardened_lamp_tier_one"
+        }
+      },
+      "2": {
+        "textures": {
+          "side": "ompd:blocks/hardened_tier_two",
+          "front": "ompd:blocks/hardened_lamp_tier_two"
+        }
+      },
+      "3": {
+        "textures": {
+          "side": "ompd:blocks/hardened_tier_three",
+          "front": "ompd:blocks/hardened_lamp_tier_three"
+        }
+      },
+      "4": {
+        "textures": {
+          "side": "ompd:blocks/hardened_tier_four",
+          "front": "ompd:blocks/hardened_lamp_tier_four"
+        }
+      },
+      "5": {
+        "textures": {
+          "side": "ompd:blocks/hardened_tier_five",
+          "front": "ompd:blocks/hardened_lamp_tier_five"
+        }
+      }
+    }
+  }
+}

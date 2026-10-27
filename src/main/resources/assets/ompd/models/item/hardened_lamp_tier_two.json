@@ -1,0 +1,7 @@
+{
+  "parent": "ompd:block/hardened_lamp",
+  "textures": {
+    "side": "ompd:blocks/hardened_tier_two",
+    "front": "ompd:blocks/hardened_lamp_tier_two"
+  }
+}

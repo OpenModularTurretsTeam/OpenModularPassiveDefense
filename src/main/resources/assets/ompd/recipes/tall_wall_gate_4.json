@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G",
+    "G"
+  ],
+  "key": {
+    "G": {
+      "item": "ompd:wall_gate",
+      "data": 4
+    }
+  },
+  "result": {
+    "item": "ompd:tall_wall_gate",
+    "data": 4,
+    "count": 1
+  }
+}

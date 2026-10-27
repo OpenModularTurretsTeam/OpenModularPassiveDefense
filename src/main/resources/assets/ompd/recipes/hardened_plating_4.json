@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": {
+      "item": "ompd:hardened_mix"
+    },
+    "B": {
+      "item": "minecraft:obsidian"
+    },
+    "C": {
+      "item": "minecraft:nether_brick"
+    }
+  },
+  "result": {
+    "item": "ompd:hardened_plating",
+    "data": 4,
+    "count": 4
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ompd:items/hardened_plating_tier_two"
+  }
+}

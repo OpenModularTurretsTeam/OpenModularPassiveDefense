@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WPW",
+    "WPW"
+  ],
+  "key": {
+    "W": {
+      "item": "ompd:wall",
+      "data": 0
+    },
+    "P": {
+      "item": "ompd:hardened_plating",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "ompd:wall_gate",
+    "data": 0,
+    "count": 1
+  }
+}

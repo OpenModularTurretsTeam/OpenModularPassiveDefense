@@ -1,0 +1,384 @@
+{
+  "variants": {
+    "facing=south,half=lower,open=false,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_lower_closed",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=false,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_lower_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=false,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_lower_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=false,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_lower_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=true,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_lower_open",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=true,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_lower_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=true,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_lower_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=true,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_lower_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=false,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_upper_closed",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=false,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_upper_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=false,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_upper_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=false,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_upper_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=true,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_upper_open",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=true,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_upper_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=true,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_upper_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=true,tier=1": {
+      "model": "ompd:tall_wall_gate_tier_one_upper_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=false,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_lower_closed",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=false,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_lower_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=false,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_lower_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=false,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_lower_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=true,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_lower_open",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=true,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_lower_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=true,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_lower_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=true,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_lower_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=false,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_upper_closed",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=false,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_upper_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=false,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_upper_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=false,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_upper_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=true,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_upper_open",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=true,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_upper_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=true,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_upper_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=true,tier=2": {
+      "model": "ompd:tall_wall_gate_tier_two_upper_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=false,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_lower_closed",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=false,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_lower_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=false,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_lower_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=false,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_lower_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=true,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_lower_open",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=true,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_lower_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=true,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_lower_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=true,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_lower_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=false,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_upper_closed",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=false,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_upper_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=false,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_upper_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=false,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_upper_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=true,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_upper_open",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=true,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_upper_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=true,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_upper_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=true,tier=3": {
+      "model": "ompd:tall_wall_gate_tier_three_upper_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=false,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_lower_closed",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=false,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_lower_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=false,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_lower_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=false,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_lower_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=true,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_lower_open",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=true,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_lower_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=true,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_lower_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=true,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_lower_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=false,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_upper_closed",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=false,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_upper_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=false,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_upper_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=false,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_upper_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=true,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_upper_open",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=true,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_upper_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=true,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_upper_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=true,tier=4": {
+      "model": "ompd:tall_wall_gate_tier_four_upper_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=false,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_lower_closed",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=false,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_lower_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=false,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_lower_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=false,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_lower_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=lower,open=true,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_lower_open",
+      "uvlock": true
+    },
+    "facing=west,half=lower,open=true,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_lower_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=lower,open=true,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_lower_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=lower,open=true,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_lower_open",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=false,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_upper_closed",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=false,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_upper_closed",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=false,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_upper_closed",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=false,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_upper_closed",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,half=upper,open=true,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_upper_open",
+      "uvlock": true
+    },
+    "facing=west,half=upper,open=true,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_upper_open",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north,half=upper,open=true,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_upper_open",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=east,half=upper,open=true,tier=5": {
+      "model": "ompd:tall_wall_gate_tier_five_upper_open",
+      "uvlock": true,
+      "y": 270
+    }
+  }
+}

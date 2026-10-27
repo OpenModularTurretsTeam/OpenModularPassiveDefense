@@ -1,0 +1,7 @@
+{
+  "parent": "block/door_top",
+  "textures": {
+    "bottom": "ompd:blocks/hardened_door_tier_four_lower",
+    "top": "ompd:blocks/hardened_door_tier_four_upper"
+  }
+}

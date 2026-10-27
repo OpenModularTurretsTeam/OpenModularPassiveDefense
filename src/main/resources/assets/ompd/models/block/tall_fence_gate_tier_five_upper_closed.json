@@ -1,0 +1,6 @@
+{
+  "parent": "ompd:block/tall_gate_upper_closed",
+  "textures": {
+    "texture": "ompd:blocks/fence_tier_five"
+  }
+}

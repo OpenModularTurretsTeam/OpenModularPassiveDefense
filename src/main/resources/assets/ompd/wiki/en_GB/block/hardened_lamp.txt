@@ -1,0 +1,4 @@
+The hardened lamp is a hardened block that gives off full light (light level 15),
+and it is available in 5 variations: Tier 1 - Tier 5, as strong as the hardened block of the same tier.
+
+It is owned and its owner can mine it instantly (using shift-rightclick with an empty hand currently).
