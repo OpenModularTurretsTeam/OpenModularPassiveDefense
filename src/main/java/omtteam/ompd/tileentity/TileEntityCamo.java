@@ -20,7 +20,6 @@ import omtteam.omlib.util.camo.CamoSettings;
 import omtteam.omlib.util.player.OMLibSecurityEnvironment;
 import omtteam.omlib.util.player.Player;
 import omtteam.omlib.util.player.PlayerUtil;
-import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 
@@ -147,9 +146,10 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
         return true;
     }
 
+    /** Transparent full blocks (glass, ice, leaves) are valid disguises, as on 1.20.1+. */
     @Override
     public boolean acceptsTransparentDisguises() {
-        return ConfigHandler.allowTransparentDisguises;
+        return true;
     }
 
     @Override

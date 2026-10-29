@@ -16,11 +16,16 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 ### Changed
 
 - Hwyla shows the camouflage trap as its disguise to players who may not manage it
+- Fences spare only their owner (and shared owners), as on 1.20.1+; trusted players, team members and pets are hurt
 
 ### Fixed
 
 - The camouflage trap broke instantly; it now mines like its disguise
 - Hwyla showed nothing for hardened blocks, walls and fences; it now shows their owner, in the colours of 1.20.1+
+
+### Removed
+
+- Config option allowTransparentDisguises; the camouflage trap always accepts glass, ice and leaves as camouflage
 
 ## [4.0.0-beta.5] - 2026-10-27
 

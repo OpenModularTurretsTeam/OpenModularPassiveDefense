@@ -12,7 +12,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -26,7 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraftforge.common.UsernameCache;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.api.block.IHasItemBlock;
@@ -34,7 +32,7 @@ import omtteam.omlib.block.BlockAbstractMiscPane;
 import omtteam.omlib.block.UnownedMarker;
 import omtteam.omlib.compat.theoneprobe.TOPCompatibility;
 import omtteam.omlib.compat.theoneprobe.TOPInfoProvider;
-import omtteam.omlib.core.security.PlayerIdentity;
+import omtteam.omlib.core.security.PlayerInfo;
 import omtteam.omlib.util.player.PlayerUtil;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.config.ConfigHandler;
@@ -52,7 +50,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
 import java.util.Random;
-import java.util.UUID;
 
 @SuppressWarnings("deprecation")
 public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock, TOPInfoProvider {
@@ -104,27 +101,15 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock, 
         }
         TileEntity tileEntity = worldIn.getTileEntity(pos);
         if (!(tileEntity instanceof TileEntityPassiveTiered) || FenceRules.hurts(
-                ((TileEntityPassiveTiered) tileEntity).getTrustManager().core(), player(entityIn), petOwner(entityIn))) {
+                ((TileEntityPassiveTiered) tileEntity).getTrustManager().core(), player(entityIn))) {
             float damage = ConfigHandler.getDefenseStats().fenceDamage(state.getValue(TIER));
             entityIn.attackEntityFrom(DamageSource.CACTUS, damage);
         }
     }
 
-    private static Optional<PlayerIdentity> player(Entity entity) {
+    private static Optional<PlayerInfo> player(Entity entity) {
         return entity instanceof EntityPlayer
-                ? Optional.of(PlayerUtil.getPlayerInfo((EntityPlayer) entity).identity()) : Optional.empty();
-    }
-
-    private static Optional<PlayerIdentity> petOwner(Entity entity) {
-        if (!(entity instanceof IEntityOwnable)) {
-            return Optional.empty();
-        }
-        UUID owner = ((IEntityOwnable) entity).getOwnerId();
-        if (owner == null) {
-            return Optional.empty();
-        }
-        String name = UsernameCache.getLastKnownUsername(owner);
-        return Optional.of(new PlayerIdentity(owner, name == null ? "" : name));
+                ? Optional.of(PlayerUtil.getPlayerInfo((EntityPlayer) entity)) : Optional.empty();
     }
 
     @Override

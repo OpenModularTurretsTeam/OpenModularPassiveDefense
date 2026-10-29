@@ -1,27 +1,23 @@
 package omtteam.ompd.core;
 
-import omtteam.omlib.core.security.PlayerIdentity;
+import omtteam.omlib.core.security.PlayerInfo;
 import omtteam.omlib.core.security.TrustManager;
 
 import java.util.Optional;
 
 /**
- * Who a fence hurts on contact. Friendly are the owner, shared owners, trusted players and the owner's team
- * ({@link TrustManager#isOwnerOrTrusted}), and pets of any of them; everything else living is hurt. Dropped items are
- * left alone by the block.
+ * Who a fence hurts on contact: everything living except the owner, as on 1.20.1+. The owner is the fence's owner or a
+ * player the owner shares ownership with ({@link TrustManager#isOwner(PlayerInfo)}, the 1.12 owner concept); trusted
+ * players, the owner's team and pets are hurt. Dropped items are left alone by the block.
  */
 public final class FenceRules {
     private FenceRules() {
     }
 
     /**
-     * @param player   the touching entity as a player, if it is one
-     * @param petOwner the owner of the touching entity, if it is a pet
+     * @param player the touching entity as a player, if it is one
      */
-    public static boolean hurts(TrustManager trust, Optional<PlayerIdentity> player, Optional<PlayerIdentity> petOwner) {
-        if (player.isPresent()) {
-            return !trust.isOwnerOrTrusted(player.get());
-        }
-        return !petOwner.isPresent() || !trust.isOwnerOrTrusted(petOwner.get());
+    public static boolean hurts(TrustManager trust, Optional<PlayerInfo> player) {
+        return !player.isPresent() || !trust.isOwner(player.get());
     }
 }

@@ -1,6 +1,5 @@
 package omtteam.ompd.core;
 
-import omtteam.omlib.core.security.PlayerIdentity;
 import omtteam.omlib.core.security.PlayerInfo;
 import omtteam.omlib.core.security.TrustManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FenceRulesTest {
     private static final PlayerInfo OWNER = player("Owner");
-    private static final PlayerIdentity FRIEND = player("Friend").identity();
-    private static final PlayerIdentity TEAMMATE = player("Teammate").identity();
-    private static final PlayerIdentity SHARED = player("Shared").identity();
-    private static final PlayerIdentity STRANGER = player("Stranger").identity();
+    private static final PlayerInfo FRIEND = player("Friend");
+    private static final PlayerInfo TEAMMATE = player("Teammate");
+    private static final PlayerInfo SHARED = player("Shared");
+    private static final PlayerInfo STRANGER = player("Stranger");
 
     private FakeSecurityEnvironment environment;
     private TrustManager trust;
@@ -36,48 +35,35 @@ class FenceRulesTest {
         trust = new TrustManager(environment, () -> {
         });
         trust.setOwner(OWNER.identity());
-        trust.addTrustedPlayer(OWNER, FRIEND);
+        trust.addTrustedPlayer(OWNER, FRIEND.identity());
     }
 
-    private boolean hurtsPlayer(PlayerIdentity player) {
-        return FenceRules.hurts(trust, Optional.of(player), Optional.empty());
-    }
-
-    private boolean hurtsPetOf(PlayerIdentity owner) {
-        return FenceRules.hurts(trust, Optional.empty(), Optional.of(owner));
+    private boolean hurtsPlayer(PlayerInfo player) {
+        return FenceRules.hurts(trust, Optional.of(player));
     }
 
     @Test
-    void friendlyPlayersAreSpared() {
-        assertFalse(hurtsPlayer(OWNER.identity()));
-        assertFalse(hurtsPlayer(FRIEND), "trusted player");
-        assertFalse(hurtsPlayer(TEAMMATE), "owner's team");
+    void theOwnerIsSpared() {
+        assertFalse(hurtsPlayer(OWNER));
         assertFalse(hurtsPlayer(SHARED), "shared owner");
     }
 
     @Test
-    void strangersAreHurt() {
+    void everyoneElseIsHurt() {
+        assertTrue(hurtsPlayer(FRIEND), "trusted player");
+        assertTrue(hurtsPlayer(TEAMMATE), "owner's team");
         assertTrue(hurtsPlayer(STRANGER));
     }
 
     @Test
-    void petsOfFriendlyPlayersAreSpared() {
-        assertFalse(hurtsPetOf(OWNER.identity()));
-        assertFalse(hurtsPetOf(FRIEND));
-        assertFalse(hurtsPetOf(TEAMMATE));
-        assertTrue(hurtsPetOf(STRANGER));
-    }
-
-    @Test
-    void mobsAreHurt() {
-        assertTrue(FenceRules.hurts(trust, Optional.empty(), Optional.empty()));
+    void mobsAndPetsAreHurt() {
+        assertTrue(FenceRules.hurts(trust, Optional.empty()));
     }
 
     @Test
     void aFenceWithoutOwnerHurtsEveryone() {
         TrustManager noOwner = new TrustManager(environment, () -> {
         });
-        assertTrue(FenceRules.hurts(noOwner, Optional.of(OWNER.identity()), Optional.empty()));
-        assertTrue(FenceRules.hurts(noOwner, Optional.empty(), Optional.of(OWNER.identity())));
+        assertTrue(FenceRules.hurts(noOwner, Optional.of(OWNER)));
     }
 }

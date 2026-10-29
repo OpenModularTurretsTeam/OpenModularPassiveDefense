@@ -13,7 +13,7 @@ Read OMLib's `docs/architecture.md` first; this mod is small because of it.
 ## The idea in one paragraph
 
 OMPD adds **passive defenses** that complement the turrets: hardened blocks, walls and fences in five tiers, and a camouflage trap.
-Every block is an owned block of OMLib: it has an owner and a trust list, and the owner's team and trusted players are treated as friendly.
+Every block is an owned block of OMLib: it has an owner and a trust list, and the owner's team and trusted players are treated as friendly (except by fences, which spare only the owner, as on 1.20.1+).
 The few rules OMPD has of its own (what a tier is, whom a fence hurts) are plain Java in `core`, without any Minecraft class, so they are unit-tested in milliseconds.
 The blocks and tile entities translate between Minecraft and these rules and stay thin.
 
@@ -48,9 +48,9 @@ OMPD's core needs nothing from the world, so it has no world interfaces; it take
 | --- | --- | --- |
 | `core.DefenseTier` | `BlockHardened`, `BlockWall`, `BlockFence`, their items | tiers 1–5 as the metadata 0–4 of the 3.x blocks, clamping of invalid metadata |
 | `core.DefenseStats` | `config.ConfigHandler`, the three blocks | hardness, explosion resistance and fence damage per tier: the config values, checked (an invalid list gets the defaults) |
-| `core.FenceRules` | `BlockFence.onEntityCollision` | whom a fence hurts on contact: not the owner, shared owners, trusted players, the owner's team and their pets; everything else living |
+| `core.FenceRules` | `BlockFence.onEntityCollision` | whom a fence hurts on contact: everything living except the owner (and shared owners, the 1.12 owner concept), as on 1.20.1+ |
 
-`FenceRules.hurts` gets the fence's OMLib `TrustManager` (`core.security`) and the identities of the touching player or the pet's owner; the block turns the colliding `Entity` into those arguments.
+`FenceRules.hurts` gets the fence's OMLib `TrustManager` (`core.security`) and the touching player as a `PlayerInfo`, if it is one; the block turns the colliding `Entity` into that argument.
 
 The tile entities own the trust manager: `TileEntityPassiveTiered` and `TileEntityCamo` hold OMLib's `TrustedPlayersManager` (the facade over `core.security.TrustManager`).
 
@@ -106,7 +106,7 @@ Clicking a block with the wrench or opening its trust list goes through `BlockHe
 
 ### A fence touch
 
-`BlockFence.onEntityCollision` (server) asks `FenceRules.hurts` with the fence's trust manager, the touching player (as an OMLib `PlayerIdentity`) or the owner of a touching pet.
+`BlockFence.onEntityCollision` (server) asks `FenceRules.hurts` with the fence's trust manager and the touching player (as an OMLib `PlayerInfo`); only the owner and shared owners are spared, trusted players, the team and pets are hurt, as on 1.20.1+.
 Dropped items are left alone by the block; what is hurt takes the fence's damage.
 
 ### The camouflage trap
