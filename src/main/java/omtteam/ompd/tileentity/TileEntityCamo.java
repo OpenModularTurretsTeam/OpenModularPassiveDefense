@@ -146,12 +146,6 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
         return true;
     }
 
-    /** Transparent full blocks (glass, ice, leaves) are valid disguises, as on 1.20.1+. */
-    @Override
-    public boolean acceptsTransparentDisguises() {
-        return true;
-    }
-
     @Override
     public boolean supportsLight() {
         return true;
