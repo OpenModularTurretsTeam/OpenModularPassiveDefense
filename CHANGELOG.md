@@ -8,6 +8,14 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Added
+
+- Recipe for the camouflage trap (with Open Modular Turrets installed): 4 tier 1 hardened blocks, 4 planks and a tier 1 sensor give 4 traps
+
+### Fixed
+
+- The camouflage trap broke instantly; it now mines like its disguise
+
 ## [4.0.0-beta.5] - 2026-10-27
 
 ### Added
