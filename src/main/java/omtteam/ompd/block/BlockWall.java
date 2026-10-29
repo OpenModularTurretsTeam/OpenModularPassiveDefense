@@ -1,5 +1,8 @@
 package omtteam.ompd.block;
 
+import mcjty.theoneprobe.api.IProbeHitData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.ProbeMode;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyInteger;
@@ -24,6 +27,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import omtteam.omlib.api.block.IHasItemBlock;
 import omtteam.omlib.block.BlockAbstractMiscWall;
 import omtteam.omlib.block.UnownedMarker;
+import omtteam.omlib.compat.theoneprobe.TOPCompatibility;
+import omtteam.omlib.compat.theoneprobe.TOPInfoProvider;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.core.DefenseTier;
@@ -31,6 +36,7 @@ import omtteam.ompd.item.ItemBlockWall;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 import omtteam.ompd.registry.ModBlocks;
+import omtteam.ompd.tileentity.OwnerOverlay;
 import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 import omtteam.ompd.util.BlockHelper;
 
@@ -38,7 +44,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
-public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
+public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock, TOPInfoProvider {
     private static final PropertyInteger TIER = PropertyInteger.create("tier", DefenseTier.MIN, DefenseTier.MAX);
 
     public BlockWall() {
@@ -129,5 +135,14 @@ public class BlockWall extends BlockAbstractMiscWall implements IHasItemBlock {
     @ParametersAreNonnullByDefault
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         UnownedMarker.randomDisplayTick(world, pos, random);
+    }
+
+    /** The owner line of {@link OwnerOverlay}, as on 1.20.1+ Jade. */
+    @Override
+    public void addProbeInfo(ProbeMode mode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData data) {
+        for (String line : OwnerOverlay.lines(OwnerOverlay.data(world.getTileEntity(data.getPos())),
+                TOPCompatibility::getLocalizationString)) {
+            probeInfo.text(line, probeInfo.defaultTextStyle());
+        }
     }
 }

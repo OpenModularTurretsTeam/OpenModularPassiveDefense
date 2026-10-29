@@ -70,7 +70,7 @@ Packages below `omtteam.ompd`:
 | (root) | `OpenModularPassiveDefense` (the `@Mod`: start-up and the data fixer), `CommonProxy` |
 | `core` | `DefenseTier`, `FenceRules` |
 | `block` | `BlockHardened` (a full block, `IPlainLookingBlock`: it can serve as a disguise), `BlockWall`, `BlockFence` (they extend OMLib's abstract wall and pane), `BlockCamoTrap` (OMLib's camouflage block) |
-| `tileentity` | `TileEntityPassiveTiered` (tier, owner and trust list of hardened blocks, walls and fences), `TileEntityCamo` (the trap: disguise, light, trust list) |
+| `tileentity` | `TileEntityPassiveTiered` (tier, owner and trust list of hardened blocks, walls and fences), `TileEntityCamo` (the trap: disguise, light, trust list), `OwnerOverlay` (the owner line of Hwyla and The One Probe) |
 | `item` | `ItemBlockHardened`, `ItemBlockWall`, `ItemBlockFence`: the tier is the item's metadata |
 | `registry` | `ModBlocks` (blocks and tile entities), `ModItems`, `OpenModularPassiveDefenseTab` |
 | `handler` | `EventHandler` (registry events), `GuiHandler` |
@@ -78,7 +78,7 @@ Packages below `omtteam.ompd`:
 | `config` | `ConfigHandler` |
 | `fixes` | `TENameFix`, the data fixer for the 3.x tile entity names |
 | `util` | `BlockHelper`: placing (owner and tier) and the click shared by the tiered blocks |
-| `compat` | `ModCompatibility`, `WailaTileHandler` (Hwyla) |
+| `compat` | `ModCompatibility` (registers with OMLib's Hwyla plugin), `WailaTileHandler` (owner line), `WailaCamoTrapHandler` (the trap's disguise) |
 | `client` | `ClientProxy`, `ClientEventHandler`, `client.model.BasicCamoTrapBakedModel` (the trap's model on top of OMLib's `CamoBakedModel`) |
 
 `./gradlew dependencyMap` draws these packages and every import between them as an interactive page.

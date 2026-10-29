@@ -11,10 +11,16 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 ### Added
 
 - Recipe for the camouflage trap (with Open Modular Turrets installed): 4 tier 1 hardened blocks, 4 planks and a tier 1 sensor give 4 traps
+- The One Probe shows the owner of hardened blocks, walls and fences
+
+### Changed
+
+- Hwyla shows the camouflage trap as its disguise to players who may not manage it
 
 ### Fixed
 
 - The camouflage trap broke instantly; it now mines like its disguise
+- Hwyla showed nothing for hardened blocks, walls and fences; it now shows their owner, in the colours of 1.20.1+
 
 ## [4.0.0-beta.5] - 2026-10-27
 
