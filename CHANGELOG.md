@@ -8,6 +8,8 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+## [4.0.0-beta.6] - 2026-10-29
+
 ### Added
 
 - Recipe for the camouflage trap (with Open Modular Turrets installed): 4 tier 1 hardened blocks, 4 planks and a tier 1 sensor give 4 traps
@@ -17,6 +19,7 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 - Hwyla shows the camouflage trap as its disguise to players who may not manage it
 - Fences spare only their owner (and shared owners), as on 1.20.1+; trusted players, team members and pets are hurt
+- Requires OMLib 4.0.0-beta.6 or newer
 
 ### Fixed
 
