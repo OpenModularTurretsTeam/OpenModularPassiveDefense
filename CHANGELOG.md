@@ -8,6 +8,10 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Changed
+
+- Requires OMLib 4.0.0 or newer
+
 ## [4.0.0-beta.6] - 2026-10-29
 
 ### Added
