@@ -74,7 +74,6 @@ Packages below `omtteam.ompd`:
 | `item` | `ItemBlockHardened`, `ItemBlockWall`, `ItemBlockFence`: the tier is the item's metadata |
 | `registry` | `ModBlocks` (blocks and tile entities), `ModItems`, `OpenModularPassiveDefenseTab` |
 | `handler` | `EventHandler` (registry events), `GuiHandler` |
-| `network` | `NetworkingHandler` (the channel; OMPD has no messages of its own, the camouflage menu uses OMLib's) |
 | `config` | `ConfigHandler` |
 | `fixes` | `TENameFix`, the data fixer for the 3.x tile entity names |
 | `util` | `BlockHelper`: placing (owner and tier) and the click shared by the tiered blocks |
@@ -87,7 +86,7 @@ Packages below `omtteam.ompd`:
 
 ### Startup
 
-`OpenModularPassiveDefense.preInit` loads the config (`ConfigHandler.init`) and calls `proxy.preInit()`; `CommonProxy.initHandlers` registers the networking and the event handler, the client proxy adds its own handlers and model loaders.
+`OpenModularPassiveDefense.preInit` loads the config (`ConfigHandler.init`) and calls `proxy.preInit()`; `CommonProxy.preInit` registers the event handler (OMPD has no network channel of its own, the camouflage menu uses OMLib's), the client proxy adds its own handlers and model loaders in `initHandlers`.
 Blocks, items and sounds are registered in `RegistryEvent.Register` (`EventHandler` → `ModBlocks.initBlocks` / `ModItems`); the tile entities are registered with the blocks.
 `init` registers the GUI handler and the data fixer (`TENameFix`, data version in the mod class), and the mod compat.
 
