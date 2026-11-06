@@ -16,11 +16,49 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 - Heavy door (tier 5): a 2x2 bunker door whose wings slide into the walls; opened like the doors
 - Spikes (tier 1–5): standing on them hurts by the tier once per second, landing on them by that times the fall distance in blocks (1 to 10, capped at 10 blocks); they spare whom the fences spare
 - Hardened mix and hardened plating (tier 1–5), the crafting intermediates of all blocks of a tier
-- Hardness and explosion resistance of the hardened blocks, walls and fences and the fence damage are configurable per tier (`hardness`, `explosionResistance`, `fenceDamage` in the `tiers` section)
 
 ### Changed
 
 - Hardened blocks are crafted from the plating of their tier instead of from the tier below (about the same cost)
+
+## [4.0.0] - 2026-11-02
+
+### Changed
+
+- Requires OMLib 4.0.0 or newer
+
+## [4.0.0-beta.6] - 2026-10-29
+
+### Added
+
+- Recipe for the camouflage trap (with Open Modular Turrets installed): 4 tier 1 hardened blocks, 4 planks and a tier 1 sensor give 4 traps
+- The One Probe shows the owner of hardened blocks, walls and fences
+
+### Changed
+
+- Hwyla shows the camouflage trap as its disguise to players who may not manage it
+- Fences spare only their owner (and shared owners), as on 1.20.1+; trusted players, team members and pets are hurt
+- Requires OMLib 4.0.0-beta.6 or newer
+
+### Fixed
+
+- The camouflage trap broke instantly; it now mines like its disguise
+- Hwyla showed nothing for hardened blocks, walls and fences; it now shows their owner, in the colours of 1.20.1+
+
+### Removed
+
+- Config option allowTransparentDisguises; the camouflage trap always accepts glass, ice and leaves as camouflage
+
+## [4.0.0-beta.5] - 2026-10-27
+
+### Added
+
+- Hardness and explosion resistance of the hardened blocks, walls and fences and the fence damage are configurable per tier (`hardness`, `explosionResistance`, `fenceDamage` in the `tiers` section)
+
+### Changed
+
+- Requires OMLib 4.0.0-beta.5 or newer
+- Trusted admins can change the camouflage disguise of turret bases too, as they already could on camouflage traps, so both follow the same rule
 
 ### Fixed
 

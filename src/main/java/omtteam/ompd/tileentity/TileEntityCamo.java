@@ -20,7 +20,6 @@ import omtteam.omlib.util.camo.CamoSettings;
 import omtteam.omlib.util.player.OMLibSecurityEnvironment;
 import omtteam.omlib.util.player.Player;
 import omtteam.omlib.util.player.PlayerUtil;
-import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
 
@@ -145,11 +144,6 @@ public class TileEntityCamo extends TileEntityOwnedBlock implements ICamoSupport
     @Override
     public boolean isCamoEnabled() {
         return true;
-    }
-
-    @Override
-    public boolean acceptsTransparentDisguises() {
-        return ConfigHandler.allowTransparentDisguises;
     }
 
     @Override

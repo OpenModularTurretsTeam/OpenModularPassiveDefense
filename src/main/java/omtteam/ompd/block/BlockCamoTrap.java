@@ -23,7 +23,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -194,18 +193,18 @@ public class BlockCamoTrap extends BlockAbstractCamoTileEntity implements TOPInf
         return tool.getName();
     }
 
+    /** Mines like the camouflage (1.20.1+ {@code getDestroyProgress}); the trap itself has no hardness. */
     @Override
-    @Nonnull
     @ParametersAreNonnullByDefault
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        ICamoSupport te = null;
-        if (world.getTileEntity(pos) instanceof ICamoSupport) {
-            te = (ICamoSupport) world.getTileEntity(pos);
+    public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if (tileEntity instanceof TileEntityCamo) {
+            IBlockState camo = ((TileEntityCamo) tileEntity).getCamoState();
+            if (camo.getBlock() != this) {
+                return camo.getPlayerRelativeBlockHardness(player, world, pos);
+            }
         }
-        if (te != null) {
-            return new ItemStack(te.getCamoState().getBlock(), 1);
-        }
-        return super.getPickBlock(state, target, world, pos, player);
+        return super.getPlayerRelativeBlockHardness(state, player, world, pos);
     }
 
     @Override

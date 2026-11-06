@@ -1,0 +1,32 @@
+{
+  "result": {
+    "item": "ompd:camo_trap",
+    "count": 4
+  },
+  "pattern": [
+    "HPH",
+    "PSP",
+    "HPH"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "H": {
+      "item": "ompd:hardened",
+      "data": 0
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "S": {
+      "item": "openmodularturrets:intermediate_tiered",
+      "data": 0
+    }
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "openmodularturrets"
+    }
+  ]
+}

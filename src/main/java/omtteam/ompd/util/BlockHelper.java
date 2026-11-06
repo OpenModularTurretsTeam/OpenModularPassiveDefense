@@ -2,7 +2,6 @@ package omtteam.ompd.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -13,8 +12,7 @@ import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.common.UsernameCache;
-import omtteam.omlib.core.security.PlayerIdentity;
+import omtteam.omlib.core.security.PlayerInfo;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
 import omtteam.omlib.util.player.Player;
 import omtteam.omlib.util.player.PlayerUtil;
@@ -25,7 +23,6 @@ import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
-import java.util.UUID;
 
 import static omtteam.omlib.util.player.PlayerUtil.isPlayerOwner;
 
@@ -72,24 +69,12 @@ public class BlockHelper {
     public static boolean hurts(World world, BlockPos pos, Entity entity) {
         TileEntity tileEntity = world.getTileEntity(pos);
         return !(tileEntity instanceof TileEntityPassiveTiered) || FenceRules.hurts(
-                ((TileEntityPassiveTiered) tileEntity).getTrustManager().core(), player(entity), petOwner(entity));
+                ((TileEntityPassiveTiered) tileEntity).getTrustManager().core(), player(entity));
     }
 
-    private static Optional<PlayerIdentity> player(Entity entity) {
+    private static Optional<PlayerInfo> player(Entity entity) {
         return entity instanceof EntityPlayer
-                ? Optional.of(PlayerUtil.getPlayerInfo((EntityPlayer) entity).identity()) : Optional.empty();
-    }
-
-    private static Optional<PlayerIdentity> petOwner(Entity entity) {
-        if (!(entity instanceof IEntityOwnable)) {
-            return Optional.empty();
-        }
-        UUID owner = ((IEntityOwnable) entity).getOwnerId();
-        if (owner == null) {
-            return Optional.empty();
-        }
-        String name = UsernameCache.getLastKnownUsername(owner);
-        return Optional.of(new PlayerIdentity(owner, name == null ? "" : name));
+                ? Optional.of(PlayerUtil.getPlayerInfo((EntityPlayer) entity)) : Optional.empty();
     }
 
     /** Owner removal (sneak + empty main hand, see {@link #onBlockActivated}) applies to this click. */

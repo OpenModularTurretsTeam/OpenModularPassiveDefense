@@ -13,7 +13,7 @@ Read OMLib's `docs/architecture.md` first; this mod is small because of it.
 ## The idea in one paragraph
 
 OMPD adds **passive defenses** that complement the turrets: hardened blocks, walls and fences in five tiers, and a camouflage trap.
-Every block is an owned block of OMLib: it has an owner and a trust list, and the owner's team and trusted players are treated as friendly.
+Every block is an owned block of OMLib: it has an owner and a trust list, and the owner's team and trusted players are treated as friendly (except by fences, which spare only the owner, as on 1.20.1+).
 The few rules OMPD has of its own (what a tier is, whom a fence hurts) are plain Java in `core`, without any Minecraft class, so they are unit-tested in milliseconds.
 The blocks and tile entities translate between Minecraft and these rules and stay thin.
 
@@ -48,12 +48,12 @@ OMPD's core needs nothing from the world, so it has no world interfaces; it take
 | --- | --- | --- |
 | `core.DefenseTier` | `BlockHardened`, `BlockWall`, `BlockFence`, their items | tiers 1–5 as the metadata 0–4 of the 3.x blocks, clamping of invalid metadata |
 | `core.DefenseStats` | `config.ConfigHandler`, the three blocks | hardness, explosion resistance and fence damage per tier: the config values, checked (an invalid list gets the defaults) |
-| `core.FenceRules` | `BlockFence`, `BlockSpikes` (through `BlockHelper.hurts`) | whom a fence or spikes hurt on contact: not the owner, shared owners, trusted players, the owner's team and their pets; everything else living |
+| `core.FenceRules` | `BlockFence`, `BlockSpikes` (through `BlockHelper.hurts`) | whom a fence or spikes hurt on contact: everything living except the owner (and shared owners, the 1.12 owner concept), as on 1.20.1+ |
 | `core.PassageRules` | doors, gates and the heavy door (through `BlockHelper`) | who opens them by hand (owner, shared owners, trusted players, the owner's team); redstone opens them for everyone, unowned ones by redstone only |
 | `core.SpikeRules` | `BlockSpikes` | spike damage: by the tier once per second while standing, times 1 to 10 by the fall distance when landing |
 | `core.HeavyDoorMotion` | `BlockHeavyDoor`, `TileEntityHeavyDoor`, `ItemBlockHeavyDoor`, `client.render.HeavyDoorRenderer` | the 2x2 heavy door: its cells, the sideways slide of the two wings and the open progress |
 
-`FenceRules.hurts` gets the fence's OMLib `TrustManager` (`core.security`) and the identities of the touching player or the pet's owner; the block turns the colliding `Entity` into those arguments.
+`FenceRules.hurts` gets the fence's OMLib `TrustManager` (`core.security`) and the touching player as a `PlayerInfo`, if it is one; the block turns the colliding `Entity` into that argument.
 
 The tile entities own the trust manager: `TileEntityPassiveTiered` and `TileEntityCamo` hold OMLib's `TrustedPlayersManager` (the facade over `core.security.TrustManager`).
 
@@ -73,15 +73,14 @@ Packages below `omtteam.ompd`:
 | (root) | `OpenModularPassiveDefense` (the `@Mod`: start-up and the data fixer), `CommonProxy` |
 | `core` | `DefenseTier`, `FenceRules` |
 | `block` | `BlockHardened` (a full block, `IPlainLookingBlock`: it can serve as a disguise), `BlockWall`, `BlockFence` (they extend OMLib's abstract wall and pane), `BlockCamoTrap` (OMLib's camouflage block) |
-| `tileentity` | `TileEntityPassiveTiered` (tier, owner and trust list of hardened blocks, walls and fences), `TileEntityCamo` (the trap: disguise, light, trust list) |
+| `tileentity` | `TileEntityPassiveTiered` (tier, owner and trust list of hardened blocks, walls and fences), `TileEntityCamo` (the trap: disguise, light, trust list), `OwnerOverlay` (the owner line of Hwyla and The One Probe) |
 | `item` | `ItemBlockHardened`, `ItemBlockWall`, `ItemBlockFence`: the tier is the item's metadata |
 | `registry` | `ModBlocks` (blocks and tile entities), `ModItems`, `OpenModularPassiveDefenseTab` |
 | `handler` | `EventHandler` (registry events), `GuiHandler` |
-| `network` | `NetworkingHandler` (the channel; OMPD has no messages of its own, the camouflage menu uses OMLib's) |
 | `config` | `ConfigHandler` |
 | `fixes` | `TENameFix`, the data fixer for the 3.x tile entity names |
 | `util` | `BlockHelper`: placing (owner and tier) and the click shared by the tiered blocks |
-| `compat` | `ModCompatibility`, `WailaTileHandler` (Hwyla) |
+| `compat` | `ModCompatibility` (registers with OMLib's Hwyla plugin), `WailaTileHandler` (owner line), `WailaCamoTrapHandler` (the trap's disguise) |
 | `client` | `ClientProxy`, `ClientEventHandler`, `client.model.BasicCamoTrapBakedModel` (the trap's model on top of OMLib's `CamoBakedModel`) |
 
 `./gradlew dependencyMap` draws these packages and every import between them as an interactive page.
@@ -90,7 +89,7 @@ Packages below `omtteam.ompd`:
 
 ### Startup
 
-`OpenModularPassiveDefense.preInit` loads the config (`ConfigHandler.init`) and calls `proxy.preInit()`; `CommonProxy.initHandlers` registers the networking and the event handler, the client proxy adds its own handlers and model loaders.
+`OpenModularPassiveDefense.preInit` loads the config (`ConfigHandler.init`) and calls `proxy.preInit()`; `CommonProxy.preInit` registers the event handler (OMPD has no network channel of its own, the camouflage menu uses OMLib's), the client proxy adds its own handlers and model loaders in `initHandlers`.
 Blocks, items and sounds are registered in `RegistryEvent.Register` (`EventHandler` → `ModBlocks.initBlocks` / `ModItems`); the tile entities are registered with the blocks.
 `init` registers the GUI handler and the data fixer (`TENameFix`, data version in the mod class), and the mod compat.
 
@@ -109,7 +108,7 @@ Clicking a block with the wrench or opening its trust list goes through `BlockHe
 
 ### A fence touch
 
-`BlockFence.onEntityCollision` (server) asks `FenceRules.hurts` with the fence's trust manager, the touching player (as an OMLib `PlayerIdentity`) or the owner of a touching pet.
+`BlockFence.onEntityCollision` (server) asks `FenceRules.hurts` with the fence's trust manager and the touching player (as an OMLib `PlayerInfo`); only the owner and shared owners are spared, trusted players, the team and pets are hurt, as on 1.20.1+.
 Dropped items are left alone by the block; what is hurt takes the fence's damage.
 
 ### The camouflage trap
@@ -172,7 +171,7 @@ Never add to either without asking the user.
 | Tool | Command | Output |
 | --- | --- | --- |
 | Test coverage of `core` (JaCoCo) | part of `check`, which prints the line coverage per package | `build/reports/jacoco/test/html/index.html` |
-| Mutation testing of `core` (PIT, on demand) | `./gradlew pitest` | `build/reports/pitest/index.html` |
+| Mutation testing of `core` (PIT, on demand; fails below `pitest_mutation_threshold` in `gradle.properties`) | `./gradlew pitest` | `build/reports/pitest/index.html` |
 | Dependency map | `./gradlew dependencyMap` | `build/reports/dependency-map/index.html` |
 
 Run Gradle with a JDK 17+ in `JAVA_HOME`; the mod compiles and tests on the Java 8 toolchain.

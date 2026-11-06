@@ -6,7 +6,6 @@ import omtteam.omlib.config.ConfigSync;
 import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.core.DefenseStats;
 import omtteam.ompd.handler.EventHandler;
-import omtteam.ompd.network.NetworkingHandler;
 import omtteam.ompd.reference.Reference;
 import omtteam.ompd.registry.ModBlocks;
 
@@ -29,8 +28,8 @@ public class CommonProxy {
 
     }
 
+    /** Common handlers; the client proxy adds its own. OMPD has no network channel: the camouflage menu uses OMLib's. */
     protected void initHandlers() {
-        NetworkingHandler.initNetworking();
     }
 
     public World getWorld() {

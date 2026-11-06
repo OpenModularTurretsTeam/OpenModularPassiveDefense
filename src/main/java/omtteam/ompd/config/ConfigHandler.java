@@ -7,16 +7,12 @@ import java.io.File;
 
 public class ConfigHandler {
     public static Configuration config;
-    /** Whether the camouflage trap accepts glass, ice and leaves as a disguise (see {@code ICamoSupport}). */
-    public static boolean allowTransparentDisguises = true;
     /** Hardness, explosion resistance and fence damage per tier (synced to clients, which need the hardness). */
     private static DefenseStats defenseStats = DefenseStats.DEFAULTS;
 
     public static void init(File configFile) {
         config = new Configuration(configFile);
         config.load();
-        allowTransparentDisguises = config.getBoolean("allowTransparentDisguises", "camo trap", true,
-                "The camouflage trap also accepts transparent full blocks (glass, ice, leaves) as a disguise.");
         defenseStats = DefenseStats.of(
                 tierList("hardness", DefenseStats.defaultHardness(),
                         "Hardness of the hardened blocks, walls and fences of tiers 1 to 5 (stone 1.5, obsidian 50)."),

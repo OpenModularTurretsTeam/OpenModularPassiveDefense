@@ -2,6 +2,7 @@ package omtteam.ompd.core;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +19,8 @@ class DefenseStatsTest {
             assertEquals(expected[tier - 1], DefenseStats.DEFAULTS.explosionResistance(tier), EPS,
                     "resistance of tier " + tier);
         }
+        assertArrayEquals(expected, DefenseStats.defaultHardness(), EPS, "config default of the hardness");
+        assertArrayEquals(expected, DefenseStats.defaultExplosionResistance(), EPS, "config default of the resistance");
     }
 
     /** 3.x hit for 5 on every tier; tier 1 keeps that and every tier above hurts more. */
