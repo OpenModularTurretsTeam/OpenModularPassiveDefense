@@ -22,7 +22,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static com.tngtech.archunit.library.freeze.FreezingArchRule.freeze;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -50,20 +49,12 @@ class ArchitectureTest {
     static void importClasses() {
         classes = new ClassFileImporter()
                 .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
+                // only OMPD's own classes; OMPD has no core of its own (its rules are in config and block), and OMLib's
+                // core comes from OpenModularCore, which checks its isolation itself
+                .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_JARS)
                 // the workspace build puts test classes in build/<Mod>/classes/java/test, which the option above misses
                 .withImportOption(location -> !location.contains("/classes/java/test/"))
                 .importPackages(BASE);
-    }
-
-    /** Core stays plain Java: no Minecraft, Forge or other mod packages (also enforced by verifyCoreIsolation). */
-    @Test
-    void coreDependsOnlyOnCoreAndJava() {
-        classes().that().resideInAPackage(BASE + ".core..")
-                .should().onlyDependOnClassesThat()
-                .resideInAnyPackage("java..", "javax.annotation..", "omtteam.omlib.core..", BASE + ".core..")
-                .because("the core game logic must stay testable without the game")
-                .allowEmptyShould(true)
-                .check(classes);
     }
 
     /** Client-only code (GUIs, renderers) must never be loaded on a dedicated server; it is reached through the proxy. */
