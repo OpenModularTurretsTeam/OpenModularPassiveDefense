@@ -14,7 +14,9 @@ Read OMLib's `docs/architecture.md` first; this mod is small because of it.
 
 OMPD adds **passive defenses** that complement the turrets: hardened blocks, walls and fences in five tiers, and a camouflage trap.
 Every block is an owned block of OMLib: it has an owner and a trust list, and the owner's team and trusted players are treated as friendly (except by fences, which spare only the owner, as on 1.20.1+).
-The few rules OMPD has of its own (what a tier is, whom a fence hurts) are plain Java in `core`, without any Minecraft class, so they are unit-tested in milliseconds.
+The few rules OMPD has of its own (what a tier is, the stats of a tier, whom a fence hurts) are plain Java classes in the game layer next to their users (`config.DefenseTier`, `config.DefenseStats`, `block.FenceRules`), without any Minecraft class, so they are unit-tested in milliseconds.
+OMPD has no `core` package: the shared game rules of the OpenModularTurretsTeam mods are in OpenModularCore (the same rules on every Minecraft version), and OMPD's rules are not shared, so they stay in OMPD (decided by the user, 2026-11-18).
+OMPD reaches OMLib's core (`omtteam.omlib.core`, module `omlib-core-j8` of OpenModularCore) only through OMLib, which bundles it in its jar; OMPD's jar contains none of it.
 The blocks and tile entities translate between Minecraft and these rules and stay thin.
 
 ## Layers
@@ -22,37 +24,38 @@ The blocks and tile entities translate between Minecraft and these rules and sta
 ```mermaid
 flowchart TB
     client["client<br/>camo trap model, client proxy<br/><i>client only</i>"]
-    game["game layer<br/>blocks, tile entities, items, registry, handlers, fixes"]
+    game["game layer<br/>blocks, tile entities, items, registry, config, handlers, fixes<br/>incl. the plain-Java rules DefenseTier, DefenseStats, FenceRules"]
     compat["compat<br/>Hwyla"]
-    core["core<br/>DefenseTier, DefenseStats, FenceRules"]
     omlib["OMLib<br/>ownership, trust, abstract blocks, camouflage"]
+    omlibcore["OMLib core (OpenModularCore, bundled by OMLib)<br/>TrustManager, PlayerInfo, CamoPermissions"]
     client --> game
     compat --> game
-    game --> core
     game --> omlib
-    core --> omlibcore["OMLib core<br/>TrustManager, PlayerIdentity"]
+    game --> omlibcore
+    omlib --> omlibcore
 ```
 
 An arrow means "may use".
 The other directions are forbidden and checked by the build (see [Rules the build checks](#rules-the-build-checks)):
 
-- **core** uses only Java, itself and OMLib's `core`: no Minecraft, Forge, `com.mojang` or non-core packages.
+- **OMLib's core** is a library: OMPD uses it and never the other way round; OpenModularCore checks its isolation itself.
 - **common code** never uses **client** code: client classes do not exist on a dedicated server.
   Forge 1.12 dev environments have no separate client source set, so `client` is a package; common code reaches it only through the proxy (`@SidedProxy`: `CommonProxy`, `client.ClientProxy`).
 
-### How core talks to the game
+### OMPD's rules
 
-OMPD's core needs nothing from the world, so it has no world interfaces; it takes OMLib's core types as arguments:
+OMPD's rules need nothing from the world, so they have no world interfaces; they take OMLib's core types as arguments and import no Minecraft class:
 
-| Core class | Used by | What it decides |
+| Class | Used by | What it decides |
 | --- | --- | --- |
-| `core.DefenseTier` | `BlockHardened`, `BlockWall`, `BlockFence`, their items | tiers 1–5 as the metadata 0–4 of the 3.x blocks, clamping of invalid metadata |
-| `core.DefenseStats` | `config.ConfigHandler`, the three blocks | hardness, explosion resistance and fence damage per tier: the config values, checked (an invalid list gets the defaults) |
-| `core.FenceRules` | `BlockFence.onEntityCollision` | whom a fence hurts on contact: everything living except the owner (and shared owners, the 1.12 owner concept), as on 1.20.1+ |
+| `config.DefenseTier` | `BlockHardened`, `BlockWall`, `BlockFence`, their items | tiers 1–5 as the metadata 0–4 of the 3.x blocks, clamping of invalid metadata |
+| `config.DefenseStats` | `config.ConfigHandler`, the three blocks | hardness, explosion resistance and fence damage per tier: the config values, checked (an invalid list gets the defaults) |
+| `block.FenceRules` | `BlockFence.onEntityCollision` | whom a fence hurts on contact: everything living except the owner (and shared owners, and in offline mode the owner's name: the 1.12 owner concept), as on 1.20.1+ |
 
-`FenceRules.hurts` gets the fence's OMLib `TrustManager` (`core.security`) and the touching player as a `PlayerInfo`, if it is one; the block turns the colliding `Entity` into that argument.
+`FenceRules.hurts` gets the fence's OMLib `TrustManager` (`omtteam.omlib.core.security`) and the touching player as a `PlayerInfo`, if it is one; the block turns the colliding `Entity` into that argument.
+The owner check is the core's `TrustManager.isOwner(PlayerInfo)`, which asks OMLib's `SecurityEnvironment` for shared owners (`/omlib share`) and offline-mode name matching.
 
-The tile entities own the trust manager: `TileEntityPassiveTiered` and `TileEntityCamo` hold OMLib's `TrustedPlayersManager` (the facade over `core.security.TrustManager`).
+The tile entities own the trust manager: `TileEntityPassiveTiered` and `TileEntityCamo` hold OMLib's `TrustedPlayersManager` (the facade over the core's `TrustManager`); the trap's camouflage rights come from the core's `CamoPermissions` (`omtteam.omlib.core.camo`).
 
 ## Where things live
 
@@ -60,7 +63,7 @@ The tile entities own the trust manager: `TileEntityPassiveTiered` and `TileEnti
 | --- | --- | --- |
 | `src/main/java` | all code; client code in the `client` package | yes |
 | `src/main/resources` | `assets/ompd` (models, blockstates, lang, textures, handwritten recipes), `mcmod.info` | yes |
-| `src/test/java` | JUnit 5 tests of the core and the data fixer, and the architecture rules | no |
+| `src/test/java` | JUnit 5 tests of the rules and the data fixer, and the architecture rules | no |
 | `src/test/resources/archunit_store` | the frozen architecture violations (a ratchet) | no |
 
 Packages below `omtteam.ompd`:
@@ -68,13 +71,12 @@ Packages below `omtteam.ompd`:
 | Package | Responsibility |
 | --- | --- |
 | (root) | `OpenModularPassiveDefense` (the `@Mod`: start-up and the data fixer), `CommonProxy` |
-| `core` | `DefenseTier`, `FenceRules` |
-| `block` | `BlockHardened` (a full block, `IPlainLookingBlock`: it can serve as a disguise), `BlockWall`, `BlockFence` (they extend OMLib's abstract wall and pane), `BlockCamoTrap` (OMLib's camouflage block) |
+| `block` | `FenceRules`, `BlockHardened` (a full block, `IPlainLookingBlock`: it can serve as a disguise), `BlockWall`, `BlockFence` (they extend OMLib's abstract wall and pane), `BlockCamoTrap` (OMLib's camouflage block) |
 | `tileentity` | `TileEntityPassiveTiered` (tier, owner and trust list of hardened blocks, walls and fences), `TileEntityCamo` (the trap: disguise, light, trust list), `OwnerOverlay` (the owner line of Hwyla and The One Probe) |
 | `item` | `ItemBlockHardened`, `ItemBlockWall`, `ItemBlockFence`: the tier is the item's metadata |
 | `registry` | `ModBlocks` (blocks and tile entities), `ModItems`, `OpenModularPassiveDefenseTab` |
 | `handler` | `EventHandler` (registry events), `GuiHandler` |
-| `config` | `ConfigHandler` |
+| `config` | `ConfigHandler`, `DefenseTier` (tier ↔ metadata), `DefenseStats` (the per-tier values of the section `tiers`) |
 | `fixes` | `TENameFix`, the data fixer for the 3.x tile entity names |
 | `util` | `BlockHelper`: placing (owner and tier) and the click shared by the tiered blocks |
 | `compat` | `ModCompatibility` (registers with OMLib's Hwyla plugin), `WailaTileHandler` (owner line), `WailaCamoTrapHandler` (the trap's disguise) |
@@ -137,7 +139,8 @@ Blockstate, models, textures (human-made; use a placeholder and say which are mi
 
 ### A rule
 
-Put it in `core` with a unit test first, taking OMLib's core types as arguments (like `FenceRules`), and let the block translate.
+Write it as a plain Java class with a unit test first, next to the code that uses it, taking OMLib's core types as arguments (like `block.FenceRules`), and let the block translate.
+A rule that the other mods or Minecraft versions share belongs in OpenModularCore instead (`../CLAUDE.md` of the dev root, "Shared core logic").
 
 ### Code that needs the client
 
@@ -153,10 +156,9 @@ Owner, trust, camouflage, wrench and GUI code belong in OMLib, not here.
 
 | Rule | Checked by |
 | --- | --- |
-| core uses only Java, core and OMLib core | `ArchitectureTest.coreDependsOnlyOnCoreAndJava` and the `verifyCoreIsolation` task |
 | common code reaches `client` only through the proxy | `ArchitectureTest.commonCodeReachesClientCodeOnlyThroughTheProxy` (frozen in `src/test/resources/archunit_store`, empty now) |
 | no new package cycles, and the known ones only shrink | `ArchitectureTest.noNewPackageCycles` (list `KNOWN_CYCLES`) |
-| core rules behave as specified | `DefenseTierTest`, `DefenseStatsTest`, `FenceRulesTest` |
+| the rules behave as specified | `DefenseTierTest`, `DefenseStatsTest`, `FenceRulesTest` |
 | the 3.x tile entity names are renamed | `TENameFixTest` |
 
 There are no GameTests on 1.12: in-game behaviour is checked with the dev client and server in the workspace (`./gradlew :runenv:runServer -Pomcompat_action=boot`) and with the 3.x compatibility worlds.
@@ -167,12 +169,10 @@ Never add to either without asking the user.
 
 | Tool | Command | Output |
 | --- | --- | --- |
-| Test coverage of `core` (JaCoCo) | part of `check`, which prints the line coverage per package | `build/reports/jacoco/test/html/index.html` |
-| Mutation testing of `core` (PIT, on demand; fails below `pitest_mutation_threshold` in `gradle.properties`) | `./gradlew pitest` | `build/reports/pitest/index.html` |
 | Dependency map | `./gradlew dependencyMap` | `build/reports/dependency-map/index.html` |
 
 Run Gradle with a JDK 17+ in `JAVA_HOME`; the mod compiles and tests on the Java 8 toolchain.
-Coverage says which lines the tests run; mutation testing says whether they check the results.
+`verifyCoreIsolation`, the core coverage (JaCoCo) printed by `check` and mutation testing (`pitest`) only run in a mod with a core package of its own (`gradle/mod-common.gradle`), so they do nothing in OMPD; the shared core is checked in OpenModularCore.
 
 ## Known weak spots
 
@@ -181,7 +181,7 @@ They are known, not hidden:
 
 - **One small package cycle.** The root package, `block`, `fixes`, `handler`, `item` and `registry` depend on each other in a loop (registry ↔ blocks, as in most Minecraft mods); `noNewPackageCycles` keeps it from growing.
 - **`util.BlockHelper` is a grab-bag.** Placing and clicking logic shared by the tiered blocks; it should move next to what it serves (an abstract tiered block or `TileEntityPassiveTiered`).
-- **The core is small.** Hardness, tiers and the fence rule are tested; the other behaviour (collision of the trap, claiming sparkle) lives in the blocks and is checked by hand.
+- **Few rules are unit-tested.** Hardness, tiers and the fence rule are tested; the other behaviour (collision of the trap, claiming sparkle) lives in the blocks and is checked by hand.
 - **Client code in the main source set.** The client rule is enforced by a test, not by the compiler.
 - **The client is untested** except by hand; check models and the trap with `runClient` in the workspace.
 - **Phase 8 is not merged.** New tiered blocks (gates, doors, heavy door, lamp, spikes) and the simpler recipes live on the branch `phase-8-ompd`; this document describes `1.12` without them and has to be extended when they land.
