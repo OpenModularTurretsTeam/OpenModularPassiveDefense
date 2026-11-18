@@ -1,4 +1,4 @@
-package omtteam.ompd.core;
+package omtteam.ompd.config;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package omtteam.ompd.core;
+package omtteam.ompd.config;
 
 /**
  * The five tiers of hardened blocks, walls and fences: block and item metadata 0–4 are tiers 1–5 (as in 3.x); their

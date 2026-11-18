@@ -1,4 +1,4 @@
-package omtteam.ompd.core;
+package omtteam.ompd.config;
 
 /**
  * The per-tier stats of hardened blocks, walls and fences (from the config): hardness, explosion resistance (the value

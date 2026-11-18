@@ -1,7 +1,6 @@
 package omtteam.ompd.config;
 
 import net.minecraftforge.common.config.Configuration;
-import omtteam.ompd.core.DefenseStats;
 
 import java.io.File;
 

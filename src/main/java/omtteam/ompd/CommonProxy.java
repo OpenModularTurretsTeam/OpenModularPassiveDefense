@@ -4,7 +4,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import omtteam.omlib.config.ConfigSync;
 import omtteam.ompd.config.ConfigHandler;
-import omtteam.ompd.core.DefenseStats;
+import omtteam.ompd.config.DefenseStats;
 import omtteam.ompd.handler.EventHandler;
 import omtteam.ompd.reference.Reference;
 import omtteam.ompd.registry.ModBlocks;

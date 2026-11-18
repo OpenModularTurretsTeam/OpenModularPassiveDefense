@@ -61,6 +61,12 @@ repositories {
         url = "https://cursemaven.com/"              // OMLib releases and Hwyla from CurseForge
         content { includeGroup "curse.maven" }
     }
+    // OMLib's core (omlib-core-j8 from OpenModularCore, built by JitPack from its release tags), an api dependency of
+    // the OMLib project in the workspace; OMPD bundles none of it. Only the core comes from there.
+    maven {
+        url = "https://jitpack.io"
+        content { includeGroup "com.github.OpenModularTurretsTeam.OpenModularCore" }
+    }
     if (omlibProject == null && (project.hasProperty("omlib_local") || releasing)) {
         mavenLocal {                                 // OMLib from publishToMavenLocal
             content { includeGroup group_prefix }

@@ -5,7 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import omtteam.ompd.core.DefenseTier;
+import omtteam.ompd.config.DefenseTier;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.registry.ModBlocks;
 

@@ -1,4 +1,4 @@
-package omtteam.ompd.core;
+package omtteam.ompd.block;
 
 import omtteam.omlib.core.security.PlayerInfo;
 import omtteam.omlib.core.security.TrustManager;
@@ -7,8 +7,9 @@ import java.util.Optional;
 
 /**
  * Who a fence hurts on contact: everything living except the owner, as on 1.20.1+. The owner is the fence's owner or a
- * player the owner shares ownership with ({@link TrustManager#isOwner(PlayerInfo)}, the 1.12 owner concept); trusted
- * players, the owner's team and pets are hurt. Dropped items are left alone by the block.
+ * player the owner shares ownership with, in OMLib's offline mode also matched by name ({@link
+ * TrustManager#isOwner(PlayerInfo)} of OMLib's core, the 1.12 owner concept); trusted players, the owner's team and pets
+ * are hurt. Dropped items are left alone by the block. Plain Java, so it is unit-tested without the game.
  */
 public final class FenceRules {
     private FenceRules() {

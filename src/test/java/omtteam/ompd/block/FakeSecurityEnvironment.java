@@ -1,4 +1,4 @@
-package omtteam.ompd.core;
+package omtteam.ompd.block;
 
 import omtteam.omlib.core.security.PlayerIdentity;
 import omtteam.omlib.core.security.SecurityEnvironment;
@@ -10,10 +10,11 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-/** Test double for {@link SecurityEnvironment}: teams by player name, shared owners by UUID. */
+/** Test double for {@link SecurityEnvironment}: teams by player name, shared owners by UUID, offline mode switchable. */
 class FakeSecurityEnvironment implements SecurityEnvironment {
     final Map<String, String> teams = new HashMap<>();
     final Set<UUID> sharedOwners = new HashSet<>();
+    boolean offlineMode;
 
     @Override
     public Optional<String> getTeam(UUID uuid, String name) {
@@ -26,7 +27,7 @@ class FakeSecurityEnvironment implements SecurityEnvironment {
     }
 
     @Override
-    public boolean turretsDamageTrustedPlayers() {
+    public boolean damageTrustedPlayers() {
         return false;
     }
 
@@ -37,6 +38,6 @@ class FakeSecurityEnvironment implements SecurityEnvironment {
 
     @Override
     public boolean offlineModeSupport() {
-        return false;
+        return offlineMode;
     }
 }

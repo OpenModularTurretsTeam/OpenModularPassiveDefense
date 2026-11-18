@@ -1,4 +1,4 @@
-package omtteam.ompd.core;
+package omtteam.ompd.block;
 
 import omtteam.omlib.core.security.PlayerInfo;
 import omtteam.omlib.core.security.TrustManager;
@@ -52,6 +52,16 @@ class FenceRulesTest {
     void everyoneElseIsHurt() {
         assertTrue(hurtsPlayer(FRIEND), "trusted player");
         assertTrue(hurtsPlayer(TEAMMATE), "owner's team");
+        assertTrue(hurtsPlayer(STRANGER));
+    }
+
+    /** OMLib's offline mode: a player with another UUID but the owner's name (any case) counts as the owner. */
+    @Test
+    void inOfflineModeTheOwnerIsKnownByName() {
+        PlayerInfo offlineOwner = new PlayerInfo(UUID.nameUUIDFromBytes("offline".getBytes()), "OWNER", false);
+        assertTrue(hurtsPlayer(offlineOwner), "online mode: the UUID decides");
+        environment.offlineMode = true;
+        assertFalse(hurtsPlayer(offlineOwner));
         assertTrue(hurtsPlayer(STRANGER));
     }
 

@@ -33,7 +33,7 @@ import omtteam.omlib.compat.theoneprobe.TOPCompatibility;
 import omtteam.omlib.compat.theoneprobe.TOPInfoProvider;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.config.ConfigHandler;
-import omtteam.ompd.core.DefenseTier;
+import omtteam.ompd.config.DefenseTier;
 import omtteam.ompd.item.ItemBlockHardened;
 import omtteam.ompd.reference.OMPDNames;
 import omtteam.ompd.reference.Reference;
