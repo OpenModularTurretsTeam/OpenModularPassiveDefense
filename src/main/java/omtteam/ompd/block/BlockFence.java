@@ -44,6 +44,7 @@ import omtteam.ompd.registry.ModBlocks;
 import omtteam.ompd.tileentity.OwnerOverlay;
 import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 import omtteam.ompd.util.BlockHelper;
+import omtteam.ompd.util.FenceRules;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;

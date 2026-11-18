@@ -1,4 +1,4 @@
-package omtteam.ompd.block;
+package omtteam.ompd.util;
 
 import omtteam.omlib.core.security.PlayerIdentity;
 import omtteam.omlib.core.security.SecurityEnvironment;

@@ -14,7 +14,7 @@ Read OMLib's `docs/architecture.md` first; this mod is small because of it.
 
 OMPD adds **passive defenses** that complement the turrets: hardened blocks, walls and fences in five tiers, and a camouflage trap.
 Every block is an owned block of OMLib: it has an owner and a trust list, and the owner's team and trusted players are treated as friendly (except by fences, which spare only the owner, as on 1.20.1+).
-The few rules OMPD has of its own (what a tier is, the stats of a tier, whom a fence hurts) are plain Java classes in the game layer next to their users (`config.DefenseTier`, `config.DefenseStats`, `block.FenceRules`), without any Minecraft class, so they are unit-tested in milliseconds.
+The few rules OMPD has of its own (what a tier is, the stats of a tier, whom a fence hurts) are plain Java classes in the game layer next to their users (`config.DefenseTier`, `config.DefenseStats`, `util.FenceRules`), without any Minecraft class, so they are unit-tested in milliseconds.
 OMPD has no `core` package: the shared game rules of the OpenModularTurretsTeam mods are in OpenModularCore (the same rules on every Minecraft version), and OMPD's rules are not shared, so they stay in OMPD (decided by the user, 2026-11-18).
 OMPD reaches OMLib's core (`omtteam.omlib.core`, module `omlib-core-j8` of OpenModularCore) only through OMLib, which bundles it in its jar; OMPD's jar contains none of it.
 The blocks and tile entities translate between Minecraft and these rules and stay thin.
@@ -50,7 +50,7 @@ OMPD's rules need nothing from the world, so they have no world interfaces; they
 | --- | --- | --- |
 | `config.DefenseTier` | `BlockHardened`, `BlockWall`, `BlockFence`, their items | tiers 1–5 as the metadata 0–4 of the 3.x blocks, clamping of invalid metadata |
 | `config.DefenseStats` | `config.ConfigHandler`, the three blocks | hardness, explosion resistance and fence damage per tier: the config values, checked (an invalid list gets the defaults) |
-| `block.FenceRules` | `BlockFence.onEntityCollision` | whom a fence hurts on contact: everything living except the owner (and shared owners, and in offline mode the owner's name: the 1.12 owner concept), as on 1.20.1+ |
+| `util.FenceRules` | `BlockFence.onEntityCollision` | whom a fence hurts on contact: everything living except the owner (and shared owners, and in offline mode the owner's name: the 1.12 owner concept), as on 1.20.1+ |
 
 `FenceRules.hurts` gets the fence's OMLib `TrustManager` (`omtteam.omlib.core.security`) and the touching player as a `PlayerInfo`, if it is one; the block turns the colliding `Entity` into that argument.
 The owner check is the core's `TrustManager.isOwner(PlayerInfo)`, which asks OMLib's `SecurityEnvironment` for shared owners (`/omlib share`) and offline-mode name matching.
@@ -71,14 +71,14 @@ Packages below `omtteam.ompd`:
 | Package | Responsibility |
 | --- | --- |
 | (root) | `OpenModularPassiveDefense` (the `@Mod`: start-up and the data fixer), `CommonProxy` |
-| `block` | `FenceRules`, `BlockHardened` (a full block, `IPlainLookingBlock`: it can serve as a disguise), `BlockWall`, `BlockFence` (they extend OMLib's abstract wall and pane), `BlockCamoTrap` (OMLib's camouflage block) |
+| `block` | `BlockHardened` (a full block, `IPlainLookingBlock`: it can serve as a disguise), `BlockWall`, `BlockFence` (they extend OMLib's abstract wall and pane), `BlockCamoTrap` (OMLib's camouflage block) |
 | `tileentity` | `TileEntityPassiveTiered` (tier, owner and trust list of hardened blocks, walls and fences), `TileEntityCamo` (the trap: disguise, light, trust list), `OwnerOverlay` (the owner line of Hwyla and The One Probe) |
 | `item` | `ItemBlockHardened`, `ItemBlockWall`, `ItemBlockFence`: the tier is the item's metadata |
 | `registry` | `ModBlocks` (blocks and tile entities), `ModItems`, `OpenModularPassiveDefenseTab` |
 | `handler` | `EventHandler` (registry events), `GuiHandler` |
 | `config` | `ConfigHandler`, `DefenseTier` (tier ↔ metadata), `DefenseStats` (the per-tier values of the section `tiers`) |
 | `fixes` | `TENameFix`, the data fixer for the 3.x tile entity names |
-| `util` | `BlockHelper`: placing (owner and tier) and the click shared by the tiered blocks |
+| `util` | `BlockHelper`: placing (owner and tier) and the click shared by the tiered blocks; `FenceRules` (who a fence hurts), next to it because the blocks that hurt share it |
 | `compat` | `ModCompatibility` (registers with OMLib's Hwyla plugin), `WailaTileHandler` (owner line), `WailaCamoTrapHandler` (the trap's disguise) |
 | `client` | `ClientProxy`, `ClientEventHandler`, `client.model.BasicCamoTrapBakedModel` (the trap's model on top of OMLib's `CamoBakedModel`) |
 
@@ -139,7 +139,7 @@ Blockstate, models, textures (human-made; use a placeholder and say which are mi
 
 ### A rule
 
-Write it as a plain Java class with a unit test first, next to the code that uses it, taking OMLib's core types as arguments (like `block.FenceRules`), and let the block translate.
+Write it as a plain Java class with a unit test first, next to the code that uses it, taking OMLib's core types as arguments (like `util.FenceRules`), and let the block translate.
 A rule that the other mods or Minecraft versions share belongs in OpenModularCore instead (`../CLAUDE.md` of the dev root, "Shared core logic").
 
 ### Code that needs the client
