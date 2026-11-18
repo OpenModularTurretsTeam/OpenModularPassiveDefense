@@ -49,7 +49,7 @@ class ArchitectureTest {
     static void importClasses() {
         classes = new ClassFileImporter()
                 .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
-                // only OMPD's own classes; OMPD has no core of its own (its rules are in config and block), and OMLib's
+                // only OMPD's own classes; OMPD has no core of its own (its rules are in config and util), and OMLib's
                 // core comes from OpenModularCore, which checks its isolation itself
                 .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_JARS)
                 // the workspace build puts test classes in build/<Mod>/classes/java/test, which the option above misses
