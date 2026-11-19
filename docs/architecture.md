@@ -17,6 +17,7 @@ Every block is an owned block of OMLib: it has an owner and a trust list, and th
 The few rules OMPD has of its own (what a tier is, the stats of a tier, whom a fence hurts) are plain Java classes in the game layer next to their users (`config.DefenseTier`, `config.DefenseStats`, `util.FenceRules`), without any Minecraft class, so they are unit-tested in milliseconds.
 OMPD has no `core` package: the shared game rules of the OpenModularTurretsTeam mods are in OpenModularCore (the same rules on every Minecraft version), and OMPD's rules are not shared, so they stay in OMPD (decided by the user, 2026-11-18).
 OMPD reaches OMLib's core (`omtteam.omlib.core`, module `omlib-core-j8` of OpenModularCore) only through OMLib, which bundles it in its jar; OMPD's jar contains none of it.
+`core_version` in `gradle.properties` names the OpenModularCore release that OMLib bundles, the same in every mod and workspace; OMPD's build does not read it, `check-core-version.sh` in the OMM root compares it.
 The blocks and tile entities translate between Minecraft and these rules and stay thin.
 
 ## Layers
