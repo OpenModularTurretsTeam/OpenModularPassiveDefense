@@ -19,6 +19,18 @@ If you need help, ask us in our [Discord](https://discord.gg/SEG695u).
 
 Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 
+## Building
+
+This branch (`1.12`) builds with RetroFuturaGradle; Gradle needs Java 25, the mod is compiled with an automatically downloaded Java 8.
+OMPD is built against OMLib from source, published to your local Maven repository first:
+
+```bash
+cd OMLib && ./gradlew publishToMavenLocal                                          # in an OMLib clone on branch 1.12
+cd ../OpenModularPassiveDefense && ./gradlew build -Pomlib_local -Pomlib_version=4.0.1   # jars in build/libs/
+```
+
+[CONTRIBUTING.md](CONTRIBUTING.md) explains the setup, the flags, the shared core, testing and pull requests.
+
 ## License
 
 The projects source code is licensed under the [MIT license](LICENSE), the projects art is licenced under the [CC-BY-NC-SA 4.0 license](LICENSE-ART) (see [LICENSE-DUAL](LICENSE-DUAL)).
