@@ -5,6 +5,7 @@ import omtteam.omlib.api.permission.TrustedPlayersManager;
 import omtteam.omlib.api.tile.IHasTrustManager;
 import omtteam.omlib.tileentity.TileEntityOwnedBlock;
 import omtteam.omlib.util.player.Player;
+import omtteam.ompd.config.DefenseTier;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -14,6 +15,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
  * This is the base for most of OMPDs passive blocks
  */
 public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHasTrustManager {
+    /** The item metadata the block was placed from (0–4, NBT key {@code tier} as in 3.x), see {@link #getDefenseTier}. */
     protected int tier;
     protected TrustedPlayersManager tpm;
 
@@ -51,6 +53,11 @@ public class TileEntityPassiveTiered extends TileEntityOwnedBlock implements IHa
 
     public void setTier(int tier) {
         this.tier = tier;
+    }
+
+    /** The tier 1–5 of {@link #getTier}; the blocks that keep their tier in the tile entity (doors, gates) use it. */
+    public int getDefenseTier() {
+        return DefenseTier.fromMeta(tier);
     }
 
     /** The trust list needs the owner for its rules (fence contact, see {@code FenceRules}). */

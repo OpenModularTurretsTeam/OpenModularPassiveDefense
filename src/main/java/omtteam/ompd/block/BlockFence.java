@@ -32,8 +32,6 @@ import omtteam.omlib.block.BlockAbstractMiscPane;
 import omtteam.omlib.block.UnownedMarker;
 import omtteam.omlib.compat.theoneprobe.TOPCompatibility;
 import omtteam.omlib.compat.theoneprobe.TOPInfoProvider;
-import omtteam.omlib.core.security.PlayerInfo;
-import omtteam.omlib.util.player.PlayerUtil;
 import omtteam.ompd.OpenModularPassiveDefense;
 import omtteam.ompd.config.ConfigHandler;
 import omtteam.ompd.config.DefenseTier;
@@ -44,11 +42,9 @@ import omtteam.ompd.registry.ModBlocks;
 import omtteam.ompd.tileentity.OwnerOverlay;
 import omtteam.ompd.tileentity.TileEntityPassiveTiered;
 import omtteam.ompd.util.BlockHelper;
-import omtteam.ompd.util.FenceRules;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Optional;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
@@ -99,17 +95,10 @@ public class BlockFence extends BlockAbstractMiscPane implements IHasItemBlock, 
         if (worldIn.isRemote || entityIn instanceof EntityItem) {
             return;
         }
-        TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if (!(tileEntity instanceof TileEntityPassiveTiered) || FenceRules.hurts(
-                ((TileEntityPassiveTiered) tileEntity).getTrustManager().core(), player(entityIn))) {
+        if (BlockHelper.hurts(worldIn, pos, entityIn)) {
             float damage = ConfigHandler.getDefenseStats().fenceDamage(state.getValue(TIER));
             entityIn.attackEntityFrom(DamageSource.CACTUS, damage);
         }
-    }
-
-    private static Optional<PlayerInfo> player(Entity entity) {
-        return entity instanceof EntityPlayer
-                ? Optional.of(PlayerUtil.getPlayerInfo((EntityPlayer) entity)) : Optional.empty();
     }
 
     @Override

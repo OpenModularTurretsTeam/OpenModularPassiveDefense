@@ -17,3 +17,57 @@ tile.wall_tier_four.name=Hardened Wall (Tier 4)
 tile.wall_tier_one.name=Hardened Wall (Tier 1)
 tile.wall_tier_three.name=Hardened Wall (Tier 3)
 tile.wall_tier_two.name=Hardened Wall (Tier 2)
+
+tile.hardened_lamp_tier_one.name=Hardened Lamp (Tier 1)
+tile.hardened_lamp_tier_two.name=Hardened Lamp (Tier 2)
+tile.hardened_lamp_tier_three.name=Hardened Lamp (Tier 3)
+tile.hardened_lamp_tier_four.name=Hardened Lamp (Tier 4)
+tile.hardened_lamp_tier_five.name=Hardened Lamp (Tier 5)
+
+tile.hardened_door_tier_one.name=Hardened Door (Tier 1)
+tile.hardened_door_tier_two.name=Hardened Door (Tier 2)
+tile.hardened_door_tier_three.name=Hardened Door (Tier 3)
+tile.hardened_door_tier_four.name=Hardened Door (Tier 4)
+tile.hardened_door_tier_five.name=Hardened Door (Tier 5)
+
+tile.fence_gate_tier_one.name=Fence Gate (Tier 1)
+tile.fence_gate_tier_two.name=Fence Gate (Tier 2)
+tile.fence_gate_tier_three.name=Fence Gate (Tier 3)
+tile.fence_gate_tier_four.name=Fence Gate (Tier 4)
+tile.fence_gate_tier_five.name=Fence Gate (Tier 5)
+
+tile.tall_fence_gate_tier_one.name=Tall Fence Gate (Tier 1)
+tile.tall_fence_gate_tier_two.name=Tall Fence Gate (Tier 2)
+tile.tall_fence_gate_tier_three.name=Tall Fence Gate (Tier 3)
+tile.tall_fence_gate_tier_four.name=Tall Fence Gate (Tier 4)
+tile.tall_fence_gate_tier_five.name=Tall Fence Gate (Tier 5)
+
+tile.wall_gate_tier_one.name=Hardened Wall Gate (Tier 1)
+tile.wall_gate_tier_two.name=Hardened Wall Gate (Tier 2)
+tile.wall_gate_tier_three.name=Hardened Wall Gate (Tier 3)
+tile.wall_gate_tier_four.name=Hardened Wall Gate (Tier 4)
+tile.wall_gate_tier_five.name=Hardened Wall Gate (Tier 5)
+
+tile.tall_wall_gate_tier_one.name=Tall Hardened Wall Gate (Tier 1)
+tile.tall_wall_gate_tier_two.name=Tall Hardened Wall Gate (Tier 2)
+tile.tall_wall_gate_tier_three.name=Tall Hardened Wall Gate (Tier 3)
+tile.tall_wall_gate_tier_four.name=Tall Hardened Wall Gate (Tier 4)
+tile.tall_wall_gate_tier_five.name=Tall Hardened Wall Gate (Tier 5)
+
+item.hardened_plating_tier_one.name=Hardened Plating (Tier 1)
+item.hardened_plating_tier_two.name=Hardened Plating (Tier 2)
+item.hardened_plating_tier_three.name=Hardened Plating (Tier 3)
+item.hardened_plating_tier_four.name=Hardened Plating (Tier 4)
+item.hardened_plating_tier_five.name=Hardened Plating (Tier 5)
+
+tile.heavy_door.name=Heavy Door (Tier 5)
+item.hardened_mix.name=Hardened Mix
+
+tile.spikes_tier_one.name=Spikes (Tier 1)
+tile.spikes_tier_two.name=Spikes (Tier 2)
+tile.spikes_tier_three.name=Spikes (Tier 3)
+tile.spikes_tier_four.name=Spikes (Tier 4)
+tile.spikes_tier_five.name=Spikes (Tier 5)
+
+death.attack.ompd.spikes=%1$s was impaled on spikes
+death.attack.ompd.spikes.player=%1$s was impaled on spikes whilst fighting %2$s

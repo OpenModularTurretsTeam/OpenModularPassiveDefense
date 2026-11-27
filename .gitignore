@@ -29,3 +29,6 @@ Thumbs.db
 # Log4j output of the unit tests
 logs/
 /.claude/
+
+# Personal notes (texture to-do list)
+/TODO.md

@@ -1,0 +1,604 @@
+{
+  "variants": {
+    "facing=east,half=lower,hinge=left,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom"
+    },
+    "facing=south,half=lower,hinge=left,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=left,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=left,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=right,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom_rh"
+    },
+    "facing=south,half=lower,hinge=right,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom_rh",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=right,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom_rh",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=right,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom_rh",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=left,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom_rh",
+      "y": 90
+    },
+    "facing=south,half=lower,hinge=left,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom_rh",
+      "y": 180
+    },
+    "facing=west,half=lower,hinge=left,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom_rh",
+      "y": 270
+    },
+    "facing=north,half=lower,hinge=left,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom_rh"
+    },
+    "facing=east,half=lower,hinge=right,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom",
+      "y": 270
+    },
+    "facing=south,half=lower,hinge=right,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom"
+    },
+    "facing=west,half=lower,hinge=right,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom",
+      "y": 90
+    },
+    "facing=north,half=lower,hinge=right,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_bottom",
+      "y": 180
+    },
+    "facing=east,half=upper,hinge=left,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top"
+    },
+    "facing=south,half=upper,hinge=left,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=left,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=left,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=right,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top_rh"
+    },
+    "facing=south,half=upper,hinge=right,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top_rh",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=right,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top_rh",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=right,open=false,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top_rh",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=left,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top_rh",
+      "y": 90
+    },
+    "facing=south,half=upper,hinge=left,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top_rh",
+      "y": 180
+    },
+    "facing=west,half=upper,hinge=left,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top_rh",
+      "y": 270
+    },
+    "facing=north,half=upper,hinge=left,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top_rh"
+    },
+    "facing=east,half=upper,hinge=right,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top",
+      "y": 270
+    },
+    "facing=south,half=upper,hinge=right,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top"
+    },
+    "facing=west,half=upper,hinge=right,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top",
+      "y": 90
+    },
+    "facing=north,half=upper,hinge=right,open=true,tier=1": {
+      "model": "ompd:hardened_door_tier_one_top",
+      "y": 180
+    },
+    "facing=east,half=lower,hinge=left,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom"
+    },
+    "facing=south,half=lower,hinge=left,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=left,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=left,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=right,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom_rh"
+    },
+    "facing=south,half=lower,hinge=right,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom_rh",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=right,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom_rh",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=right,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom_rh",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=left,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom_rh",
+      "y": 90
+    },
+    "facing=south,half=lower,hinge=left,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom_rh",
+      "y": 180
+    },
+    "facing=west,half=lower,hinge=left,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom_rh",
+      "y": 270
+    },
+    "facing=north,half=lower,hinge=left,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom_rh"
+    },
+    "facing=east,half=lower,hinge=right,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom",
+      "y": 270
+    },
+    "facing=south,half=lower,hinge=right,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom"
+    },
+    "facing=west,half=lower,hinge=right,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom",
+      "y": 90
+    },
+    "facing=north,half=lower,hinge=right,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_bottom",
+      "y": 180
+    },
+    "facing=east,half=upper,hinge=left,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top"
+    },
+    "facing=south,half=upper,hinge=left,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=left,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=left,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=right,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top_rh"
+    },
+    "facing=south,half=upper,hinge=right,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top_rh",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=right,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top_rh",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=right,open=false,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top_rh",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=left,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top_rh",
+      "y": 90
+    },
+    "facing=south,half=upper,hinge=left,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top_rh",
+      "y": 180
+    },
+    "facing=west,half=upper,hinge=left,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top_rh",
+      "y": 270
+    },
+    "facing=north,half=upper,hinge=left,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top_rh"
+    },
+    "facing=east,half=upper,hinge=right,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top",
+      "y": 270
+    },
+    "facing=south,half=upper,hinge=right,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top"
+    },
+    "facing=west,half=upper,hinge=right,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top",
+      "y": 90
+    },
+    "facing=north,half=upper,hinge=right,open=true,tier=2": {
+      "model": "ompd:hardened_door_tier_two_top",
+      "y": 180
+    },
+    "facing=east,half=lower,hinge=left,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom"
+    },
+    "facing=south,half=lower,hinge=left,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=left,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=left,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=right,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom_rh"
+    },
+    "facing=south,half=lower,hinge=right,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom_rh",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=right,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom_rh",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=right,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom_rh",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=left,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom_rh",
+      "y": 90
+    },
+    "facing=south,half=lower,hinge=left,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom_rh",
+      "y": 180
+    },
+    "facing=west,half=lower,hinge=left,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom_rh",
+      "y": 270
+    },
+    "facing=north,half=lower,hinge=left,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom_rh"
+    },
+    "facing=east,half=lower,hinge=right,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom",
+      "y": 270
+    },
+    "facing=south,half=lower,hinge=right,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom"
+    },
+    "facing=west,half=lower,hinge=right,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom",
+      "y": 90
+    },
+    "facing=north,half=lower,hinge=right,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_bottom",
+      "y": 180
+    },
+    "facing=east,half=upper,hinge=left,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top"
+    },
+    "facing=south,half=upper,hinge=left,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=left,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=left,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=right,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top_rh"
+    },
+    "facing=south,half=upper,hinge=right,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top_rh",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=right,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top_rh",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=right,open=false,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top_rh",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=left,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top_rh",
+      "y": 90
+    },
+    "facing=south,half=upper,hinge=left,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top_rh",
+      "y": 180
+    },
+    "facing=west,half=upper,hinge=left,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top_rh",
+      "y": 270
+    },
+    "facing=north,half=upper,hinge=left,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top_rh"
+    },
+    "facing=east,half=upper,hinge=right,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top",
+      "y": 270
+    },
+    "facing=south,half=upper,hinge=right,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top"
+    },
+    "facing=west,half=upper,hinge=right,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top",
+      "y": 90
+    },
+    "facing=north,half=upper,hinge=right,open=true,tier=3": {
+      "model": "ompd:hardened_door_tier_three_top",
+      "y": 180
+    },
+    "facing=east,half=lower,hinge=left,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom"
+    },
+    "facing=south,half=lower,hinge=left,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=left,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=left,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=right,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom_rh"
+    },
+    "facing=south,half=lower,hinge=right,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom_rh",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=right,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom_rh",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=right,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom_rh",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=left,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom_rh",
+      "y": 90
+    },
+    "facing=south,half=lower,hinge=left,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom_rh",
+      "y": 180
+    },
+    "facing=west,half=lower,hinge=left,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom_rh",
+      "y": 270
+    },
+    "facing=north,half=lower,hinge=left,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom_rh"
+    },
+    "facing=east,half=lower,hinge=right,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom",
+      "y": 270
+    },
+    "facing=south,half=lower,hinge=right,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom"
+    },
+    "facing=west,half=lower,hinge=right,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom",
+      "y": 90
+    },
+    "facing=north,half=lower,hinge=right,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_bottom",
+      "y": 180
+    },
+    "facing=east,half=upper,hinge=left,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top"
+    },
+    "facing=south,half=upper,hinge=left,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=left,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=left,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=right,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top_rh"
+    },
+    "facing=south,half=upper,hinge=right,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top_rh",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=right,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top_rh",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=right,open=false,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top_rh",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=left,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top_rh",
+      "y": 90
+    },
+    "facing=south,half=upper,hinge=left,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top_rh",
+      "y": 180
+    },
+    "facing=west,half=upper,hinge=left,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top_rh",
+      "y": 270
+    },
+    "facing=north,half=upper,hinge=left,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top_rh"
+    },
+    "facing=east,half=upper,hinge=right,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top",
+      "y": 270
+    },
+    "facing=south,half=upper,hinge=right,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top"
+    },
+    "facing=west,half=upper,hinge=right,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top",
+      "y": 90
+    },
+    "facing=north,half=upper,hinge=right,open=true,tier=4": {
+      "model": "ompd:hardened_door_tier_four_top",
+      "y": 180
+    },
+    "facing=east,half=lower,hinge=left,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom"
+    },
+    "facing=south,half=lower,hinge=left,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=left,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=left,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=right,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom_rh"
+    },
+    "facing=south,half=lower,hinge=right,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom_rh",
+      "y": 90
+    },
+    "facing=west,half=lower,hinge=right,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom_rh",
+      "y": 180
+    },
+    "facing=north,half=lower,hinge=right,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom_rh",
+      "y": 270
+    },
+    "facing=east,half=lower,hinge=left,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom_rh",
+      "y": 90
+    },
+    "facing=south,half=lower,hinge=left,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom_rh",
+      "y": 180
+    },
+    "facing=west,half=lower,hinge=left,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom_rh",
+      "y": 270
+    },
+    "facing=north,half=lower,hinge=left,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom_rh"
+    },
+    "facing=east,half=lower,hinge=right,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom",
+      "y": 270
+    },
+    "facing=south,half=lower,hinge=right,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom"
+    },
+    "facing=west,half=lower,hinge=right,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom",
+      "y": 90
+    },
+    "facing=north,half=lower,hinge=right,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_bottom",
+      "y": 180
+    },
+    "facing=east,half=upper,hinge=left,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top"
+    },
+    "facing=south,half=upper,hinge=left,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=left,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=left,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=right,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top_rh"
+    },
+    "facing=south,half=upper,hinge=right,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top_rh",
+      "y": 90
+    },
+    "facing=west,half=upper,hinge=right,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top_rh",
+      "y": 180
+    },
+    "facing=north,half=upper,hinge=right,open=false,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top_rh",
+      "y": 270
+    },
+    "facing=east,half=upper,hinge=left,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top_rh",
+      "y": 90
+    },
+    "facing=south,half=upper,hinge=left,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top_rh",
+      "y": 180
+    },
+    "facing=west,half=upper,hinge=left,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top_rh",
+      "y": 270
+    },
+    "facing=north,half=upper,hinge=left,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top_rh"
+    },
+    "facing=east,half=upper,hinge=right,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top",
+      "y": 270
+    },
+    "facing=south,half=upper,hinge=right,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top"
+    },
+    "facing=west,half=upper,hinge=right,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top",
+      "y": 90
+    },
+    "facing=north,half=upper,hinge=right,open=true,tier=5": {
+      "model": "ompd:hardened_door_tier_five_top",
+      "y": 180
+    }
+  }
+}

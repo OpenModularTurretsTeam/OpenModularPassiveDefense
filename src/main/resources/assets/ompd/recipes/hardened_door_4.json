@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "ompd:hardened_plating",
+      "data": 4
+    }
+  },
+  "result": {
+    "item": "ompd:hardened_door",
+    "data": 4,
+    "count": 3
+  }
+}

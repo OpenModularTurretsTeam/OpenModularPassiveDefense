@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FPF",
+    "FPF"
+  ],
+  "key": {
+    "F": {
+      "item": "ompd:fence",
+      "data": 0
+    },
+    "P": {
+      "item": "ompd:hardened_plating",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "ompd:fence_gate",
+    "data": 0,
+    "count": 1
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "ompd:spikes"
+  },
+  "variants": {
+    "tier": {
+      "1": {
+        "textures": {
+          "all": "ompd:blocks/spikes_tier_one"
+        }
+      },
+      "2": {
+        "textures": {
+          "all": "ompd:blocks/spikes_tier_two"
+        }
+      },
+      "3": {
+        "textures": {
+          "all": "ompd:blocks/spikes_tier_three"
+        }
+      },
+      "4": {
+        "textures": {
+          "all": "ompd:blocks/spikes_tier_four"
+        }
+      },
+      "5": {
+        "textures": {
+          "all": "ompd:blocks/spikes_tier_five"
+        }
+      }
+    }
+  }
+}

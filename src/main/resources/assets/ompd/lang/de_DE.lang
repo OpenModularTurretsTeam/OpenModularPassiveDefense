@@ -17,3 +17,57 @@ tile.wall_tier_four.name=Verteidigungsmauer (Tier 4)
 tile.wall_tier_one.name=Verteidigungsmauer (Tier 1)
 tile.wall_tier_three.name=Verteidigungsmauer (Tier 3)
 tile.wall_tier_two.name=Verteidigungsmauer (Tier 2)
+
+tile.hardened_lamp_tier_one.name=Verteidigungslampe (Tier 1)
+tile.hardened_lamp_tier_two.name=Verteidigungslampe (Tier 2)
+tile.hardened_lamp_tier_three.name=Verteidigungslampe (Tier 3)
+tile.hardened_lamp_tier_four.name=Verteidigungslampe (Tier 4)
+tile.hardened_lamp_tier_five.name=Verteidigungslampe (Tier 5)
+
+tile.hardened_door_tier_one.name=Verteidigungstür (Tier 1)
+tile.hardened_door_tier_two.name=Verteidigungstür (Tier 2)
+tile.hardened_door_tier_three.name=Verteidigungstür (Tier 3)
+tile.hardened_door_tier_four.name=Verteidigungstür (Tier 4)
+tile.hardened_door_tier_five.name=Verteidigungstür (Tier 5)
+
+tile.fence_gate_tier_one.name=Zauntor (Tier 1)
+tile.fence_gate_tier_two.name=Zauntor (Tier 2)
+tile.fence_gate_tier_three.name=Zauntor (Tier 3)
+tile.fence_gate_tier_four.name=Zauntor (Tier 4)
+tile.fence_gate_tier_five.name=Zauntor (Tier 5)
+
+tile.tall_fence_gate_tier_one.name=Hohes Zauntor (Tier 1)
+tile.tall_fence_gate_tier_two.name=Hohes Zauntor (Tier 2)
+tile.tall_fence_gate_tier_three.name=Hohes Zauntor (Tier 3)
+tile.tall_fence_gate_tier_four.name=Hohes Zauntor (Tier 4)
+tile.tall_fence_gate_tier_five.name=Hohes Zauntor (Tier 5)
+
+tile.wall_gate_tier_one.name=Verteidigungsmauertor (Tier 1)
+tile.wall_gate_tier_two.name=Verteidigungsmauertor (Tier 2)
+tile.wall_gate_tier_three.name=Verteidigungsmauertor (Tier 3)
+tile.wall_gate_tier_four.name=Verteidigungsmauertor (Tier 4)
+tile.wall_gate_tier_five.name=Verteidigungsmauertor (Tier 5)
+
+tile.tall_wall_gate_tier_one.name=Hohes Verteidigungsmauertor (Tier 1)
+tile.tall_wall_gate_tier_two.name=Hohes Verteidigungsmauertor (Tier 2)
+tile.tall_wall_gate_tier_three.name=Hohes Verteidigungsmauertor (Tier 3)
+tile.tall_wall_gate_tier_four.name=Hohes Verteidigungsmauertor (Tier 4)
+tile.tall_wall_gate_tier_five.name=Hohes Verteidigungsmauertor (Tier 5)
+
+item.hardened_plating_tier_one.name=Verteidigungsplatte (Tier 1)
+item.hardened_plating_tier_two.name=Verteidigungsplatte (Tier 2)
+item.hardened_plating_tier_three.name=Verteidigungsplatte (Tier 3)
+item.hardened_plating_tier_four.name=Verteidigungsplatte (Tier 4)
+item.hardened_plating_tier_five.name=Verteidigungsplatte (Tier 5)
+
+tile.heavy_door.name=Schwere Tür (Tier 5)
+item.hardened_mix.name=Verteidigungsmischung
+
+tile.spikes_tier_one.name=Stacheln (Tier 1)
+tile.spikes_tier_two.name=Stacheln (Tier 2)
+tile.spikes_tier_three.name=Stacheln (Tier 3)
+tile.spikes_tier_four.name=Stacheln (Tier 4)
+tile.spikes_tier_five.name=Stacheln (Tier 5)
+
+death.attack.ompd.spikes=%1$s wurde von Stacheln aufgespießt
+death.attack.ompd.spikes.player=%1$s wurde im Kampf mit %2$s von Stacheln aufgespießt

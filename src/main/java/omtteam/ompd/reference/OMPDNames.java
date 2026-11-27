@@ -28,9 +28,23 @@ public class OMPDNames {
         public static final String wallTierFour = "wall_tier_four";
         public static final String wallTierFive = "wall_tier_five";
 
+        public static final String hardenedLamp = "hardened_lamp";
+        public static final String hardenedDoor = "hardened_door";
+        public static final String heavyDoor = "heavy_door";
+        public static final String spikes = "spikes";
+        public static final String fenceGate = "fence_gate";
+        public static final String wallGate = "wall_gate";
+        public static final String tallFenceGate = "tall_fence_gate";
+        public static final String tallWallGate = "tall_wall_gate";
+
         public static final String camoTrap = "camo_trap";
 
         public static final String ownedBlock = "ompd_owned_block";
+    }
+
+    public static class Items {
+        public static final String hardenedMix = "hardened_mix";
+        public static final String hardenedPlating = "hardened_plating";
     }
 
     public static class Localizations {

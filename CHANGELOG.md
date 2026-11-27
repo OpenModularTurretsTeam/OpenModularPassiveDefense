@@ -8,6 +8,19 @@ Before a release, `./gradlew releaseChangelog` turns *Unreleased* into the secti
 
 ## [Unreleased]
 
+### Added
+
+- Hardened lamps (tier 1–5): light level 15, the lamp face points away from the block they are placed on
+- Hardened doors (tier 1–5): the owner and trusted players open them by hand, redstone opens them for everyone
+- Fence gates and hardened wall gates (tier 1–5), each also 2 blocks high for stacked fences and walls; opened like the doors
+- Heavy door (tier 5): a 2x2 bunker door whose wings slide into the walls; opened like the doors
+- Spikes (tier 1–5): standing on them hurts by the tier once per second, landing on them by that times the fall distance in blocks (1 to 10, capped at 10 blocks); they spare whom the fences spare
+- Hardened mix and hardened plating (tier 1–5), the crafting intermediates of all blocks of a tier
+
+### Changed
+
+- Hardened blocks are crafted from the plating of their tier instead of from the tier below (about the same cost)
+
 ## [4.0.0] - 2026-11-02
 
 ### Changed

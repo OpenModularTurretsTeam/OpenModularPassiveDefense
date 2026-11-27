@@ -1,23 +1,14 @@
 {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ompd:hardened_plating",
+      "data": 2
+    }
+  ],
   "result": {
     "item": "ompd:hardened",
     "data": 2,
-    "count": 16
-  },
-  "pattern": [
-    "ABA",
-    "BAB",
-    "ABA"
-  ],
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "A": {
-      "item": "ompd:hardened",
-      "data": 1,
-      "count": 16
-    },
-    "B": {
-      "item": "minecraft:brick_block"
-    }
+    "count": 4
   }
 }

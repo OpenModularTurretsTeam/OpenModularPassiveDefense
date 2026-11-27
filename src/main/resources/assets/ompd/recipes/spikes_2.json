@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "PPP"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "ompd:hardened_plating",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "ompd:spikes",
+    "data": 2,
+    "count": 6
+  }
+}
